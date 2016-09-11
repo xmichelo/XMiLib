@@ -1,0 +1,13 @@
+*.suo
+*.vcxproj.user
+*.bak
+*.dep
+*.ewd
+*.klf
+_build/
+_temp/
+_doc/
+GeneratedFiles/
+build/
+*.sdf
+*.opensdf
