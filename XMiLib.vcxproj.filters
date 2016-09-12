@@ -14,14 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Exception.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Exception.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Exception.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Exception.cpp" />
   </ItemGroup>
 </Project>

@@ -31,7 +31,8 @@ private: // member functions
    Exception& operator=(Exception const&) throw(); ///< Disabled assignment operator
 
 private: // data members
-   QString const what_; ///< The description of the exception
+   QString const qWhat_; ///< The description of the exception
+   mutable QByteArray cachedWhat_; ///< The byte array containing the description of the exception as an ASCII latin1 char array. To save memory the content of this variable is only valid after what has been called once
 };
 
 

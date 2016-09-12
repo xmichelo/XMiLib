@@ -4,6 +4,5 @@
 /// \brief Declaration of precompiled headers
 
 
-#include <QtWidgets>
-#include <QtGui>
+#include <QtTest>
 #include <QtCore>

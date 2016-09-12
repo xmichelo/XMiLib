@@ -16,7 +16,8 @@ namespace xmilib {
 //**********************************************************************************************************************
 Exception::Exception(QString const& what) throw()
    : std::exception()
-   , what_(what)
+   , qWhat_(what)
+   , cachedWhat_()
 {
 
 }
@@ -27,7 +28,8 @@ Exception::Exception(QString const& what) throw()
 //**********************************************************************************************************************
 Exception::Exception(Exception const& ref) throw()
    : std::exception() 
-   , what_(ref.what_)
+   , qWhat_(ref.qWhat_)
+   , cachedWhat_() // we do not copy cached what to save memory
 {
 
 }
@@ -47,7 +49,9 @@ Exception::~Exception() throw()
 //**********************************************************************************************************************
 char const* Exception::what() const throw()
 {
-   return what_.toLatin1();
+   if (0 == cachedWhat_.size())
+      cachedWhat_ = qWhat_.toLatin1() + '\0'; // the final zero is added for safety, as constData() should add it automatically
+   return cachedWhat_.constData();
 }
 
 
@@ -56,7 +60,7 @@ char const* Exception::what() const throw()
 //**********************************************************************************************************************
 QString const& Exception::qwhat() const throw()
 {
-   return what_;
+   return qWhat_;
 }
 
 

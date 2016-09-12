@@ -3,4 +3,5 @@
 ///
 /// \brief Declaration of precompiled header
 
+
 #include <QtCore>
