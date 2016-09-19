@@ -1,39 +1,18 @@
 /// \file
 /// \author Xavier Michelon
 ///
-/// \brief Declaration of test class for the string utility functions in XMiLib
+/// \brief Implementation of test functions for the XMiLib string utility functions
 
 
 #include "stdafx.h"
-#include "StringUtilsTest.h"
+#include "XMiLibTest.h"
 #include <XMiLib/StringUtils.h>
 
 
-
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-StringUtilsTest::StringUtilsTest()
-   : QObject()
-{
-
-}
-
-
-
-//**********************************************************************************************************************
-// 
-//**********************************************************************************************************************
-StringUtilsTest::~StringUtilsTest()
-{
-
-}
-
-
-//**********************************************************************************************************************
-// 
-//**********************************************************************************************************************
-void StringUtilsTest::byteToHexString_data()
+void XMiLibTest::stringUtils_byteToHexString_data()
 {
    QTest::addColumn<char>("byte");
    QTest::addColumn<QString>("expectedResult");
@@ -47,7 +26,7 @@ void StringUtilsTest::byteToHexString_data()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void StringUtilsTest::byteToHexString()
+void XMiLibTest::stringUtils_byteToHexString()
 {
    QFETCH(char, byte);
    QFETCH(QString, expectedResult);

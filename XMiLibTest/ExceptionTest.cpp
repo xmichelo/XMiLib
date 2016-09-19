@@ -1,11 +1,11 @@
 /// \file
 /// \author Xavier Michelon
 ///
-/// \brief Declaration of test class for xmilib::Exception
+/// \brief Implementation of test functions for the xmilib::Exception class
 
 
 #include "stdafx.h"
-#include "ExceptionTest.h"
+#include "XMiLibTest.h"
 #include <XMiLib/Exception.h>
 
 
@@ -17,7 +17,7 @@ namespace {
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void ExceptionTest::exceptionHandling()
+void XMiLibTest::exceptionHandling()
 {
    qint32 exitPoint = 0;
    try 
@@ -36,7 +36,7 @@ void ExceptionTest::exceptionHandling()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void ExceptionTest::exceptionMessage_data()
+void XMiLibTest::exceptionMessage_data()
 {
    QTest::addColumn<QString>("message");
    QTest::newRow("Non empty exception message") << kExceptionMessage;
@@ -48,7 +48,7 @@ void ExceptionTest::exceptionMessage_data()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void ExceptionTest::exceptionMessage()
+void XMiLibTest::exceptionMessage()
 {
    QString whatStr("foo");
    QString qWhatStr("bar");
