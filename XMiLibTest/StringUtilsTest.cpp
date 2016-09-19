@@ -48,7 +48,8 @@ void XMiLibTest::stringUtils_byteArrayToHexString_data()
    QTest::addColumn<QString>("separator");
    QTest::addColumn<qint32>("bytesPerLine");
    QTest::addColumn<QString>("expectedResult");
-   QTest::newRow("Empty array") << QByteArray() << QString() << 0 <<  QString();
+   QTest::newRow("Empty array") << QByteArray() << QString() << 0 << QString();
+   QTest::newRow("One byte array") << QByteArray(1, -1) << QString( ) << 2 << QString("ff");
    QTest::newRow("Compact array") << array << QString() << 0 << QString("000102030405060708090a0b0c0d0e0f1011");
    QTest::newRow("Space separated") << array << QString(" ") << -1 << 
       QString("00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10 11");

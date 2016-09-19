@@ -32,13 +32,11 @@ QString byteToHexString(char byte)
 //**********************************************************************************************************************
 QString byteArrayToHexString(QByteArray const& array, QString const& separator, qint32 bytesPerLine)
 {
-   QString result;
-   for (qint32 i = 0; i < array.size(); ++i)
-   {  
-      if (0 != i)
-         result += ((bytesPerLine > 0) && (0 == i % bytesPerLine)) ? "\n" : separator;
-      result += byteToHexString(array[i]);
-   }
+   if (array.isEmpty())
+      return QString();
+   QString result = byteToHexString(array[0]);
+   for (qint32 i = 1; i < array.size(); ++i)
+      result += (((bytesPerLine > 0) && (0 == i % bytesPerLine)) ? "\n" : separator) + byteToHexString(array[i]);
    return result;
 }
 
