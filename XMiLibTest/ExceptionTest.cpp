@@ -66,6 +66,3 @@ void ExceptionTest::exceptionMessage()
    QCOMPARE(qWhatStr, message);
 }
 
-
-QTEST_MAIN(ExceptionTest)
-#include "moc_ExceptionTest.cpp"

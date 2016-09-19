@@ -4,8 +4,8 @@
 /// \brief Declaration of test class for xmilib::Exception
 
 
-#ifndef XMILIBTEST__EXCEPTION__TEST
-#define XMILIBTEST__EXCEPTION__TEST
+#ifndef XMILIB__TEST__EXCEPTION__TEST
+#define XMILIB__TEST__EXCEPTION__TEST
 
 
 //**********************************************************************************************************************
@@ -21,7 +21,7 @@ private slots:
 };
 
 
-#endif // #ifndef XMILIBTEST__EXCEPTION__TEST
+#endif // #ifndef XMILIB__TEST__EXCEPTION__TEST
 
 
 

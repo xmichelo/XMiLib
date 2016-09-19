@@ -4,11 +4,11 @@
 
 [https://github.com/xmichelo/Colorspread](https://github.com/xmichelo/Colorspread)
 
-##What is XMiLib ?
+## What is XMiLib ?
 
 XMiLib is a library of utility functions written in [C++][] and using the [Qt][] programming framework. This version is based on an older version of the library that was not relying upon Qt.
  
-##Documentation
+## Documentation
 
 No documentation is provided with this library, but the source code is properly commented and an automatic documentation can be generated using [doxygen][].
 
