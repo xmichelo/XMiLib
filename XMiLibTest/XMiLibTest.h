@@ -28,6 +28,8 @@ private slots:
    void exceptionMessage(); ///< Test function for xmilib::Exception messages 
    void stringUtils_byteToHexString_data(); ///< Test data for xmilib::byteToHexString()
    void stringUtils_byteToHexString(); ///< Test function for xmilib::byteToHexString()
+   void stringUtils_byteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
+   void stringUtils_byteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
 };
 
 
