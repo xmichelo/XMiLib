@@ -30,6 +30,10 @@ private slots:
    void stringUtils_byteToHexString(); ///< Test function for xmilib::byteToHexString()
    void stringUtils_byteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
    void stringUtils_byteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
+   void randomNumberGenerator_range_data(); ///< Test data for the first randomness test
+   void randomNumberGenerator_range(); ///< Test the range of the value returned by the random number generator
+   void randomNumberGenerator_randomness(); ///< Test the randomness of the values returned by the random number generator
+   void RandomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
 };
 
 

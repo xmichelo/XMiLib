@@ -16,10 +16,12 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="RandomNumberGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="RandomNumberGenerator.cpp" />
   </ItemGroup>
 </Project>

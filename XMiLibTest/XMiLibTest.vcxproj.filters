@@ -28,6 +28,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="XMiLibTest.cpp" />
+    <ClCompile Include="RandomNumberGeneratorTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
