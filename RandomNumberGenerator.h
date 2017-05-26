@@ -24,7 +24,7 @@ class RandomNumberGenerator
 public: // member functions
    RandomNumberGenerator(qint32 min = 0, qint32 max = std::numeric_limits<int>::max()); ///< Default constructor
    RandomNumberGenerator(quint32 seed, qint32 man = 0, qint32 max = std::numeric_limits<int>::max()); ///< Constructor using a user-provided seed
-	~RandomNumberGenerator(); ///< Default destructor
+	~RandomNumberGenerator() = default; ///< Default destructor
    qint32 get(); ///< Retrieve a pseudo-random integer in the range defined at construction time 
 	
 private: // member functions

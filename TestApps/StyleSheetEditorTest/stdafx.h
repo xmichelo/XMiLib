@@ -1,7 +1,7 @@
 /// \file
 /// \author Xavier Michelon
 ///
-/// \brief Declaration of precompiled header
+/// \brief Declaration of precompiled headers
 
 
 #include <QtWidgets>

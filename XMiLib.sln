@@ -5,7 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMiLib", "XMiLib.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMiLibTest", "XMiLibTest\XMiLibTest.vcxproj", "{94912788-EF1B-4550-B571-54D7AA0F9FC8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{E05296CB-0826-45DA-A14F-AC1050827C3A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMiLibTest", "TestApps\XMiLibTest\XMiLibTest.vcxproj", "{94912788-EF1B-4550-B571-54D7AA0F9FC8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StyleSheetEditorTest", "TestApps\StyleSheetEditorTest\StyleSheetEditorTest.vcxproj", "{D8680D74-8ECD-483B-BECC-8E409550E70D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,19 @@ Global
 		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Debug|x86.Build.0 = Debug|Win32
 		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x86.ActiveCfg = Release|Win32
 		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x86.Build.0 = Release|Win32
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x86.ActiveCfg = Debug|Win32
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x86.Build.0 = Debug|Win32
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.ActiveCfg = Release|Win32
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94912788-EF1B-4550-B571-54D7AA0F9FC8} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
+		{D8680D74-8ECD-483B-BECC-8E409550E70D} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = $(DefaultQtVersion)
 	EndGlobalSection
 EndGlobal

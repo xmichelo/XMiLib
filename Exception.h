@@ -23,8 +23,8 @@ class Exception: public std::exception
 public: // member functions
    Exception(QString const&  what = QString()) throw(); ///< Constructor
    Exception(Exception const& ref) throw(); ///< copy constructor
-   virtual ~Exception() throw(); ///< Destructor
-   virtual char const* what() const throw() ; ///< Return the description of the exception as a C-style string
+   virtual ~Exception() throw() override = default; ///< Destructor
+   virtual char const* what() const throw() override; ///< Return the description of the exception as a C-style string
    virtual QString const& qwhat() const throw(); ///< Return the description of the exception as a QString
 
 private: // member functions
