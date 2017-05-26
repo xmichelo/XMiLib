@@ -26,8 +26,11 @@ class StyleSheetEditor: public QWidget
 public: // static data members
    static QString kStyleSheetFileName; ///< The name of the file where the style sheet is stored in the application data folder
 
+public: // static member function
+   static void loadAndApplyStyleSheet(); ///< Load the theme from the default theme file and applies it to the application
+
 public: // member functions
-	StyleSheetEditor(); ///< Default constructor
+	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
 	virtual ~StyleSheetEditor() override = default; ///< Default destructor
 
 private: // member functions

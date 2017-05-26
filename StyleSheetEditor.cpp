@@ -16,14 +16,28 @@ QString StyleSheetEditor::kStyleSheetFileName = "style.css";
 
 
 //**********************************************************************************************************************
-// 
+/// It is safe to call this function even if no style sheet file is present in the application data folder
 //**********************************************************************************************************************
-StyleSheetEditor::StyleSheetEditor()
-   : QWidget(nullptr)
+void StyleSheetEditor::loadAndApplyStyleSheet()
+{
+   QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
+      .absoluteFilePath(StyleSheetEditor::kStyleSheetFileName));
+   if (!file.open(QIODevice::ReadOnly))
+      return;
+   qApp->setStyleSheet(file.readAll());
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] parent
+//**********************************************************************************************************************
+StyleSheetEditor::StyleSheetEditor(QWidget* parent)
+   : QWidget(parent)
    , ui_(std::make_unique<Ui::StyleSheetEditor>())
 {
-    ui_->setupUi(this);
-    ui_->edit->setPlainText(qApp->styleSheet());
+   ui_->setupUi(this);
+   this->setWindowFlags(this->windowFlags() | Qt::Window);
+   ui_->edit->setPlainText(qApp->styleSheet());
 }
 
 
@@ -56,7 +70,6 @@ void StyleSheetEditor::saveTheme() const
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionApply()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    this->saveAndApplyTheme();
 }
 
@@ -66,7 +79,6 @@ void StyleSheetEditor::onActionApply()
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionOk()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    this->saveAndApplyTheme();
    this->close();
 }
@@ -77,7 +89,6 @@ void StyleSheetEditor::onActionOk()
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionCancel()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    this->close();
 }
 

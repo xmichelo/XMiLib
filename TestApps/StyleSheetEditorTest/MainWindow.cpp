@@ -17,7 +17,7 @@ using namespace xmilib;
 MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
-   , themeWindow_(nullptr)
+   , styleSheetEditor_(nullptr)
 {
    ui_.setupUi(this);
 }
@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
 //**********************************************************************************************************************
 void MainWindow::onActionQuit()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    QApplication::closeAllWindows();
 }
 
@@ -38,10 +37,9 @@ void MainWindow::onActionQuit()
 //**********************************************************************************************************************
 void MainWindow::onActionShowStyleSheetEditor()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
-   if (!themeWindow_.get())
-      themeWindow_ = std::make_unique<StyleSheetEditor>();
-   themeWindow_->show();
+   if (!styleSheetEditor_)
+      styleSheetEditor_ = new StyleSheetEditor(this);
+   styleSheetEditor_->show();
 }
 
 

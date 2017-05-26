@@ -36,7 +36,7 @@ private: // member functions
 
 private: // data members
    Ui::MainWindow ui_; ///< The GUI for the window
-   std::unique_ptr<xmilib::StyleSheetEditor> themeWindow_; ///< The theme window
+   xmilib::StyleSheetEditor* styleSheetEditor_; ///< The theme window
 };
 
 
