@@ -49,7 +49,7 @@ QPushButton::pressed {
 QPushButton::disabled {
    color: #777777;
    background-color: #555555;
-   border: 1px solid #444444;
+   border-color: #333333;
 }
 
 
@@ -90,80 +90,38 @@ background-color: #333333;
 }
 
 QMenu:item::disabled {
-color: #6b6b6b;
+   color: #6b6b6b;
+}
+
+QScrollBar {
+   border: none;
+   background: #666666;
+   margin: 0px;
 }
 
 QScrollBar:vertical {
-     border: none;
-     background: #666666;
-     width: 15px;
-     margin: 15px 0 15px 0;
- }
+   width: 15px;
+}
 
- QScrollBar::handle:vertical {
-     background: #aaaaaa;
-     min-height: 20px;
- }
-
- QScrollBar::add-line:vertical {
-     border: none;
-     background: #444444;
-     height: 15px;
-     subcontrol-position: bottom;
-     subcontrol-origin: margin;
- }
-
- QScrollBar::sub-line:vertical {
-     border: none;
-     background: #444444;
-     height: 15px;
-     subcontrol-position: top;
-     subcontrol-origin: margin;
- }
- QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-     border: none;
-     width: 3px;
-     height: 3px;
-     background: #aaaaaa;
- }
-
- QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-     background: none;
- }
+QScrollBar::handle {
+   background: #aaaaaa;
+}
 
 QScrollBar:horizontal {
-     border: none;
-     background-color: #666666;
-     height: 15px;
-     margin: 0px 15px 0px 15px;
- }
- QScrollBar::handle:horizontal {
-     background-color: #aaaaaa;
-     min-height: 20px;
- }
- QScrollBar::add-line:horizontal {
-     border: none;
-     background: #444444;
-     width: 15px;
-     subcontrol-position: right;
-     subcontrol-origin: margin;
- }
+   height: 15px;
+}
 
- QScrollBar::sub-line:horizontal {
-     border: none;
-     background: #444444;
-     width: 15px;
-     subcontrol-position: left;
-     subcontrol-origin: margin;
- }
- QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
-     border: none;
-     width: 3px;
-     height: 3px;
-     background: #aaaaaa;
- }
+QScrollBar::handle:vertical {
+   min-height: 20px;
+}
 
- QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
-     background: none;
- }
+QScrollBar::handle:horizontal {
+   min-width: 20px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line, QScrollBar::add-page, QScrollBar::sub-page, 
+QScrollBar::up-arrow, QScrollBar::down-arrow, QScrollBar::left-arrow, QScrollBar::right-arrow {
+   border: none;
+   background: none;
+}
 )";
