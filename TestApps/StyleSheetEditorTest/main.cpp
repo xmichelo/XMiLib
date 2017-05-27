@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "MainWindow.h"
+#include "Constants.h"
 #include <XMiLib/StyleSheetEditor.h>
 
 
@@ -24,6 +25,8 @@ int main(int argc, char *argv[])
    a.setOrganizationName("x-mi.com");
    a.setApplicationVersion("1.0");
    StyleSheetEditor::loadAndApplyStyleSheet();
+   if (qApp->styleSheet().trimmed().isEmpty())
+      qApp->setStyleSheet(kSampleStyleSheet);
    MainWindow w;
    w.show();
    return a.exec();
