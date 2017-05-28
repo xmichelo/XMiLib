@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "MainWindow.h"
 #include "Constants.h"
-#include <XMiLib/StyleSheetEditor.h>
+#include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
 
 
 using namespace xmilib;

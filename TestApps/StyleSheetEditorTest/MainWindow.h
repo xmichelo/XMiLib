@@ -10,7 +10,7 @@
 
 
 #include "ui_MainWindow.h"
-#include <XMiLib/StyleSheetEditor.h>
+#include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
 #include <memory>
 
 
