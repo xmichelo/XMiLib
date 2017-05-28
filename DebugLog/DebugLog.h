@@ -26,9 +26,12 @@ class DebugLog: public QAbstractTableModel
 public: // member functions
 	DebugLog(QObject* parent = nullptr); ///< Default constructor
 	virtual ~DebugLog() override = default; ///< Default destructor
-   qint64 size() const; ///< Return the number of entries in the log
+   qint32 size() const; ///< Return the number of entries in the log
    SPLogEntry const& operator[](qint64 index) const; ///< Return a constant reference to the log entry at the given index
    SPLogEntry& operator[](qint64 index); ///< Return a mutable reference to the log entry at the given index
+   virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override; ///< Return the number of rows in the model
+   virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override; ///< Return the number of columns in the model
+   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override; ///< Return the data in the model at a given index for a given role
 
 public slots:
    void addInfo(QString const& message); ///< Add an informative message to the log

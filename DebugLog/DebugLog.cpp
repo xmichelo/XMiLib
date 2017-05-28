@@ -26,7 +26,7 @@ DebugLog::DebugLog(QObject* parent)
 //**********************************************************************************************************************
 /// \return The number of entries in the log
 //**********************************************************************************************************************
-qint64 DebugLog::size() const
+qint32 DebugLog::size() const
 {
    return entries_.size();
 }
@@ -49,6 +49,35 @@ SPLogEntry const& DebugLog::operator[](qint64 index) const
 SPLogEntry& DebugLog::operator[](qint64 index)
 {
    return const_cast<SPLogEntry&>(static_cast<const DebugLog&>(*this).operator[](index));
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] parent The index of the parent model
+/// \return The number of entries in log
+//**********************************************************************************************************************
+int DebugLog::rowCount(const QModelIndex &parent) const
+{
+   return int(entries_.size());
+}
+
+
+//**********************************************************************************************************************
+/// \return The number of rows in the model
+//**********************************************************************************************************************
+int DebugLog::columnCount(const QModelIndex &parent) const
+{
+   return 2;
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] index The index
+/// \param[in] role The role
+//**********************************************************************************************************************
+QVariant DebugLog::data(const QModelIndex &index, int role) const
+{
+   return QVariant();
 }
 
 

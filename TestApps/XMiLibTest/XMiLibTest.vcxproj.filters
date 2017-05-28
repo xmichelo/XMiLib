@@ -29,6 +29,7 @@
     </ClCompile>
     <ClCompile Include="XMiLibTest.cpp" />
     <ClCompile Include="RandomNumberGeneratorTest.cpp" />
+    <ClCompile Include="DebugLogTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

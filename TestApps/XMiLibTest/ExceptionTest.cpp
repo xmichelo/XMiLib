@@ -50,19 +50,26 @@ void XMiLibTest::exceptionMessage_data()
 //**********************************************************************************************************************
 void XMiLibTest::exceptionMessage()
 {
-   QString whatStr("foo");
-   QString qWhatStr("bar");
-   QFETCH(QString, message);
-   try 
+   try
    {
-      throw xmilib::Exception(message);
+      QString whatStr("foo");
+      QString qWhatStr("bar");
+      QFETCH(QString, message);
+      try 
+      {
+         throw xmilib::Exception(message);
+      }
+      catch (xmilib::Exception const& e)
+      {
+         whatStr = QString::fromLatin1(e.what());
+         qWhatStr = e.qwhat();
+      }
+      QCOMPARE(whatStr, message);
+      QCOMPARE(qWhatStr, message);
    }
-   catch (xmilib::Exception const& e)
+   catch (...)
    {
-      whatStr = QString::fromLatin1(e.what());
-      qWhatStr = e.qwhat();
+      QVERIFY2(false, "The function threw an exception");
    }
-   QCOMPARE(whatStr, message);
-   QCOMPARE(qWhatStr, message);
 }
 

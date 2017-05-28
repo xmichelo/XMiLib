@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugLogTest.cpp" />
     <ClCompile Include="ExceptionTest.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_XMiLibTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

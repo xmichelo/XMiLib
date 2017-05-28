@@ -16,7 +16,7 @@ class XMiLibTest: public QObject
    Q_OBJECT
 public: // member functions
 	XMiLibTest(); ///< Default constructor
-	~XMiLibTest(); ///< Default destructor
+	~XMiLibTest() = default; ///< Default destructor
 	
 private: // member functions
 	XMiLibTest(XMiLibTest const&); ///< Disabled copy constructor
@@ -33,7 +33,9 @@ private slots:
    void randomNumberGenerator_range_data(); ///< Test data for the first randomness test
    void randomNumberGenerator_range(); ///< Test the range of the value returned by the random number generator
    void randomNumberGenerator_randomness(); ///< Test the randomness of the values returned by the random number generator
-   void RandomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
+   void randomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
+   void debugLog_size(); ///< Test the size of the debug log
+   void debugLog_contents(); ///< Test the contents of the debug log
 };
 
 

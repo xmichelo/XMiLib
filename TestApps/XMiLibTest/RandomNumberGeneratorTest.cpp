@@ -56,6 +56,10 @@ void XMiLibTest::randomNumberGenerator_range()
       if (!shouldThrowException)   	
          QFAIL("The test threw an unexpected exception");
    }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception");
+   }
 }
 
 
@@ -87,29 +91,36 @@ void XMiLibTest::randomNumberGenerator_randomness()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::RandomNumberGenerator_seed()
+void XMiLibTest::randomNumberGenerator_seed()
 {
-   qint32 const seedTestCount = 100;
-   qint32 const seedCheckDistance = 200; 
-   qint32 const minVal = -100;
-   qint32 const maxVal = 100;
-   for (int n = 0; n < seedTestCount; ++n)
+   try
    {
-      quint32 const seed = std::random_device()();
-      RandomNumberGenerator rng1(seed, minVal, maxVal), rng2(seed, minVal, maxVal), rng3(seed + 1, minVal, maxVal);
-      std::vector<qint32> val1, val2, val3;
-      val1.reserve(seedCheckDistance);
-      val2.reserve(seedCheckDistance);
-      val3.reserve(seedCheckDistance);
-      for (int i = 0; i < seedCheckDistance; ++i)
+      qint32 const seedTestCount = 100;
+      qint32 const seedCheckDistance = 200;
+      qint32 const minVal = -100;
+      qint32 const maxVal = 100;
+      for (int n = 0; n < seedTestCount; ++n)
       {
-         val1.push_back(rng1.get());
-         val2.push_back(rng2.get());
-         val3.push_back(rng3.get());
+         quint32 const seed = std::random_device()();
+         RandomNumberGenerator rng1(seed, minVal, maxVal), rng2(seed, minVal, maxVal), rng3(seed + 1, minVal, maxVal);
+         std::vector<qint32> val1, val2, val3;
+         val1.reserve(seedCheckDistance);
+         val2.reserve(seedCheckDistance);
+         val3.reserve(seedCheckDistance);
+         for (int i = 0; i < seedCheckDistance; ++i)
+         {
+            val1.push_back(rng1.get());
+            val2.push_back(rng2.get());
+            val3.push_back(rng3.get());
+         }
+         QVERIFY2(val1 == val2, "Two generators with the same seed led to differents generated values");
+         QVERIFY2(val1 != val3, "Two generators with different seeds led to identical generated values");
       }
-      QVERIFY2(val1 == val2, "Two generators with the same seed led to differents generated values");
-      QVERIFY2(val1 != val3, "Two generators with different seeds led to identical generated values");
    }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception");
+   }   
 }
 
 

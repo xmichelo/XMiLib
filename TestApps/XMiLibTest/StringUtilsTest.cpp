@@ -28,9 +28,17 @@ void XMiLibTest::stringUtils_byteToHexString_data()
 //**********************************************************************************************************************
 void XMiLibTest::stringUtils_byteToHexString()
 {
-   QFETCH(char, byte);
-   QFETCH(QString, expectedResult);
-   QCOMPARE(xmilib::byteToHexString(byte), expectedResult);
+   try
+   {
+      QFETCH(char, byte);
+      QFETCH(QString, expectedResult);
+      QCOMPARE(xmilib::byteToHexString(byte), expectedResult);
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception");
+   }
+   
 }
 
 
@@ -69,11 +77,18 @@ void XMiLibTest::stringUtils_byteArrayToHexString_data()
 //**********************************************************************************************************************
 void XMiLibTest::stringUtils_byteArrayToHexString()
 {
-   QFETCH(QByteArray, array);
-   QFETCH(QString, separator);
-   QFETCH(qint32, bytesPerLine);
-   QFETCH(QString, expectedResult);
-   QCOMPARE(xmilib::byteArrayToHexString(array, separator, bytesPerLine), expectedResult);
+   try 
+   {
+      QFETCH(QByteArray, array);
+      QFETCH(QString, separator);
+      QFETCH(qint32, bytesPerLine);
+      QFETCH(QString, expectedResult);
+      QCOMPARE(xmilib::byteArrayToHexString(array, separator, bytesPerLine), expectedResult);
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception");
+   }
 }
 
 
