@@ -19,6 +19,9 @@
     <Filter Include="StyleSheetEditor">
       <UniqueIdentifier>{c97abd74-4143-4488-a354-8420d3a6714c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DebugLog">
+      <UniqueIdentifier>{199884c7-38d2-4866-9193-eba356795cb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -27,6 +30,9 @@
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="GeneratedFiles\ui_StyleSheetEditor.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLogEntry.h">
+      <Filter>DebugLog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_StyleSheetEditor.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLogEntry.cpp">
+      <Filter>DebugLog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

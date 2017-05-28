@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugLogEntry.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_StyleSheetEditor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -103,6 +104,7 @@
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugLogEntry.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="GeneratedFiles\ui_StyleSheetEditor.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
