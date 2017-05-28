@@ -9,6 +9,7 @@
 
 
 #include <memory>
+#include <deque>
 
 
 namespace xmilib {
@@ -46,6 +47,7 @@ private: // data members
 
 
 typedef std::shared_ptr<DebugLogEntry> SPLogEntry; ///< Type definition for shared pointer to DebugLogEntry
+typedef std::deque<SPLogEntry> DeqSPLogEntry; ///< Type definition for double ended queue of SPLogEntry
 
 
 } // namespace xmilib
