@@ -36,6 +36,7 @@ private slots:
    void randomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
    void debugLog_size(); ///< Test the size of the debug log
    void debugLog_contents(); ///< Test the contents of the debug log
+   void debugLog_tableModel(); ///< Test the table model for the debug log
 };
 
 

@@ -33,7 +33,7 @@ void XMiLibTest::debugLog_size()
       QVERIFY2(1 == log.size(), "The size of a log with one item is not one");
       log.addWarning(kWarningMessage);
       QVERIFY2(2 == log.size(), "The size of a log with two items is not two");
-      for (int i = 1; i <= 998; ++i)
+      for (int i = 0; i < 998; ++i)
          log.addError(kErrorMessage);
       QVERIFY2(1000 == log.size(), "The size of a log with 1000 items is not 1000");
    }
@@ -56,18 +56,18 @@ void XMiLibTest::debugLog_contents()
       log.addWarning(kWarningMessage);
       log.addError(kErrorMessage);
       bool didThrow(false);
-      try { SPLogEntry logEntry = log[-1]; }
+      try { SPDebugLogEntry logEntry = log[-1]; }
       catch (xmilib::Exception const& e) { didThrow = true; }
       QVERIFY2(didThrow, "operator [] did not throw with negative index");
       didThrow = false;
-      try { SPLogEntry logEntry = log[3]; }
+      try { SPDebugLogEntry logEntry = log[3]; }
       catch (xmilib::Exception const& e) { didThrow = true; }
       QVERIFY2(didThrow, "operator [] did not throw with an out of range index");
       didThrow = false;
-      try { SPLogEntry logEntry = log[2]; }
+      try { SPDebugLogEntry logEntry = log[2]; }
       catch (xmilib::Exception const& e) { didThrow = true; }
       QVERIFY2(!didThrow, "operator [] threw an exception for an valid index");
-      SPLogEntry entry = log[0];
+      SPDebugLogEntry entry = log[0];
       QString const invalidContents("The contents in invalid");
       char const* cInvalidContents = invalidContents.toLocal8Bit().constData();
       QVERIFY2(DebugLogEntry::Info == log[0]->getType(), cInvalidContents);
@@ -87,3 +87,35 @@ void XMiLibTest::debugLog_contents()
       QVERIFY2(false, "The function threw an exception");
    }
 }
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void XMiLibTest::debugLog_tableModel()
+{
+   try
+   {
+      DebugLog log;
+      QVERIFY2(2 == log.columnCount(), "The number of column in the table model is invalid");
+      QVERIFY2(0 == log.rowCount(), "The number of row in the empty table model is invalid");
+      log.addInfo(kInfoMessage);
+      log.addWarning(kWarningMessage);
+      log.addError(kErrorMessage);
+      QVERIFY2(2 == log.columnCount(), "The number of column in the table model is invalid");
+      QVERIFY2(3 == log.rowCount(), "The number of row in the table model is invalid");
+      for (qint32 i = 0; i < 3; ++i)
+      {
+         QVERIFY2(log.data(log.index(i, 0), Qt::DisplayRole).toString() == log[i]->getDateTime()
+            .toString("yyyy-MM-dd HH:mm:ss.zzz"), 
+            QString("Data for display role of column 0 and row %1 is invalid").arg(i).toLocal8Bit());
+         QVERIFY2(log.data(log.index(i, 1), Qt::DisplayRole).toString() == log[i]->getMessage(),
+            QString("Data for display role of column 1 and row %1 is invalid").arg(i).toLocal8Bit());
+      }
+   }
+   catch (...)
+   {
+   	QVERIFY2(false, "the function threw an exception");
+   }
+}
+

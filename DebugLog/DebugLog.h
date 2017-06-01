@@ -27,11 +27,13 @@ public: // member functions
 	DebugLog(QObject* parent = nullptr); ///< Default constructor
 	virtual ~DebugLog() override = default; ///< Default destructor
    qint32 size() const; ///< Return the number of entries in the log
-   SPLogEntry const& operator[](qint64 index) const; ///< Return a constant reference to the log entry at the given index
-   SPLogEntry& operator[](qint64 index); ///< Return a mutable reference to the log entry at the given index
+   void clear(); ///< Clear the log
+   SPDebugLogEntry const& operator[](qint64 index) const; ///< Return a constant reference to the log entry at the given index
+   SPDebugLogEntry& operator[](qint64 index); ///< Return a mutable reference to the log entry at the given index
    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override; ///< Return the number of rows in the model
    virtual int columnCount(const QModelIndex &parent = QModelIndex()) const override; ///< Return the number of columns in the model
    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override; ///< Return the data in the model at a given index for a given role
+   QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const; ///< Return the header data for a given section, header orientation and role
 
 public slots:
    void addInfo(QString const& message); ///< Add an informative message to the log

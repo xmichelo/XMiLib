@@ -34,6 +34,9 @@
     <ClInclude Include="DebugLog\DebugLogEntry.h">
       <Filter>DebugLog</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_DebugLogWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -61,6 +64,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DebugLog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="DebugLog\DebugLogWindow.cpp">
+      <Filter>DebugLog</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DebugLogWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DebugLogWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">
@@ -70,6 +82,12 @@
       <Filter>StyleSheetEditor</Filter>
     </CustomBuild>
     <CustomBuild Include="DebugLog\DebugLog.h">
+      <Filter>DebugLog</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DebugLog\DebugLogWindow.h">
+      <Filter>DebugLog</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DebugLog\DebugLogWindow.ui">
       <Filter>DebugLog</Filter>
     </CustomBuild>
   </ItemGroup>

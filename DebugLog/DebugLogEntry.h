@@ -46,8 +46,8 @@ private: // data members
 };
 
 
-typedef std::shared_ptr<DebugLogEntry> SPLogEntry; ///< Type definition for shared pointer to DebugLogEntry
-typedef std::deque<SPLogEntry> DeqSPLogEntry; ///< Type definition for double ended queue of SPLogEntry
+typedef std::shared_ptr<DebugLogEntry> SPDebugLogEntry; ///< Type definition for shared pointer to DebugLogEntry
+typedef std::deque<SPDebugLogEntry> DeqSPLogEntry; ///< Type definition for double ended queue of SPLogEntry
 
 
 } // namespace xmilib

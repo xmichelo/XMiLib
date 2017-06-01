@@ -9,6 +9,14 @@
 #include "Exception.h"
 
 
+namespace {
+   QBrush const kWhiteBrush(QColor(255, 255, 255, 255)); ///< A white brush
+   QBrush const kRedBrush(QColor(255, 24, 0, 255)); ///< A red brush
+   QBrush const kOrangeBrush(QColor(255, 150, 0, 255)); ///< An orange brush
+   QBrush const kGreenBrush(QColor(115, 200, 64, 255)); ///< A green brush
+}
+
+
 namespace xmilib {
 
 
@@ -33,9 +41,20 @@ qint32 DebugLog::size() const
 
 
 //**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void DebugLog::clear()
+{
+   this->beginResetModel();
+   entries_.clear();
+   this->endResetModel();
+}
+
+
+//**********************************************************************************************************************
 /// \param[in] index The index of the log entry
 //**********************************************************************************************************************
-SPLogEntry const& DebugLog::operator[](qint64 index) const
+SPDebugLogEntry const& DebugLog::operator[](qint64 index) const
 {
    if ((index < 0) || (index >= entries_.size()))
       throw Exception(QString("Index out of range"));
@@ -46,9 +65,9 @@ SPLogEntry const& DebugLog::operator[](qint64 index) const
 //**********************************************************************************************************************
 /// \param[in] index The index of the log entry
 //**********************************************************************************************************************
-SPLogEntry& DebugLog::operator[](qint64 index)
+SPDebugLogEntry& DebugLog::operator[](qint64 index)
 {
-   return const_cast<SPLogEntry&>(static_cast<const DebugLog&>(*this).operator[](index));
+   return const_cast<SPDebugLogEntry&>(static_cast<const DebugLog&>(*this).operator[](index));
 }
 
 
@@ -74,10 +93,73 @@ int DebugLog::columnCount(const QModelIndex &parent) const
 //**********************************************************************************************************************
 /// \param[in] index The index
 /// \param[in] role The role
+/// \param[in] The data for the given role and index
 //**********************************************************************************************************************
 QVariant DebugLog::data(const QModelIndex &index, int role) const
 {
-   return QVariant();
+   qint32 const row = index.row();
+   if ((row < 0) || (row >= entries_.size()))
+      return QVariant();
+   SPDebugLogEntry entry(entries_[row]);
+   if (!entry.get())
+      return QVariant();
+   switch (role)
+   {
+   case Qt::DisplayRole:
+      switch (index.column())
+      {
+      case 0: return entry->getDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz");
+      case 1: return entry->getMessage();
+      default: return QVariant();
+      }
+   case Qt::ForegroundRole:
+      return kWhiteBrush;
+   case Qt::BackgroundColorRole:
+   {
+      int const rowIndex(index.row());
+      switch (entries_[rowIndex]->getType())
+      {
+      case DebugLogEntry::Info:
+         return kGreenBrush;
+      case DebugLogEntry::Warning:
+         return kOrangeBrush;
+      case DebugLogEntry::Error:
+         return kRedBrush;
+      default:
+         Q_ASSERT(false);
+         return kRedBrush;
+      }
+   }
+   //case Qt::SizeHintRole:
+   //   return QSize(1, 1);
+   default:
+      return QVariant();
+   }
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] section The section (column or row index depending on the orientation
+/// \param[in] orientation The orientation of the header
+/// \param[in] role The role
+/// \return The corresponding header data
+//**********************************************************************************************************************
+QVariant DebugLog::headerData(int section, Qt::Orientation orientation, int role) const
+{
+   if (Qt::Vertical == orientation)
+      return QAbstractTableModel::headerData(section, orientation, role);
+   switch (role)
+   {
+   case Qt::DisplayRole:
+      switch (section)
+      {
+         case 0: return tr("Date/Time");
+         case 1: return tr("Message");
+         default: return QVariant();
+      }
+   default:
+      return QAbstractTableModel::headerData(section, orientation, role);
+   }
 }
 
 

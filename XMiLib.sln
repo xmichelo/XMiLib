@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMiLibTest", "TestApps\XMiL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StyleSheetEditorTest", "TestApps\StyleSheetEditorTest\StyleSheetEditorTest.vcxproj", "{D8680D74-8ECD-483B-BECC-8E409550E70D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DebugLogTest", "TestApps\DebugLogTest\DebugLogTest.vcxproj", "{EF44354D-D040-44C8-B4B7-0AE580C41FEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x86.Build.0 = Debug|Win32
 		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.ActiveCfg = Release|Win32
 		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.Build.0 = Release|Win32
+		{EF44354D-D040-44C8-B4B7-0AE580C41FEC}.Debug|x86.ActiveCfg = Debug|Win32
+		{EF44354D-D040-44C8-B4B7-0AE580C41FEC}.Debug|x86.Build.0 = Debug|Win32
+		{EF44354D-D040-44C8-B4B7-0AE580C41FEC}.Release|x86.ActiveCfg = Release|Win32
+		{EF44354D-D040-44C8-B4B7-0AE580C41FEC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{94912788-EF1B-4550-B571-54D7AA0F9FC8} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
 		{D8680D74-8ECD-483B-BECC-8E409550E70D} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
+		{EF44354D-D040-44C8-B4B7-0AE580C41FEC} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		Qt5Version = $(DefaultQtVersion)
