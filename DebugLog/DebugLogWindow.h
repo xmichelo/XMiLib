@@ -9,6 +9,7 @@
 
 
 #include "DebugLog.h"
+#include "DebugLogFilterProxyModel.h"
 #include <memory>
 
 
@@ -36,6 +37,7 @@ private: // member functions
 private slots:
    void onRowsAboutToBeInserted(const QModelIndex &parent, int start, int end); ///< Slot for before the insertion of a row
    void onRowsInserted(QModelIndex const& parent, int first, int last); ///< Slot for the insertion of a row
+   void onFilterChanged(); ///< Slot for the changing of the filtering
    void onActionClose(); ///< Slot for the 'Close' action
    void onActionClearLog(); ///< Slot for the 'Clear Log' action
 
@@ -43,6 +45,7 @@ private:
    std::unique_ptr<Ui::DebugLogWindow> ui_; ///< The GUI for the window
    DebugLog* debugLog_; ///< The debug log to display
    bool lastRowWasVisible_; ///< Was the last row visible before insertion
+   xmilib::DebugLogFilterProxyModel* filterModel_; ///< The filter proxy model
 };
 
 

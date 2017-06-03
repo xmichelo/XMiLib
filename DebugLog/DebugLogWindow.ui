@@ -46,6 +46,43 @@
        <number>0</number>
       </property>
       <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Show:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkboxInfoFilter">
+        <property name="text">
+         <string>Infos</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkboxWarningFilter">
+        <property name="text">
+         <string>Warnings</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkboxErrorFilter">
+        <property name="text">
+         <string>Errors</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -136,8 +173,8 @@
      <y>610</y>
     </hint>
     <hint type="destinationlabel">
-     <x>359</x>
-     <y>315</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
    </hints>
   </connection>
@@ -157,9 +194,58 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkboxInfoFilter</sender>
+   <signal>clicked()</signal>
+   <receiver>DebugLogWindow</receiver>
+   <slot>onFilterChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>610</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkboxWarningFilter</sender>
+   <signal>clicked()</signal>
+   <receiver>DebugLogWindow</receiver>
+   <slot>onFilterChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>133</x>
+     <y>610</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkboxErrorFilter</sender>
+   <signal>clicked()</signal>
+   <receiver>DebugLogWindow</receiver>
+   <slot>onFilterChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>199</x>
+     <y>610</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onActionClearLog()</slot>
   <slot>onActionClose()</slot>
+  <slot>onFilterChanged()</slot>
  </slots>
 </ui>

@@ -23,9 +23,9 @@ class DebugLogEntry
 public: // data structures
    /// \brief Enumeration for log entry type
    enum EType {
-      Info = 0,      ///< Informative message
-      Warning = 1,   ///< Warning message
-      Error = 2,     ///< Error message
+      Info     = 1 << 0,   ///< Informative message
+      Warning  = 1 << 1,   ///< Warning message
+      Error    = 1 << 2,   ///< Error message
    };
 
 public: // member functions

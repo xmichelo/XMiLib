@@ -73,6 +73,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DebugLogWindow.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DebugLogFilterProxyModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DebugLogFilterProxyModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLog\DebugLogFilterProxyModel.cpp">
+      <Filter>DebugLog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">
@@ -88,6 +97,9 @@
       <Filter>DebugLog</Filter>
     </CustomBuild>
     <CustomBuild Include="DebugLog\DebugLogWindow.ui">
+      <Filter>DebugLog</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DebugLog\DebugLogFilterProxyModel.h">
       <Filter>DebugLog</Filter>
     </CustomBuild>
   </ItemGroup>

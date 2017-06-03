@@ -21,20 +21,23 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
    , ui_(std::make_unique<Ui::DebugLogWindow>())
    , debugLog_(debugLog)
    , lastRowWasVisible_(true)
+   , filterModel_(new DebugLogFilterProxyModel(DebugLogEntry::Info | DebugLogEntry::Warning | DebugLogEntry::Error, 
+      this))
 {
-    ui_->setupUi(this);
-    this->setWindowFlags(this->windowFlags() | Qt::Window);
-    if (debugLog_)
-    {
-      ui_->tableView->setModel(debugLog);
-      connect(debugLog_, &DebugLog::rowsAboutToBeInserted, this, &DebugLogWindow::onRowsAboutToBeInserted);
-      connect(debugLog_, &DebugLog::rowsInserted, this, &DebugLogWindow::onRowsInserted);
-    }
-    int const estimatedWidth(ui_->tableView->horizontalHeader()->fontMetrics()
-       .boundingRect("####-##-## ##:##:##.###").width());
-    ui_->tableView->setColumnWidth(0, qint32(float(estimatedWidth) * 1.05));
-    ui_->tableView->horizontalHeader()->setStretchLastSection(true);
-    ui_->tableView->resizeRowsToContents();
+   ui_->setupUi(this);
+   this->setWindowFlags(this->windowFlags() | Qt::Window);
+   if (debugLog_)
+   {
+      filterModel_->setSourceModel(debugLog_);
+      ui_->tableView->setModel(filterModel_);
+      connect(filterModel_, &DebugLog::rowsAboutToBeInserted, this, &DebugLogWindow::onRowsAboutToBeInserted);
+      connect(filterModel_, &DebugLog::rowsInserted, this, &DebugLogWindow::onRowsInserted);
+   }
+   int const estimatedWidth(ui_->tableView->horizontalHeader()->fontMetrics()
+      .boundingRect("####-##-## ##:##:##.###").width());
+   ui_->tableView->setColumnWidth(0, qint32(float(estimatedWidth) * 1.05));
+   ui_->tableView->horizontalHeader()->setStretchLastSection(true);
+   ui_->tableView->resizeRowsToContents();
 }
 
 
@@ -43,11 +46,11 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
 //**********************************************************************************************************************
 bool DebugLogWindow::isLastRowVisible() const
 {
-   QAbstractItemModel* model(ui_->tableView->model());
-   if (!model)
+   if (!filterModel_)
       return true;
-   qint32 const rowCount(model->rowCount());
-   return ui_->tableView->visualRect(model->index(rowCount - 1, 0)).y() < ui_->tableView->viewport()->rect().height();
+   qint32 const rowCount(filterModel_->rowCount());
+   return ui_->tableView->visualRect(filterModel_->index(rowCount - 1, 0)).y() 
+      < ui_->tableView->viewport()->rect().height();
 }
 
 
@@ -70,10 +73,23 @@ void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int star
 //**********************************************************************************************************************
 void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int last)
 {
+   qDebug() << QString("%1()").arg(__FUNCTION__);
    for (qint32 i = first; i <= last; ++i)
       ui_->tableView->resizeRowToContents(i);
    if (lastRowWasVisible_)
       ui_->tableView->scrollToBottom();
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void DebugLogWindow::onFilterChanged()
+{
+   qDebug() << QString("%1()").arg(__FUNCTION__);
+   filterModel_->setEntryTypes((ui_->checkboxInfoFilter->isChecked() ? DebugLogEntry::Info : 0)
+      | (ui_->checkboxWarningFilter->isChecked() ? DebugLogEntry::Warning : 0)
+      | (ui_->checkboxErrorFilter->isChecked() ? DebugLogEntry::Error : 0));
 }
 
 

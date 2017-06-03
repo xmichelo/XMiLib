@@ -104,7 +104,8 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle {
-   background: #aaaaaa;
+   background: #888888;
+   border-radius: 7px;
 }
 
 QScrollBar:horizontal {
