@@ -28,6 +28,7 @@ private slots:
    void onActionAddInfo(); ///< Slot for the 'Add Info' action
    void onActionAddWarning(); ///< Slot for the 'Add Warning' action
    void onActionAddError(); ///< Slot for the 'Add Error' action
+   void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
 
 private:  // data members
    Ui::DebugLogTest ui_; ///< The GUI for the window

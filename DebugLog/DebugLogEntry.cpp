@@ -51,4 +51,15 @@ QString DebugLogEntry::getMessage() const
 }
 
 
+//**********************************************************************************************************************
+/// \return The log entry as a string
+//**********************************************************************************************************************
+QString DebugLogEntry::toString() const
+{
+   return QString("%1 - %2 - %3").arg(dateTime_.toString("yyyy-MM-dd HH:mm:ss.zzz"))
+      .arg(DebugLogEntry::Info == type_ ? "INFO   " : (DebugLogEntry::Warning == type_ ? "WARNING" : "ERROR  "))
+      .arg(message_);
+}
+
+
 } // namespace xmilib

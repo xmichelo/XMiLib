@@ -34,6 +34,7 @@ public: // member functions
 	QDateTime getDateTime() const; ///< Return the entry date time
    EType getType() const; ///< Return the message type
    QString getMessage() const; ///< Return the message
+   QString toString() const; ///< Return the log entry as a string
 
 private: // member functions
 	DebugLogEntry(DebugLogEntry const&); ///< Disabled copy constructor

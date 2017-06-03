@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "MainWindow.h"
+#include <XMiLib/Exception.h>
 
 
 using namespace xmilib;
@@ -17,6 +18,7 @@ using namespace xmilib;
 DebugLogTest::DebugLogTest(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
+   , debugLog_(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).absoluteFilePath("Log.txt"))
    , debugLogWindow_(nullptr)
 {
     ui_.setupUi(this);
@@ -50,9 +52,16 @@ void DebugLogTest::addDebugLogEntry(DebugLogEntry::EType type, QString const& me
 //**********************************************************************************************************************
 void DebugLogTest::onActionShowDebugLog()
 {
-   if (!debugLogWindow_)
-      debugLogWindow_ = new DebugLogWindow(&debugLog_, this);
+   try
+   {
+      if (!debugLogWindow_)
+         debugLogWindow_ = new DebugLogWindow(&debugLog_, this);
       debugLogWindow_->show();
+   }
+   catch (xmilib::Exception const& e)
+   {
+      QMessageBox::critical(this, tr("Error"), e.qwhat());
+   }
 }
 
 
@@ -61,7 +70,14 @@ void DebugLogTest::onActionShowDebugLog()
 //**********************************************************************************************************************
 void DebugLogTest::onActionAddInfo()
 {
-   this->addDebugLogEntry(DebugLogEntry::Info, ui_.editMessage->text());
+   try
+   {
+      this->addDebugLogEntry(DebugLogEntry::Info, ui_.editMessage->text());
+   }
+   catch (xmilib::Exception const& e)
+   {
+      QMessageBox::critical(this, tr("Error"), e.qwhat());
+   }
 }
 
 
@@ -70,7 +86,14 @@ void DebugLogTest::onActionAddInfo()
 //**********************************************************************************************************************
 void DebugLogTest::onActionAddWarning()
 {
-   this->addDebugLogEntry(DebugLogEntry::Warning, ui_.editMessage->text());
+   try
+   {
+      this->addDebugLogEntry(DebugLogEntry::Warning, ui_.editMessage->text());
+   }
+   catch (xmilib::Exception const& e)
+   {
+      QMessageBox::critical(this, tr("Error"), e.qwhat());
+   }
 }
 
 
@@ -79,7 +102,30 @@ void DebugLogTest::onActionAddWarning()
 //**********************************************************************************************************************
 void DebugLogTest::onActionAddError()
 {
-   this->addDebugLogEntry(DebugLogEntry::Error, ui_.editMessage->text());
+   try
+   {
+      this->addDebugLogEntry(DebugLogEntry::Error, ui_.editMessage->text());
+   }
+   catch (xmilib::Exception const& e)
+   {
+      QMessageBox::critical(this, tr("Error"), e.qwhat());
+   }
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void DebugLogTest::onActionOpenLogFile()
+{
+   try
+   {
+      QDesktopServices::openUrl(QUrl::fromLocalFile(debugLog_.getLogFilePath()));
+   }
+   catch (xmilib::Exception const& e)
+   {
+      QMessageBox::critical(this, tr("Error"), e.qwhat());  	
+   }
 }
 
 

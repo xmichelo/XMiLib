@@ -21,13 +21,17 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
+/// \param[in] logFilePath The path of the log file. If null the log is not saved to file
 /// \param[in] parent The parent object of the DebugLog instance
 //**********************************************************************************************************************
-DebugLog::DebugLog(QObject* parent)
+DebugLog::DebugLog(QString const& logFilePath, QObject* parent)
    : QAbstractTableModel(parent)
    , entries_()
+   , logFile_(logFilePath)
 {
-
+   if (!logFilePath.isEmpty())
+      if (!logFile_.open(QIODevice::WriteOnly | QIODevice::Text))
+         throw Exception("Could not open the log file.");
 }
 
 
@@ -48,6 +52,15 @@ void DebugLog::clear()
    this->beginResetModel();
    entries_.clear();
    this->endResetModel();
+}
+
+
+//**********************************************************************************************************************
+/// \return the path of the log file
+//**********************************************************************************************************************
+QString DebugLog::getLogFilePath() const
+{
+   return logFile_.fileName();
 }
 
 
@@ -195,7 +208,13 @@ void DebugLog::addError(QString const& message)
 void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
 {
    this->beginInsertRows(QModelIndex(), entries_.size(), entries_.size());
-   entries_.push_back(std::make_shared<DebugLogEntry>(type, message));
+   SPDebugLogEntry const logEntry(std::make_shared<DebugLogEntry>(type, message));
+   entries_.push_back(logEntry);
+   if (logFile_.isOpen())
+   {
+      logFile_.write(logEntry->toString().toLocal8Bit() + "\n");
+      logFile_.flush(); // we flush to allow live viewing and to be sure the last entries are written if the application crash
+   }
    this->endInsertRows();
 }
 

@@ -23,7 +23,7 @@ DebugLogFilterProxyModel::DebugLogFilterProxyModel(qint32 entryTypes, QObject *p
 
 
 //**********************************************************************************************************************
-/// \param[in] the allowed log entry types
+/// \param[in] entryTypes The allowed log entry types
 //**********************************************************************************************************************
 void DebugLogFilterProxyModel::setEntryTypes(quint32 entryTypes)
 {

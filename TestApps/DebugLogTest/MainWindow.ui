@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>545</width>
-    <height>167</height>
+    <height>131</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,6 +34,13 @@
        <widget class="QPushButton" name="buttonShowDebugLog">
         <property name="text">
          <string>&amp;Show Debug Log</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonOpenLogFile">
+        <property name="text">
+         <string>&amp;Open Log File</string>
         </property>
        </widget>
       </item>
@@ -162,6 +169,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionOpenLogFile">
+   <property name="text">
+    <string>&amp;Open Log File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>
@@ -296,6 +311,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpenLogFile</sender>
+   <signal>triggered()</signal>
+   <receiver>DebugLogTest</receiver>
+   <slot>onActionOpenLogFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>65</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonOpenLogFile</sender>
+   <signal>clicked()</signal>
+   <receiver>actionOpenLogFile</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onActionShowDebugLog()</slot>
@@ -303,5 +350,6 @@
   <slot>onActionAddWarning()</slot>
   <slot>onActionAddError()</slot>
   <slot>onActionExit()</slot>
+  <slot>onActionOpenLogFile()</slot>
  </slots>
 </ui>

@@ -8,6 +8,8 @@
 #define XMILIB__DEBUG__LOG__H
 
 
+
+
 #include "DebugLogEntry.h"
 
 
@@ -19,15 +21,19 @@ namespace xmilib {
 /// \brief Debug log class
 ///
 /// The class inherits from QAbastractTableModel, so it can be used as a model for a QTableView
+///
+/// \todo implement limitation of number of entries in a log
 //**********************************************************************************************************************
 class DebugLog: public QAbstractTableModel
 {
+
    Q_OBJECT
 public: // member functions
-	DebugLog(QObject* parent = nullptr); ///< Default constructor
+	DebugLog(QString const& logFilePath = QString(), QObject* parent = nullptr); ///< Default constructor
 	virtual ~DebugLog() override = default; ///< Default destructor
    qint32 size() const; ///< Return the number of entries in the log
    void clear(); ///< Clear the log
+   QString getLogFilePath() const; ///< Retrieve the log file path
    SPDebugLogEntry const& operator[](qint64 index) const; ///< Return a constant reference to the log entry at the given index
    SPDebugLogEntry& operator[](qint64 index); ///< Return a mutable reference to the log entry at the given index
    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override; ///< Return the number of rows in the model
@@ -47,9 +53,7 @@ private: // member functions
 
 private: // data members
    DeqSPLogEntry entries_; ///< The log entries
-
-   /// \todo implement limitation of number of entries in a log
-   /// \todo implement logging to file
+   QFile logFile_; ///< The log file. If null the log is not saved file
 };
 
 
