@@ -93,7 +93,6 @@ int DebugLog::columnCount(const QModelIndex &parent) const
 //**********************************************************************************************************************
 /// \param[in] index The index
 /// \param[in] role The role
-/// \param[in] The data for the given role and index
 //**********************************************************************************************************************
 QVariant DebugLog::data(const QModelIndex &index, int role) const
 {
@@ -105,6 +104,7 @@ QVariant DebugLog::data(const QModelIndex &index, int role) const
       return QVariant();
    switch (role)
    {
+   case Qt::ToolTipRole:
    case Qt::DisplayRole:
       switch (index.column())
       {
@@ -130,8 +130,6 @@ QVariant DebugLog::data(const QModelIndex &index, int role) const
          return kRedBrush;
       }
    }
-   //case Qt::SizeHintRole:
-   //   return QSize(1, 1);
    default:
       return QVariant();
    }
