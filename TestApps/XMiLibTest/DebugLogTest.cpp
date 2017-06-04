@@ -51,6 +51,9 @@ void XMiLibTest::debugLog_size()
       for (qint32 i = 1; i < 1000; ++i)
          log.addInfo(kInfoMessage);
       QVERIFY2(1000 == log.size(), "Returning to unlimited entry count does not work");
+      bool didThrow = false;
+      try { log.setMaxEntryCount(-1); } catch (xmilib::Exception const& e) { didThrow = true; }
+      QVERIFY2(didThrow, "Setting the max entry count to a negative value should throw an exception");
    }
    catch (...)
    {

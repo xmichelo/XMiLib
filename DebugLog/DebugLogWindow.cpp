@@ -61,8 +61,7 @@ bool DebugLogWindow::isLastRowVisible() const
 //**********************************************************************************************************************
 void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int start, int end)
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
-      lastRowWasVisible_ = this->isLastRowVisible();
+   lastRowWasVisible_ = this->isLastRowVisible();
 }
 
 
@@ -73,7 +72,6 @@ void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int star
 //**********************************************************************************************************************
 void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int last)
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    for (qint32 i = first; i <= last; ++i)
       ui_->tableView->resizeRowToContents(i);
    if (lastRowWasVisible_)
@@ -86,7 +84,6 @@ void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int la
 //**********************************************************************************************************************
 void DebugLogWindow::onFilterChanged()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
    filterModel_->setEntryTypes((ui_->checkboxInfoFilter->isChecked() ? DebugLogEntry::Info : 0)
       | (ui_->checkboxWarningFilter->isChecked() ? DebugLogEntry::Warning : 0)
       | (ui_->checkboxErrorFilter->isChecked() ? DebugLogEntry::Error : 0));
@@ -109,7 +106,6 @@ void DebugLogWindow::onActionClearLog()
 {
    if (debugLog_)
       debugLog_->clear();
-   qDebug() << QString("%1()").arg(__FUNCTION__);
 }
 
 

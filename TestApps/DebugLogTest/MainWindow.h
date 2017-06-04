@@ -29,6 +29,7 @@ private slots:
    void onActionAddWarning(); ///< Slot for the 'Add Warning' action
    void onActionAddError(); ///< Slot for the 'Add Error' action
    void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
+   void onMaxEntryCountChange(int value); ///< Slot for the change max entry count
 
 private:  // data members
    Ui::DebugLogTest ui_; ///< The GUI for the window

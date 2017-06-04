@@ -129,3 +129,12 @@ void DebugLogTest::onActionOpenLogFile()
 }
 
 
+//**********************************************************************************************************************
+/// \param[in] The new max entry count 
+//**********************************************************************************************************************
+void DebugLogTest::onMaxEntryCountChange(int value)
+{
+   debugLog_.setMaxEntryCount(value);
+}
+
+
