@@ -28,6 +28,7 @@ DebugLog::DebugLog(QString const& logFilePath, QObject* parent)
    : QAbstractTableModel(parent)
    , entries_()
    , logFile_(logFilePath)
+   , maxEntryCount_(0)
 {
    if (!logFilePath.isEmpty())
       if (!logFile_.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -61,6 +62,37 @@ void DebugLog::clear()
 QString DebugLog::getLogFilePath() const
 {
    return logFile_.fileName();
+}
+
+
+//**********************************************************************************************************************
+/// If the maximum number of entries is reach the oldest entries are removed when new entries are added
+/// \param[in]
+//**********************************************************************************************************************
+void DebugLog::setMaxEntryCount(qint32 maxEntryCount)
+{
+   if (maxEntryCount < 0)
+      throw Exception();
+   if ((0 == maxEntryCount) || (maxEntryCount >= entries_.size()))
+   {
+      maxEntryCount_ = maxEntryCount;
+      return;
+   }
+   qint32 const removeCount(entries_.size() - maxEntryCount);
+   Q_ASSERT(removeCount > 0);
+   this->beginRemoveRows(QModelIndex(), 0, removeCount - 1);
+   entries_.erase(entries_.begin(), entries_.begin() + removeCount);
+   this->endRemoveRows();
+   maxEntryCount_ = maxEntryCount;
+}
+
+
+//**********************************************************************************************************************
+/// \return The maximum number of entries in the log
+//**********************************************************************************************************************
+qint32 DebugLog::getMaxEntryCount() const
+{
+   return maxEntryCount_;
 }
 
 
@@ -207,15 +239,26 @@ void DebugLog::addError(QString const& message)
 //**********************************************************************************************************************
 void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
 {
+   // check if we can add one more line to the log, and if not, remove the oldest entry
+   if ((maxEntryCount_ > 0) && (entries_.size() >= maxEntryCount_))
+   {
+      this->beginRemoveRows(QModelIndex(), 0, 0);
+      entries_.pop_front();
+      this->endRemoveRows();
+   }
+
+   // Add the entry to the log
    this->beginInsertRows(QModelIndex(), entries_.size(), entries_.size());
    SPDebugLogEntry const logEntry(std::make_shared<DebugLogEntry>(type, message));
    entries_.push_back(logEntry);
+   this->endInsertRows();
+
+   // Write the entry to file if necessary
    if (logFile_.isOpen())
    {
       logFile_.write(logEntry->toString().toLocal8Bit() + "\n");
       logFile_.flush(); // we flush to allow live viewing and to be sure the last entries are written if the application crash
    }
-   this->endInsertRows();
 }
 
 

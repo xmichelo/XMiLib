@@ -36,6 +36,21 @@ void XMiLibTest::debugLog_size()
       for (int i = 0; i < 998; ++i)
          log.addError(kErrorMessage);
       QVERIFY2(1000 == log.size(), "The size of a log with 1000 items is not 1000");
+      log.setMaxEntryCount(500);
+      QVERIFY2(500 == log.getMaxEntryCount(), "log.getMaxEntryCount() returns an invalid value");
+      QVERIFY2(500 == log.size(), "Setting max log entry count does not resize properly");
+      log.setMaxEntryCount(600);
+      QVERIFY2(500 == log.size(), "Expanding max log entry count should not modify current item count");
+      for (qint32 i = 0; i < 200; ++i)
+         log.addInfo(kInfoMessage);
+      QVERIFY2(600 == log.size(), "Limiting entry count does not work");
+      log.setMaxEntryCount(1);
+      QVERIFY2(1 == log.size(), "Setting max log entry count does not resize properly");
+      log.setMaxEntryCount(0);
+      QVERIFY2(0 == log.getMaxEntryCount(), "log.getMaxEntryCount() returns an invalid value");
+      for (qint32 i = 1; i < 1000; ++i)
+         log.addInfo(kInfoMessage);
+      QVERIFY2(1000 == log.size(), "Returning to unlimited entry count does not work");
    }
    catch (...)
    {
