@@ -2,7 +2,7 @@
 
 **Xavier Michelon**
 
-[https://github.com/xmichelo/Colorspread](https://github.com/xmichelo/Colorspread)
+[https://github.com/xmichelo/XMiLib](https://github.com/xmichelo/XMiLib)
 
 ## What is XMiLib ?
 
@@ -14,10 +14,10 @@ No documentation is provided with this library, but the source code is properly 
 
 ## Copyright
 
-This software is placed under the terms of the [GNU Lesser General Public License version 3][]. 
+This software is placed under the terms of the [MIT License][]. 
 A copy of this license is provided in the file LICENSE.md that is included in this distribution.
 
 [C++]: https://en.wikipedia.org/wiki/C%2B%2B
 [Qt]: https://www.qt.io
 [doxygen]: http://www.stack.nl/~dimitri/doxygen
-[GNU Lesser General Public License version 3]: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+[MIT License]: [https://www.gnu.org/licenses/lgpl-3.0-standalone.html](https://opensource.org/licenses/MIT)
