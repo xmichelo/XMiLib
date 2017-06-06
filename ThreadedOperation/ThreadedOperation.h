@@ -27,13 +27,16 @@ namespace xmilib {
 class ThreadedOperation: public QObject
 {
    Q_OBJECT
+public: // static member functions
+   static bool runInEventLoop(ThreadedOperation& operation, QString* outErrorMessage = nullptr); ///< Run a threaded operation in event loop
+
 public: // member functions
 	ThreadedOperation(QString const& description, QObject* parent = nullptr); ///< Default constructor
 	virtual ~ThreadedOperation() override = default; ///< Default destructor
    QString getDescription() const; ///< Retrieve the description of the operation
 
 public slots:
-   void run(); ///< Run the threaded operation
+   virtual void run() = 0; ///< Run the threaded operation
 
 signals: 
    void progress(qint32 percentage); ///< Signal used to report the progress of the operation, as a percentage

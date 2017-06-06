@@ -12,6 +12,33 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
+/// \param[in] operation The threaded operation to run
+/// \param[out] outErrorMessage The error message if any. This parameter is optional
+//**********************************************************************************************************************
+bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* outErrorMessage)
+{
+   QEventLoop loop;
+   QThread* thread = new QThread();
+   operation.moveToThread(thread);
+   bool ok = true;
+   loop.connect(thread, &QThread::started, &operation, &ThreadedOperation::run);
+   loop.connect(&operation, &ThreadedOperation::finished, &loop, &QEventLoop::quit);
+   loop.connect(&operation, &ThreadedOperation::error, [&](QString const& message) { 
+      ok = false;
+      if (outErrorMessage)
+         *outErrorMessage = message;
+      loop.quit(); 
+   });
+   thread->start();
+   loop.exec();
+   thread->quit();
+   while (!thread->isFinished()) {}
+   thread->deleteLater();
+   return ok;
+}
+
+
+//**********************************************************************************************************************
 /// \param[in] description The description of the operation
 /// \param[in] parent The parent object of the instance
 //**********************************************************************************************************************

@@ -101,6 +101,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StringUtilsTest.cpp" />
+    <ClCompile Include="ThreadedOperationText.cpp" />
     <ClCompile Include="XMiLibTest.cpp" />
   </ItemGroup>
   <ItemGroup>

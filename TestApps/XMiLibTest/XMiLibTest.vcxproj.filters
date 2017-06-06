@@ -30,6 +30,7 @@
     <ClCompile Include="XMiLibTest.cpp" />
     <ClCompile Include="RandomNumberGeneratorTest.cpp" />
     <ClCompile Include="DebugLogTest.cpp" />
+    <ClCompile Include="ThreadedOperationText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
