@@ -67,7 +67,7 @@ QString DebugLog::getLogFilePath() const
 
 //**********************************************************************************************************************
 /// If the maximum number of entries is reach the oldest entries are removed when new entries are added
-/// \param[in]
+/// \param[in] maxEntryCount The maximum number of entries in the log
 //**********************************************************************************************************************
 void DebugLog::setMaxEntryCount(qint32 maxEntryCount)
 {
