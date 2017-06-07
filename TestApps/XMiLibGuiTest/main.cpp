@@ -6,8 +6,9 @@
 
 #include "stdafx.h"
 #include "MainWindow.h"
+#include "Constants.h"
+#include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
 #include <XMiLib/Exception.h>
-#include <stdexcept>
 
 
 using namespace xmilib;
@@ -19,19 +20,22 @@ void checkAndCreateDataDir(); ///< Check if the application data folder exists a
 //**********************************************************************************************************************
 /// \param[in] argc The number of command-line arguments
 /// \param[in] argv The list of command-line arguments
-/// \return The exit code for the application
+/// \return The application exit code
 //**********************************************************************************************************************
 int main(int argc, char *argv[])
 {
-   try
-   {
-      QApplication app(argc, argv);
-      app.setApplicationName("Debug Log Test");
-      app.setOrganizationName("x-mi.com");
+   try {
+      QApplication a(argc, argv);
+      a.setApplicationName("XMiLib GUI Test");
+      a.setOrganizationName("x-mi.com");
+      a.setApplicationVersion("1.0");
       checkAndCreateDataDir();
-      DebugLogTest window;
-      window.show();
-      return app.exec();
+      StyleSheetEditor::loadAndApplyStyleSheet();
+      if (qApp->styleSheet().trimmed().isEmpty())
+         qApp->setStyleSheet(kSampleStyleSheet);
+      MainWindow w;
+      w.show();
+      return a.exec();
    }
    catch (xmilib::Exception const& e)
    {
@@ -44,7 +48,7 @@ int main(int argc, char *argv[])
    catch (std::exception const& e)
    {
 #ifdef WIN32
-      MessageBox(nullptr, LPCWSTR(QString::fromLocal8Bit(e.what()).utf16()), L"Unhandled Exception", 
+      MessageBox(nullptr, LPCWSTR(QString::fromLocal8Bit(e.what()).utf16()), L"Unhandled Exception",
          MB_OK | MB_ICONERROR);
 #else
       qDebug() << "An unhandled exception occurred.";
@@ -58,7 +62,6 @@ int main(int argc, char *argv[])
       qDebug() << "An unhandled exception occurred.";
 #endif
    }
-   
 }
 
 
@@ -73,5 +76,3 @@ void checkAndCreateDataDir()
    if (!dataDir.exists())
       throw Exception("The application data folder could not be created.");
 }
-
-

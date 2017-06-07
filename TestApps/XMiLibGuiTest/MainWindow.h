@@ -1,29 +1,39 @@
 /// \file
 /// \author Xavier Michelon
 ///
-/// \brief Declaration of main window class
+/// \brief Declaration of main window
+
+
+
+#ifndef STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H
+#define STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H
 
 
 #include "ui_MainWindow.h"
 #include <XMiLib/DebugLog/DebugLogWindow.h>
+#include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
+#include <memory>
 
 
 //**********************************************************************************************************************
 /// \brief Main window class
 //**********************************************************************************************************************
-class DebugLogTest: public QMainWindow
+class MainWindow : public QMainWindow
 {
    Q_OBJECT
+
 public: // member functions
-	DebugLogTest(QWidget* parent = nullptr); ///< Default constructor
-	virtual ~DebugLogTest() override = default; ///< Default destructor
-	
+   MainWindow(QWidget *parent = nullptr); ///< Default constructor
+   virtual ~MainWindow() override = default; ///< Default destructor
+
 private: // member functions
-	DebugLogTest(DebugLogTest const&); ///< Disabled copy constructor
-	DebugLogTest& operator=(DebugLogTest const&); ///< Disabled assignment operator
+   MainWindow(MainWindow const&); ///< Disabled copy constructor
+   MainWindow& operator=(MainWindow const&); ///< Disabled assignment operator
    void addDebugLogEntry(xmilib::DebugLogEntry::EType type, QString const& message);
 
 private slots:
+   void onActionQuit(); ///< Slot for the 'Quit' action
+   void onActionShowStyleSheetEditor(); ///< Slot for the theme editor window
    void onActionShowDebugLog(); ///< Slot for the 'Show Debug Log' action
    void onActionAddInfo(); ///< Slot for the 'Add Info' action
    void onActionAddWarning(); ///< Slot for the 'Add Warning' action
@@ -31,9 +41,12 @@ private slots:
    void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
    void onMaxEntryCountChange(int value); ///< Slot for the change max entry count
 
-private:  // data members
-   Ui::DebugLogTest ui_; ///< The GUI for the window
+private: // data members
+   Ui::MainWindow ui_; ///< The GUI for the window
    xmilib::DebugLog debugLog_; ///< The debug log
    xmilib::DebugLogWindow* debugLogWindow_; ///< The debug log 
-
+   xmilib::StyleSheetEditor* styleSheetEditor_; ///< The theme window
 };
+
+
+#endif // #ifndef STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H

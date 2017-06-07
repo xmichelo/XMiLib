@@ -26,6 +26,19 @@ QPlainTextEdit {
   font-size: 10pt;
 }
 
+QLineEdit {
+   background-color: #555555;
+   border: 1px solid #666666;
+   padding: 2px;
+}
+
+QSpinBox {
+   background-color: #555555;
+   border: 1px solid #666666;
+   padding: 2px;
+}
+
+
 QAbstractScrollArea {
   border: 1px solid #666666;
   background-color: #555555;
@@ -124,5 +137,33 @@ QScrollBar::add-line, QScrollBar::sub-line, QScrollBar::add-page, QScrollBar::su
 QScrollBar::up-arrow, QScrollBar::down-arrow, QScrollBar::left-arrow, QScrollBar::right-arrow {
    border: none;
    background: none;
+}
+
+QTabWidget::pane {
+   border: 1px solid #666666;
+}
+
+QTabBar::tab {
+   border: 1px solid #666666;
+   border-bottom: none;
+   padding: 5px 10px 5px 10px;
+}
+
+QTabBar::tab:selected {
+   background-color: #666666;
+}
+
+QTabBar::tab:selected:hover {
+   background-color: #777777;
+}
+
+QTabBar::tab::hover {
+   background-color: #555555;
+}
+
+QHeaderView::section {
+   background-color: #666666;
+   border: none;
+   padding: 3px;
 }
 )";

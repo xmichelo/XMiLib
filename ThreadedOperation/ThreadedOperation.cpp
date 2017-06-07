@@ -18,10 +18,10 @@ namespace xmilib {
 bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* outErrorMessage)
 {
    QEventLoop loop;
-   QThread* thread = new QThread();
-   operation.moveToThread(thread);
+   QThread thread;
+   operation.moveToThread(&thread);
    bool ok = true;
-   loop.connect(thread, &QThread::started, &operation, &ThreadedOperation::run);
+   loop.connect(&thread, &QThread::started, &operation, &ThreadedOperation::run);
    loop.connect(&operation, &ThreadedOperation::finished, &loop, &QEventLoop::quit);
    loop.connect(&operation, &ThreadedOperation::error, [&](QString const& message) { 
       ok = false;
@@ -29,11 +29,10 @@ bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* ou
          *outErrorMessage = message;
       loop.quit(); 
    });
-   thread->start();
+   thread.start();
    loop.exec();
-   thread->quit();
-   while (!thread->isFinished()) {}
-   thread->deleteLater();
+   thread.quit();
+   while (!thread.isFinished()) {}
    return ok;
 }
 

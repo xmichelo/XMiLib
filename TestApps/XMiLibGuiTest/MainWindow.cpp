@@ -1,7 +1,7 @@
 /// \file
 /// \author Xavier Michelon
 ///
-/// \brief Implementation of main window class
+/// \brief Declaration of main window
 
 
 #include "stdafx.h"
@@ -15,13 +15,14 @@ using namespace xmilib;
 //**********************************************************************************************************************
 /// \param[in] parent The parent widget of the window
 //**********************************************************************************************************************
-DebugLogTest::DebugLogTest(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
+   , styleSheetEditor_(nullptr)
    , debugLog_(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).absoluteFilePath("Log.txt"))
    , debugLogWindow_(nullptr)
 {
-    ui_.setupUi(this);
+   ui_.setupUi(this);
 }
 
 
@@ -29,7 +30,7 @@ DebugLogTest::DebugLogTest(QWidget *parent)
 /// \param[in] type The type of log entry to add
 /// \para,[in] message The message for the log entry
 //**********************************************************************************************************************
-void DebugLogTest::addDebugLogEntry(DebugLogEntry::EType type, QString const& message)
+void MainWindow::addDebugLogEntry(DebugLogEntry::EType type, QString const& message)
 {
    QString str(message.trimmed());
    switch (type)
@@ -50,7 +51,27 @@ void DebugLogTest::addDebugLogEntry(DebugLogEntry::EType type, QString const& me
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogTest::onActionShowDebugLog()
+void MainWindow::onActionQuit()
+{
+   QApplication::closeAllWindows();
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void MainWindow::onActionShowStyleSheetEditor()
+{
+   if (!styleSheetEditor_)
+      styleSheetEditor_ = new StyleSheetEditor(this);
+   styleSheetEditor_->show();
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void MainWindow::onActionShowDebugLog()
 {
    try
    {
@@ -68,7 +89,7 @@ void DebugLogTest::onActionShowDebugLog()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogTest::onActionAddInfo()
+void MainWindow::onActionAddInfo()
 {
    try
    {
@@ -84,7 +105,7 @@ void DebugLogTest::onActionAddInfo()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogTest::onActionAddWarning()
+void MainWindow::onActionAddWarning()
 {
    try
    {
@@ -100,7 +121,7 @@ void DebugLogTest::onActionAddWarning()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogTest::onActionAddError()
+void MainWindow::onActionAddError()
 {
    try
    {
@@ -116,7 +137,7 @@ void DebugLogTest::onActionAddError()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogTest::onActionOpenLogFile()
+void MainWindow::onActionOpenLogFile()
 {
    try
    {
@@ -124,15 +145,15 @@ void DebugLogTest::onActionOpenLogFile()
    }
    catch (xmilib::Exception const& e)
    {
-      QMessageBox::critical(this, tr("Error"), e.qwhat());  	
+      QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
 }
 
 
 //**********************************************************************************************************************
-/// \param[in] The new max entry count 
+// 
 //**********************************************************************************************************************
-void DebugLogTest::onMaxEntryCountChange(int value)
+void MainWindow::onMaxEntryCountChange(int value)
 {
    debugLog_.setMaxEntryCount(value);
 }
