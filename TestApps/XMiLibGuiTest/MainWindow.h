@@ -40,6 +40,8 @@ private slots:
    void onActionAddError(); ///< Slot for the 'Add Error' action
    void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
    void onMaxEntryCountChange(int value); ///< Slot for the change max entry count
+   void onActionLaunchThreadWithoutDialog(); ///< Slot for the 'Launch Thread Without Dialog' action
+   void onActionLaunchThreadWithDialog(); ///< Slot for the 'Launch Thread With Dialog' action
 
 private: // data members
    Ui::MainWindow ui_; ///< The GUI for the window

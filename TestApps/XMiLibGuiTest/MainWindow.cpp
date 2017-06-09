@@ -7,9 +7,39 @@
 #include "stdafx.h"
 #include "MainWindow.h"
 #include <XMiLib/Exception.h>
+#include <XMiLib/ThreadedOperation/ThreadedOperation.h>
 
 
 using namespace xmilib;
+
+
+//**********************************************************************************************************************
+/// \brief A dummy threaded operation
+//**********************************************************************************************************************
+class DummyThreadedOperation: public ThreadedOperation
+{
+public: // member functions
+   DummyThreadedOperation(QObject* parent = nullptr): ThreadedOperation("Dummy operation", parent) {}  ///< Default constructor
+	virtual ~DummyThreadedOperation() override = default; ///< Default destructor
+   /// \brief run the operation
+	virtual void run() override
+   { 
+      emit started();
+      emit statusChanged("First Half.");
+      for (qint32 i = 0; i <= 100; ++i)
+      {
+         this->thread()->msleep(10);
+         if (50 == i)
+            emit statusChanged("Second Half.");
+         emit progress(i);
+      }
+      emit statusChanged("Done.");
+      emit finished();
+   }
+private: // member functions
+	DummyThreadedOperation(DummyThreadedOperation const&); ///< Disabled copy constructor
+	DummyThreadedOperation& operator=(DummyThreadedOperation const&); ///< Disabled assignment operator
+};
 
 
 //**********************************************************************************************************************
@@ -156,6 +186,35 @@ void MainWindow::onActionOpenLogFile()
 void MainWindow::onMaxEntryCountChange(int value)
 {
    debugLog_.setMaxEntryCount(value);
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void MainWindow::onActionLaunchThreadWithoutDialog()
+{
+   qDebug() << QString("%1()").arg(__FUNCTION__);
+   try
+   {
+      this->setEnabled(false);
+      ThreadedOperation::runInEventLoop(DummyThreadedOperation());
+      QMessageBox::information(this, tr("Info"), tr("The thread executed successfully."));
+   }
+   catch (xmilib::Exception const& e)
+   {
+   	QMessageBox::critical(this, tr("Error"), tr("The thread failed."));
+   }
+   this->setEnabled(true);
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void MainWindow::onActionLaunchThreadWithDialog()
+{
+   qDebug() << QString("%1()").arg(__FUNCTION__);
 }
 
 
