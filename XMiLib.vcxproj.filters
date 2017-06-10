@@ -25,6 +25,11 @@
     <Filter Include="ThreadedOperation">
       <UniqueIdentifier>{4a1ba53d-a53b-404c-bbce-970085044329}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -38,6 +43,9 @@
       <Filter>DebugLog</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_DebugLogWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_ThreadedOperationDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -94,6 +102,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_ThreadedOperation.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ThreadedOperationDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ThreadedOperationDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp">
+      <Filter>ThreadedOperation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">
@@ -115,6 +132,12 @@
       <Filter>DebugLog</Filter>
     </CustomBuild>
     <CustomBuild Include="ThreadedOperation\ThreadedOperation.h">
+      <Filter>ThreadedOperation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.h">
+      <Filter>ThreadedOperation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.ui">
       <Filter>ThreadedOperation</Filter>
     </CustomBuild>
   </ItemGroup>

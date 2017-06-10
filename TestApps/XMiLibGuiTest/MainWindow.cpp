@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "MainWindow.h"
 #include <XMiLib/Exception.h>
-#include <XMiLib/ThreadedOperation/ThreadedOperation.h>
+#include <XMiLib/ThreadedOperation/ThreadedOperationDialog.h>
 
 
 using namespace xmilib;
@@ -28,7 +28,7 @@ public: // member functions
       emit statusChanged("First Half.");
       for (qint32 i = 0; i <= 100; ++i)
       {
-         this->thread()->msleep(10);
+         this->thread()->msleep(30);
          if (50 == i)
             emit statusChanged("Second Half.");
          emit progress(i);
@@ -214,7 +214,7 @@ void MainWindow::onActionLaunchThreadWithoutDialog()
 //**********************************************************************************************************************
 void MainWindow::onActionLaunchThreadWithDialog()
 {
-   qDebug() << QString("%1()").arg(__FUNCTION__);
+   ThreadedOperationDialog::run(DummyThreadedOperation());
 }
 
 
