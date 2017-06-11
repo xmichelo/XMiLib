@@ -12,10 +12,9 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
-/// \note The operation cannot be canceled
-///
 /// \param[in] operation The threaded operation to run
 /// \param[out] outErrorMessage The error message if any. This parameter is optional
+/// \return true if the operation completed successfully or has been canceled
 //**********************************************************************************************************************
 bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* outErrorMessage)
 {
@@ -25,6 +24,7 @@ bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* ou
    bool ok = true;
    loop.connect(&thread, &QThread::started, &operation, &ThreadedOperation::run);
    loop.connect(&operation, &ThreadedOperation::finished, &loop, &QEventLoop::quit);
+   loop.connect(&operation, &ThreadedOperation::canceled, &loop, &QEventLoop::quit);
    loop.connect(&operation, &ThreadedOperation::error, [&](QString const& message) { 
       ok = false;
       if (outErrorMessage)

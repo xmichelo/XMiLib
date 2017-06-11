@@ -44,10 +44,10 @@ public: // member functions
    QString getDescription() const; ///< Retrieve the description of the operation
    bool isCanceled() const; ///< Check whether the operation has been canceled
    virtual bool isCancelable() const = 0; ///< Can the operation be canceled
-   virtual bool cancel(); ///< Cancel the threaded operation
 
 public slots:
    virtual void run() = 0; ///< Run the threaded operation
+   virtual bool cancel(); ///< Cancel the threaded operation
 
 signals: 
    void progress(qint32 percentage); ///< Signal used to report the progress of the operation, as a percentage
