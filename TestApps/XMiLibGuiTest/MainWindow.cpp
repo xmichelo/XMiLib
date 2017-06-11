@@ -32,10 +32,16 @@ public: // member functions
          if (50 == i)
             emit statusChanged("Second Half.");
          emit progress(i);
+         if (this->isCanceled())
+         {
+            emit canceled();
+            return;
+         }
       }
       emit statusChanged("Done.");
       emit finished();
    }
+   virtual bool isCancelable() const override { return true; }
 private: // member functions
 	DummyThreadedOperation(DummyThreadedOperation const&); ///< Disabled copy constructor
 	DummyThreadedOperation& operator=(DummyThreadedOperation const&); ///< Disabled assignment operator

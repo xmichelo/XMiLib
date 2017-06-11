@@ -12,6 +12,8 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
+/// \note The operation cannot be canceled
+///
 /// \param[in] operation The threaded operation to run
 /// \param[out] outErrorMessage The error message if any. This parameter is optional
 //**********************************************************************************************************************
@@ -44,6 +46,7 @@ bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* ou
 ThreadedOperation::ThreadedOperation(QString const& description, QObject* parent)
    : QObject(parent)
    , description_(description)
+   , canceled_(false)
 {
 
 }
@@ -55,6 +58,27 @@ ThreadedOperation::ThreadedOperation(QString const& description, QObject* parent
 QString ThreadedOperation::getDescription() const
 {
    return description_;
+}
+
+
+//**********************************************************************************************************************
+/// \return true if and only if the operation has been canceled
+//**********************************************************************************************************************
+bool ThreadedOperation::isCanceled() const
+{
+   return canceled_.load();
+}
+
+
+//**********************************************************************************************************************
+/// \return true if the operation cancelation has been accepted
+//**********************************************************************************************************************
+bool ThreadedOperation::cancel()
+{
+   bool const cancelable(this->isCancelable());
+   if (cancelable)
+      canceled_ = true;
+   return cancelable;
 }
 
 

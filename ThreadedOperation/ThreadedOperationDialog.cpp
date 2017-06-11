@@ -59,6 +59,7 @@ int ThreadedOperationDialog::exec()
    ui_->labelDescription->setText(operation_.getDescription());
    ui_->labelStatus->setText(QString());
    ui_->progressBar->setRange(0, 0);
+   ui_->buttonCancel->setEnabled(operation_.isCancelable());
 
    if (thread_)
       throw Exception(QString("%1(): The thread pointer is not null on startup.").arg(__FUNCTION__));
@@ -66,6 +67,7 @@ int ThreadedOperationDialog::exec()
    operation_.moveToThread(thread_);
    connect(thread_, &QThread::started, &operation_, &ThreadedOperation::run);
    connect(&operation_, &ThreadedOperation::finished, this, &ThreadedOperationDialog::onOperationFinished);
+   connect(&operation_, &ThreadedOperation::canceled, this, &ThreadedOperationDialog::onOperationCanceled);
    connect(&operation_, &ThreadedOperation::error, this, &ThreadedOperationDialog::onOperationError);
    connect(&operation_, &ThreadedOperation::statusChanged, this, &ThreadedOperationDialog::onOperationStatusChanged);
    connect(&operation_, &ThreadedOperation::progress, this, &ThreadedOperationDialog::onOperationProgress);
@@ -79,7 +81,30 @@ int ThreadedOperationDialog::exec()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
+void ThreadedOperationDialog::onActionCancel()
+{
+   if (!operation_.isCancelable())
+      return;
+   operation_.cancel();
+   ui_->buttonCancel->setEnabled(false);
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
 void ThreadedOperationDialog::onOperationFinished()
+{
+   this->cleanupThread();
+   canClose_ = true;
+   this->accept();
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void ThreadedOperationDialog::onOperationCanceled()
 {
    this->cleanupThread();
    canClose_ = true;

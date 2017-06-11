@@ -34,7 +34,9 @@ public: // member functions
 
 public slots:
    virtual int exec(); ///< Execute the dialog (and the operation)
+   void onActionCancel(); ///< Slot for the 'Cancel' action
    void onOperationFinished(); ///< Slot for the finishing of the threaded operation
+   void onOperationCanceled(); ///< Slot for the canceling of the operation
    void onOperationError(QString const& message); ///< Slot for errors in the threaded operation
    void onOperationStatusChanged(QString const& message); ///< Slot for status changes in the threaded operation
    void onOperationProgress(qint32 progress); ///< Slot of progress report of the operation
