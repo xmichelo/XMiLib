@@ -59,6 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
    , debugLogWindow_(nullptr)
 {
    ui_.setupUi(this);
+   styleSheetEditor_ = new StyleSheetEditor(this);
+   styleSheetEditor_->loadStyleSheet();
 }
 
 
@@ -98,8 +100,6 @@ void MainWindow::onActionQuit()
 //**********************************************************************************************************************
 void MainWindow::onActionShowStyleSheetEditor()
 {
-   if (!styleSheetEditor_)
-      styleSheetEditor_ = new StyleSheetEditor(this);
    styleSheetEditor_->show();
 }
 

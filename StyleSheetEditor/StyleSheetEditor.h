@@ -24,10 +24,12 @@ class StyleSheetEditor: public QWidget
 {
    Q_OBJECT
 public: // static data members
-   static QString kStyleSheetFileName; ///< The name of the file where the style sheet is stored in the application data folder
+   static QString kDefaultStyleSheetFileName; ///< The default name for the style sheet file
 
 public: // static member function
-   static void loadAndApplyStyleSheet(); ///< Load the theme from the default theme file and applies it to the application
+   bool loadStyleSheet(); ///< Load a style sheet from file
+   bool saveStyleSheet() const; ///< Save the style sheet
+   void applyStyleSheet(); ///< Apply the style sheet from the editor
 
 public: // member functions
 	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
@@ -36,8 +38,6 @@ public: // member functions
 private: // member functions
 	StyleSheetEditor(StyleSheetEditor const&); ///< Disabled copy constructor
 	StyleSheetEditor& operator=(StyleSheetEditor const&); ///< Disabled assignment operator
-   void saveAndApplyTheme() const; ///< Apply the theme
-   void saveTheme() const; ///< Save the theme
 
 private slots:
    void onActionApply(); ///< Slot for the 'Apply' action

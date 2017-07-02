@@ -12,24 +12,11 @@
 namespace xmilib {
 
 
-QString StyleSheetEditor::kStyleSheetFileName = "style.css";
+QString StyleSheetEditor::kDefaultStyleSheetFileName = "style.css";
 
 
 //**********************************************************************************************************************
-/// It is safe to call this function even if no style sheet file is present in the application data folder
-//**********************************************************************************************************************
-void StyleSheetEditor::loadAndApplyStyleSheet()
-{
-   QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
-      .absoluteFilePath(StyleSheetEditor::kStyleSheetFileName));
-   if (!file.open(QIODevice::ReadOnly))
-      return;
-   qApp->setStyleSheet(file.readAll());
-}
-
-
-//**********************************************************************************************************************
-/// \param[in] parent
+/// \param[in] parent The parent widget of the window
 //**********************************************************************************************************************
 StyleSheetEditor::StyleSheetEditor(QWidget* parent)
    : QWidget(parent)
@@ -37,31 +24,48 @@ StyleSheetEditor::StyleSheetEditor(QWidget* parent)
 {
    ui_->setupUi(this);
    this->setWindowFlags(this->windowFlags() | Qt::Window);
-   ui_->edit->setPlainText(qApp->styleSheet());
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] filePath The path of the style sheet file to load. If the variable is empty, the file is saved
+/// the default location in the application folder
+/// \return True if and only if a 
+//**********************************************************************************************************************
+bool StyleSheetEditor::loadStyleSheet()
+{
+   QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
+      .absoluteFilePath(StyleSheetEditor::kDefaultStyleSheetFileName));
+   if ((!file.exists()) || (!file.open(QIODevice::ReadOnly)))
+      return false;
+   ui_->edit->setPlainText(QString::fromUtf8(file.readAll()));
+   this->applyStyleSheet();
+   return true;
+}
+
+
+//**********************************************************************************************************************
+/// \return true if and only if the stylesheet was successfully saved
+//**********************************************************************************************************************
+bool StyleSheetEditor::saveStyleSheet() const
+{
+   QDir appDataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+   if (!appDataDir.exists())
+      QDir().mkpath(appDataDir.absolutePath());
+   QFile file(appDataDir.absoluteFilePath(kDefaultStyleSheetFileName));
+   if (!file.open(QIODevice::WriteOnly))
+      return false;
+   QByteArray const data = ui_->edit->toPlainText().toUtf8();
+   return data.size() == file.write(data);
 }
 
 
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void StyleSheetEditor::saveAndApplyTheme() const
+void StyleSheetEditor::applyStyleSheet()
 {
    qApp->setStyleSheet(ui_->edit->toPlainText());
-   this->saveTheme();
-}
-
-
-//**********************************************************************************************************************
-// 
-//**********************************************************************************************************************
-void StyleSheetEditor::saveTheme() const
-{
-   QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
-   if (!dir.exists())
-      QDir().mkpath(dir.absolutePath());
-   QFile file(dir.absoluteFilePath(kStyleSheetFileName));
-   if (file.open(QIODevice::WriteOnly))
-      file.write(ui_->edit->toPlainText().toLocal8Bit());
 }
 
 
@@ -70,7 +74,8 @@ void StyleSheetEditor::saveTheme() const
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionApply()
 {
-   this->saveAndApplyTheme();
+   this->saveStyleSheet();
+   this->applyStyleSheet();
 }
 
 
@@ -79,7 +84,8 @@ void StyleSheetEditor::onActionApply()
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionOk()
 {
-   this->saveAndApplyTheme();
+   this->saveStyleSheet();
+   this->applyStyleSheet();
    this->close();
 }
 
