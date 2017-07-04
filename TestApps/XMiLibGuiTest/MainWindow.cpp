@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
    ui_.setupUi(this);
    styleSheetEditor_ = new StyleSheetEditor(this);
+   styleSheetEditor_->setOriginalStyleSheet(qApp->styleSheet());
    styleSheetEditor_->loadStyleSheet();
 }
 

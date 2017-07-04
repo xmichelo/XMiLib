@@ -14,7 +14,9 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
-/// \param[in] return true if and only if the operation completed successfully
+/// \param[in] operation The operation
+/// \param[in] parent The parent widget of the dialog
+/// \return true if and only if the operation completed successfully
 //**********************************************************************************************************************
 bool ThreadedOperationDialog::run(ThreadedOperation& operation, QWidget* parent)
 {

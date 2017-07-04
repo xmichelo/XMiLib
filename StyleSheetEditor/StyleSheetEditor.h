@@ -23,13 +23,11 @@ namespace xmilib {
 class StyleSheetEditor: public QWidget
 {
    Q_OBJECT
-public: // static data members
-   static QString kDefaultStyleSheetFileName; ///< The default name for the style sheet file
-
-public: // static member function
+public: // member function
    bool loadStyleSheet(); ///< Load a style sheet from file
    bool saveStyleSheet() const; ///< Save the style sheet
    void applyStyleSheet(); ///< Apply the style sheet from the editor
+   void setOriginalStyleSheet(QString const& originalStyleSheet); ///< Set the original stylesheet
 
 public: // member functions
 	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
@@ -47,6 +45,7 @@ private slots:
 
 private: // data members
    std::unique_ptr<Ui::StyleSheetEditor> ui_; ///< The GUI for the window
+   QString originalStylesheet_; ///< The original style sheet
 };
 
 

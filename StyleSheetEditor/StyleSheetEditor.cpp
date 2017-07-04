@@ -9,10 +9,12 @@
 #include "ui_StyleSheetEditor.h"
 
 
+namespace {
+   QString const kDefaultStyleSheetFileName = "style.css"; // The file name for the style sheet
+}
+
+
 namespace xmilib {
-
-
-QString StyleSheetEditor::kDefaultStyleSheetFileName = "style.css";
 
 
 //**********************************************************************************************************************
@@ -21,6 +23,7 @@ QString StyleSheetEditor::kDefaultStyleSheetFileName = "style.css";
 StyleSheetEditor::StyleSheetEditor(QWidget* parent)
    : QWidget(parent)
    , ui_(std::make_unique<Ui::StyleSheetEditor>())
+   , originalStylesheet_()
 {
    ui_->setupUi(this);
    this->setWindowFlags(this->windowFlags() | Qt::Window);
@@ -28,14 +31,12 @@ StyleSheetEditor::StyleSheetEditor(QWidget* parent)
 
 
 //**********************************************************************************************************************
-/// \param[in] filePath The path of the style sheet file to load. If the variable is empty, the file is saved
-/// the default location in the application folder
-/// \return True if and only if a 
+/// \return True if and only if a stylesheet file was found an loaded
 //**********************************************************************************************************************
 bool StyleSheetEditor::loadStyleSheet()
 {
    QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
-      .absoluteFilePath(StyleSheetEditor::kDefaultStyleSheetFileName));
+      .absoluteFilePath(kDefaultStyleSheetFileName));
    if ((!file.exists()) || (!file.open(QIODevice::ReadOnly)))
       return false;
    ui_->edit->setPlainText(QString::fromUtf8(file.readAll()));
@@ -65,7 +66,17 @@ bool StyleSheetEditor::saveStyleSheet() const
 //**********************************************************************************************************************
 void StyleSheetEditor::applyStyleSheet()
 {
-   qApp->setStyleSheet(ui_->edit->toPlainText());
+   qApp->setStyleSheet((originalStylesheet_ + "\n\n"+ ui_->edit->toPlainText()).trimmed());
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] originalStyleSheet The original style sheet to be preprended to the editor's style sheet
+//**********************************************************************************************************************
+void StyleSheetEditor::setOriginalStyleSheet(QString const& originalStyleSheet)
+{
+   originalStylesheet_ = originalStyleSheet.trimmed();
+   this->applyStyleSheet();
 }
 
 
