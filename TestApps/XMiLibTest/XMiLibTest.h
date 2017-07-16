@@ -37,6 +37,7 @@ private slots:
    void debugLog_size(); ///< Test the size of the debug log
    void debugLog_contents(); ///< Test the contents of the debug log
    void debugLog_tableModel(); ///< Test the table model for the debug log
+   void debugLog_file(); ///< Test logging to file
    void threadedOperation_success(); ///< Test successful cases for the ThreadedOperation class
    void threadedOperation_failure(); ///< Test failure cases for the ThreadedOperation class
    void threadedOperation_cancel(); ///< Test for canceling of threaded operation

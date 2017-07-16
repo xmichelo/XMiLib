@@ -21,18 +21,14 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
-/// \param[in] logFilePath The path of the log file. If null the log is not saved to file
 /// \param[in] parent The parent object of the DebugLog instance
 //**********************************************************************************************************************
-DebugLog::DebugLog(QString const& logFilePath, QObject* parent)
+DebugLog::DebugLog(QObject* parent)
    : QAbstractTableModel(parent)
    , entries_()
-   , logFile_(logFilePath)
+   , logFile_()
    , maxEntryCount_(0)
 {
-   if (!logFilePath.isEmpty())
-      if (!logFile_.open(QIODevice::WriteOnly | QIODevice::Text))
-         throw Exception("Could not open the log file.");
 }
 
 
@@ -46,13 +42,43 @@ qint32 DebugLog::size() const
 
 
 //**********************************************************************************************************************
-// 
+/// \note If logging to file is enabled, the content of the log file is NOT cleared
 //**********************************************************************************************************************
 void DebugLog::clear()
 {
    this->beginResetModel();
    entries_.clear();
    this->endResetModel();
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] path The path of the file to write into
+//**********************************************************************************************************************
+bool DebugLog::enableLoggingToFile(QString const& path)
+{
+   logFile_.close();
+   logFile_.setFileName(path);
+   return logFile_.open(QIODevice::WriteOnly);
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void DebugLog::disableLoggingToFile()
+{
+   logFile_.close();
+   logFile_.setFileName(QString());
+}
+
+
+//**********************************************************************************************************************
+/// \return true if and only if logging to file is enabled
+//**********************************************************************************************************************
+bool DebugLog::isLoggingToFileEnabled()
+{
+   return logFile_.isOpen();
 }
 
 

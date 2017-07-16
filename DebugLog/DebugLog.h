@@ -23,10 +23,13 @@ class DebugLog: public QAbstractTableModel
 {
    Q_OBJECT
 public: // member functions
-	DebugLog(QString const& logFilePath = QString(), QObject* parent = nullptr); ///< Default constructor
+	DebugLog(QObject* parent = nullptr); ///< Default constructor
 	virtual ~DebugLog() override = default; ///< Default destructor
    qint32 size() const; ///< Return the number of entries in the log
    void clear(); ///< Clear the log
+   bool enableLoggingToFile(QString const& path); ///< Enable logging to file
+   void disableLoggingToFile(); ///< Disable logging to file
+   bool isLoggingToFileEnabled(); ///< Is logging to file enabled
    QString getLogFilePath() const; ///< Retrieve the log file path
    void setMaxEntryCount(qint32 maxEntryCount); ///< Set log size limit (in number of entries). Zero means unlimited
    qint32 getMaxEntryCount() const; ///< Return the max number of entries

@@ -137,3 +137,30 @@ void XMiLibTest::debugLog_tableModel()
    }
 }
 
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+void XMiLibTest::debugLog_file()
+{
+   try
+   {
+      DebugLog log;
+      QVERIFY2(!log.isLoggingToFileEnabled(), "isLoggingToFile() should return false on a newly created log");
+      QString const logFilePath = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+         .absoluteFilePath(QTime::currentTime().toString("hhmmsszzz_Log.txt"));
+      QVERIFY2(log.enableLoggingToFile(logFilePath), "Creation of log file failed");
+      QVERIFY2(log.isLoggingToFileEnabled(), "isLoggingToFile() should return true after specifying a valid log file");
+      log.disableLoggingToFile();
+      QVERIFY2(!log.isLoggingToFileEnabled(), "isLoggingToFile() should return false after disabling logging to file");
+      QVERIFY2(!log.enableLoggingToFile("C:/wefwefewlkjfewvoiewnvoewvne/vjfmvg/ewjflkewjfnewf.kiewjfowefewfewfw"), 
+         "enableLoggingToFile() should return false after specifying an impossible log file path");
+      QFile(logFilePath).remove();
+
+   }
+   catch (...)
+   {
+   	QVERIFY2(false, "the function threw an exception");
+   }
+}
+
+
