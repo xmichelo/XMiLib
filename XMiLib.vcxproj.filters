@@ -25,11 +25,6 @@
     <Filter Include="ThreadedOperation">
       <UniqueIdentifier>{4a1ba53d-a53b-404c-bbce-970085044329}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>true</ParseFiles>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -48,6 +43,7 @@
     <ClInclude Include="GeneratedFiles\ui_ThreadedOperationDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="SystemUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -111,6 +107,7 @@
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp">
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
+    <ClCompile Include="SystemUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">

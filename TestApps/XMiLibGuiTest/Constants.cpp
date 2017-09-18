@@ -2,6 +2,9 @@
 /// \author Xavier Michelon
 ///
 /// \brief Implementation of application wide constant
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #include "stdafx.h"

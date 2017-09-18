@@ -2,6 +2,9 @@
 /// \author Xavier Michelon
 ///
 /// \brief Implementation of debug log
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #ifndef XMILIB__DEBUG__LOG__H

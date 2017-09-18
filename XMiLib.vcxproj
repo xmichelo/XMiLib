@@ -135,10 +135,12 @@
     </ClCompile>
     <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp" />
+    <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SystemUtils.h" />
     <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ThreadedOperationDialog.h...</Message>

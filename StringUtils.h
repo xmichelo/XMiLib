@@ -2,6 +2,9 @@
 /// \author Xavier Michelon
 ///
 /// \brief Declaration of string related utility functions
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #ifndef XMILIB__STRING__UTILS__H

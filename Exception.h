@@ -3,6 +3,9 @@
 /// \author Xavier Michelon
 /// 
 /// \brief Declaration of custom exception class
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #ifndef XMILIB__EXCEPTION__H

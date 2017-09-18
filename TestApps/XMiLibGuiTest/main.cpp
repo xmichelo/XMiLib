@@ -2,6 +2,9 @@
 /// \author Xavier Michelon
 ///
 /// \brief Implementation of program entry point
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #include "stdafx.h"
@@ -9,6 +12,7 @@
 #include "Constants.h"
 #include "OriginalStyleSheet.h"
 #include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
+#include <XMiLib/SystemUtils.h>
 #include <XMiLib/Exception.h>
 
 
@@ -25,7 +29,9 @@ void checkAndCreateDataDir(); ///< Check if the application data folder exists a
 //**********************************************************************************************************************
 int main(int argc, char *argv[])
 {
-   try {
+   QString const kUnhandledException(QObject::tr("Unhandled Exception"));
+   try 
+   {
       QApplication a(argc, argv);
       a.setApplicationName("XMiLib GUI Test");
       a.setOrganizationName("x-mi.com");
@@ -38,29 +44,17 @@ int main(int argc, char *argv[])
    }
    catch (xmilib::Exception const& e)
    {
-#ifdef WIN32
-      MessageBox(nullptr, LPCWSTR(e.qwhat().utf16()), L"Unhandled Exception", MB_OK | MB_ICONERROR);
-#else
-      qDebug() << "An unhandled exception occurred.";
-#endif
+      displaySystemErrorDialog(kUnhandledException, e.qwhat());
    }
    catch (std::exception const& e)
    {
-#ifdef WIN32
-      MessageBox(nullptr, LPCWSTR(QString::fromLocal8Bit(e.what()).utf16()), L"Unhandled Exception",
-         MB_OK | MB_ICONERROR);
-#else
-      qDebug() << "An unhandled exception occurred.";
-#endif
+      displaySystemErrorDialog(kUnhandledException, e.what());
    }
    catch (...)
    {
-#ifdef WIN32
-      MessageBox(nullptr, L"An unhandled exception occurred.", L"Unhandled Exception", MB_OK | MB_ICONERROR);
-#else
-      qDebug() << "An unhandled exception occurred.";
-#endif
+      displaySystemErrorDialog(kUnhandledException, "An unhandled exception occurred.");
    }
+   return 1;
 }
 
 

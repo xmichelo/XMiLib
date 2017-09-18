@@ -2,6 +2,9 @@
 /// \author Xavier Michelon
 ///
 /// \brief Implementation of test functions for the XMiLib random number generator utility functions
+///  
+/// Copyright (c) Xavier Michelon. All rights reserved.  
+/// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
 #include "stdafx.h"
