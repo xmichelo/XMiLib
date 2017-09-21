@@ -41,6 +41,7 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
    ui_->tableView->setColumnWidth(0, qint32(float(estimatedWidth) * 1.05));
    ui_->tableView->horizontalHeader()->setStretchLastSection(true);
    ui_->tableView->resizeRowsToContents();
+   ui_->tableView->setSelectionMode(QAbstractItemView::NoSelection);
 }
 
 

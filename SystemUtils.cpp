@@ -25,6 +25,8 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 {
 #ifdef WIN32
    MessageBox(nullptr, LPCWSTR(message.utf16()), LPCWSTR(title.utf16()), MB_OK | MB_ICONERROR);
+#else
+#error This function is not supported on this platform
 #endif
    qDebug() << QString("Unhandled exception: %1").arg(message);
 }
