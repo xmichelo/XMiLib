@@ -15,6 +15,7 @@ namespace xmilib {
 
 
 void displaySystemErrorDialog(QString const& title, QString const& message); ///< Display a system error message using the native GUI API.
+void synthesizeKeystroke(quint32 virtualCode, bool pressed); ///< Synthesize a key event
 
 
 }

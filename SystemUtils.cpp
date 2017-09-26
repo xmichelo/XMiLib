@@ -32,4 +32,25 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 }
 
 
+//**********************************************************************************************************************
+/// \param[in] virtualCode The virtual key code
+/// \param[in] pressed Should the event be a key press or a key release
+//**********************************************************************************************************************
+void synthesizeKeystroke(quint32 virtualCode, bool pressed)
+{
+#ifdef WIN32
+   INPUT input;
+   input.type = INPUT_KEYBOARD;
+   input.ki.wVk = virtualCode;
+   input.ki.wScan = MapVirtualKey(virtualCode, MAPVK_VK_TO_VSC);
+   input.ki.dwFlags = pressed ? 0 : KEYEVENTF_KEYUP;
+   input.ki.time = 0;
+   input.ki.dwExtraInfo = 0;
+   SendInput(1, &input, sizeof(INPUT));
+#else
+#error This function is not supported on this platform
+#endif   
+}
+
+
 } // namespace xmilib
