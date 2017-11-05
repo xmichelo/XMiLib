@@ -14,6 +14,9 @@
 namespace xmilib {
 
 
+void synthesizeKeyEvent(quint32 virtualCode, bool pressed); ///< Synthesize a key event
+
+
 //**********************************************************************************************************************
 /// This function is intended to be called when the Qt GUI is not available, for instance in a top level exception 
 /// handler.
@@ -36,7 +39,7 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 /// \param[in] virtualCode The virtual key code
 /// \param[in] pressed Should the event be a key press or a key release
 //**********************************************************************************************************************
-void synthesizeKeystroke(quint32 virtualCode, bool pressed)
+void synthesizeKeyEvent(quint32 virtualCode, bool pressed)
 {
 #ifdef WIN32
    INPUT input;
@@ -50,6 +53,24 @@ void synthesizeKeystroke(quint32 virtualCode, bool pressed)
 #else
 #error This function is not supported on this platform
 #endif   
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] virtualCode The virtual key code
+//**********************************************************************************************************************
+void synthesizeKeyDown(quint32 virtualCode)
+{
+   synthesizeKeyEvent(virtualCode, true);
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] virtualCode The virtual key code
+//**********************************************************************************************************************
+void synthesizeKeyUp(quint32 virtualCode)
+{
+   synthesizeKeyEvent(virtualCode, false);
 }
 
 
