@@ -57,6 +57,7 @@ void DebugLog::clear()
 
 //**********************************************************************************************************************
 /// \param[in] path The path of the file to write into
+/// \return true if the log file was opened successfully for writing
 //**********************************************************************************************************************
 bool DebugLog::enableLoggingToFile(QString const& path)
 {
