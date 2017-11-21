@@ -15,8 +15,13 @@ namespace xmilib {
 
 
 void displaySystemErrorDialog(QString const& title, QString const& message); ///< Display a system error message using the native GUI API.
-void synthesizeKeyDown(quint32 virtualCode); ///< Synthesize a keyboard key press event
-void synthesizeKeyUp(quint32 virtualCode); ///< Synthesize a keyboard key release event
+void synthesizeKeyDown(quint32 virtualCode); ///< Synthesize a keyboard key press event based on virtual key code
+void synthesizeKeyUp(quint32 virtualCode); ///< Synthesize a keyboard key release event based on virtual key code
+void synthesizeKeyDownAndUp(quint32 virtualCode); ///< Synthesize a keyboard key press then release event based on virtual key code
+void synthesizeBackspaces(qint32 count); ///< Synthesize a series of backspace key press and releases
+void synthesizeUnicodeKeyDown(quint16 unicodeChar); ///< Synthesize a keyboard key press event for a Unicode character
+void synthesizeUnicodeKeyUp(quint16 unicodeChar); ///< Synthesize a keyboard key release event for a Unicode character
+void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar); ///< Synthesize a keyboard key press then release event for a Unicode character
 
 
 }
