@@ -29,6 +29,9 @@ private slots:
    void exceptionHandling(); ///< Test function for xmilib::Exception exception handling
    void exceptionMessage_data(); ///< Test data for xmilib::Exception messages 
    void exceptionMessage(); ///< Test function for xmilib::Exception messages 
+   void fileUtils_getRandomFileName(); ///< Test function for xmilib::getRandomFileName()
+   void fileUtils_createTempDir(); ///< Test function for xmilib::createTempDir()
+   void fileUtils_createTempFile(); ///< Test function for xmilib::createTempFile()
    void stringUtils_byteToHexString_data(); ///< Test data for xmilib::byteToHexString()
    void stringUtils_byteToHexString(); ///< Test function for xmilib::byteToHexString()
    void stringUtils_byteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()

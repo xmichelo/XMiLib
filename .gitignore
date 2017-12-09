@@ -4,6 +4,7 @@
 *.dep
 *.ewd
 *.klf
+.vs/
 _build/
 _temp/
 _doc/

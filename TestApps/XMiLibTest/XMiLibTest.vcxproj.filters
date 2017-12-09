@@ -31,6 +31,7 @@
     <ClCompile Include="RandomNumberGeneratorTest.cpp" />
     <ClCompile Include="DebugLogTest.cpp" />
     <ClCompile Include="ThreadedOperationTest.cpp" />
+    <ClCompile Include="FileUtilsTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
