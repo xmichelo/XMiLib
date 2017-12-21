@@ -25,11 +25,20 @@ namespace xmilib {
 //**********************************************************************************************************************
 StyleSheetEditor::StyleSheetEditor(QWidget* parent)
    : QWidget(parent)
-   , ui_(std::make_unique<Ui::StyleSheetEditor>())
+   , ui_(new Ui::StyleSheetEditor())
    , originalStylesheet_()
 {
    ui_->setupUi(this);
    this->setWindowFlags(this->windowFlags() | Qt::Window);
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
+StyleSheetEditor::~StyleSheetEditor()
+{
+   delete ui_;
 }
 
 

@@ -34,7 +34,7 @@ public: // member function
 
 public: // member functions
 	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
-	virtual ~StyleSheetEditor() override = default; ///< Default destructor
+	virtual ~StyleSheetEditor() override; ///< Default destructor
 
 private: // member functions
 	StyleSheetEditor(StyleSheetEditor const&); ///< Disabled copy constructor
@@ -47,7 +47,7 @@ private slots:
 
 
 private: // data members
-   std::unique_ptr<Ui::StyleSheetEditor> ui_; ///< The GUI for the window
+   Ui::StyleSheetEditor* ui_; ///< The GUI for the window
    QString originalStylesheet_; ///< The original style sheet
 };
 
