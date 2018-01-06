@@ -12,3 +12,4 @@ GeneratedFiles/
 build/
 *.sdf
 *.opensdf
+*.qm

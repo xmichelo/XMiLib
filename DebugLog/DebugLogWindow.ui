@@ -105,7 +105,7 @@
       <item>
        <widget class="QPushButton" name="buttonClose">
         <property name="text">
-         <string>Close</string>
+         <string>&amp;Close</string>
         </property>
        </widget>
       </item>
@@ -115,7 +115,7 @@
   </layout>
   <action name="actionClearLog">
    <property name="text">
-    <string>&amp;Clear Log</string>
+    <string>C&amp;lear Log</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>

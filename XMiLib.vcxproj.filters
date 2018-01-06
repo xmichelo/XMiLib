@@ -25,6 +25,11 @@
     <Filter Include="ThreadedOperation">
       <UniqueIdentifier>{4a1ba53d-a53b-404c-bbce-970085044329}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -139,5 +144,10 @@
     <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.ui">
       <Filter>ThreadedOperation</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Translations\xmilib_fr.ts">
+      <Filter>Translation Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
