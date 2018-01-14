@@ -30,6 +30,9 @@
       <Extensions>ts</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="GlobalShortcut">
+      <UniqueIdentifier>{e3d04afe-b5e7-431d-a92d-03ab167d605c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="SystemUtils.h" />
     <ClInclude Include="FileUtils.h" />
+    <ClInclude Include="GlobalShortcut\GlobalShortcutManager.h">
+      <Filter>GlobalShortcut</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -115,6 +121,18 @@
     </ClCompile>
     <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="FileUtils.cpp" />
+    <ClCompile Include="GlobalShortcut\GlobalShortcut.cpp">
+      <Filter>GlobalShortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GlobalShortcut.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GlobalShortcut.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalShortcut\GlobalShortcutManager.cpp">
+      <Filter>GlobalShortcut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">
@@ -143,6 +161,9 @@
     </CustomBuild>
     <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.ui">
       <Filter>ThreadedOperation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GlobalShortcut\GlobalShortcut.h">
+      <Filter>GlobalShortcut</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
