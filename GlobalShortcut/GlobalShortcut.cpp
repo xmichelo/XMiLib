@@ -18,7 +18,8 @@ namespace xmilib {
 //**********************************************************************************************************************
 /// This function will throw a xmilib::Exception if the shortcut cannot be registered
 ///
-/// \param[in] nativeModifiers A bitfield containing the modifiers for the short
+/// \param[in] nativeModifiers A bitfield containing the modifiers for the short (available values are MOD_SHIFT, 
+/// MOD_ALT, MOD_CONTROL and MOD_WIN)
 /// \param[in] nativeVirtualKey The virtual key for the shortcut
 //**********************************************************************************************************************
 GlobalShortcut::GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey)

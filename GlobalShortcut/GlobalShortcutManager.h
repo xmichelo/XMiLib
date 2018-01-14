@@ -27,7 +27,7 @@ public: // static member functions
 
 public: // member functions
 	~GlobalShortcutManager() = default; ///< Default destructor
-   GlobalShortcut const* create(quint32  nativeModifiers, quint32 nativeVirtualKey, QString* errorMsg = nullptr); ///< Create a global shortcut
+   GlobalShortcut const* create(quint32 nativeModifiers, quint32 nativeVirtualKey, QString* outErrorMsg = nullptr); ///< Create a global shortcut
    bool remove(GlobalShortcut const* shortcut); ///< Remove (a.ka. delete) a global shortcut given its id
    bool nativeEventFilter(QByteArray const&, void *message, long *); ///< The Native event filter receiving thread event
 

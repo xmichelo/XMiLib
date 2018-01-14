@@ -32,6 +32,7 @@
     <ClCompile Include="DebugLogTest.cpp" />
     <ClCompile Include="ThreadedOperationTest.cpp" />
     <ClCompile Include="FileUtilsTest.cpp" />
+    <ClCompile Include="GlobalShortcutTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

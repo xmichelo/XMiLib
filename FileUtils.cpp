@@ -74,9 +74,10 @@ QString createTempDir()
 
 
 //**********************************************************************************************************************
-/// \param[outPath] outPath The absolute path of the created file
+/// \param[out] outFile The created file, open for writing
+/// \param[in] extension The file extension, without the leading '.'
+/// \param[in] textMode Should the file be open in text mode
 /// \return The absolute path of the created file
-
 //**********************************************************************************************************************
 QString createTempFile(QFile& outFile, QString const& extension, bool textMode)
 {

@@ -22,8 +22,10 @@ public: // member functions
 	~XMiLibTest() = default; ///< Default destructor
 	
 private: // member functions
-	XMiLibTest(XMiLibTest const&); ///< Disabled copy constructor
-	XMiLibTest& operator=(XMiLibTest const&); ///< Disabled assignment operator
+   XMiLibTest(XMiLibTest const&) = delete; ///< Disabled copy constructor
+   XMiLibTest(XMiLibTest&&) = delete; ///< Disabled move constructor
+   XMiLibTest& operator=(XMiLibTest const&) = delete; ///< Disabled assignment operator
+   XMiLibTest& operator=(XMiLibTest&&) = delete; ///< Disabled move assignment operator
 
 private slots:
    void exceptionHandling(); ///< Test function for xmilib::Exception exception handling
@@ -47,6 +49,7 @@ private slots:
    void threadedOperation_success(); ///< Test successful cases for the ThreadedOperation class
    void threadedOperation_failure(); ///< Test failure cases for the ThreadedOperation class
    void threadedOperation_cancel(); ///< Test for canceling of threaded operation
+   void globalShortcut(); ///< Test for the global shortcut classes
 };
 
 

@@ -36,13 +36,17 @@ GlobalShortcutManager::GlobalShortcutManager()
 }
 
 //**********************************************************************************************************************
-/// \param[in] nativeModifiers A bitfield containing the modifiers for the short
+/// \param[in] nativeModifiers A bitfield containing the modifiers for the short (available values are MOD_SHIFT, 
+/// MOD_ALT, MOD_CONTROL and MOD_WIN)
 /// \param[in] nativeVirtualKey The virtual key for the shortcut
+/// \param[out] outErrorMsg if the function returns null and this variable is not null, a description of the error
+/// is placed in the variable pointed by outErrorMsg
 /// \return A non-null pointer to the shortcut. The shortcut owned by the manager and must not be deleted manually.
 /// To 'delete' a shortcut use GlobalShortcutManager::remove() instead
 /// \return A null pointer if the registration failed
 //**********************************************************************************************************************
-GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, quint32 nativeVirtualKey, QString* errorMsg)
+GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, quint32 nativeVirtualKey, 
+   QString* outErrorMsg)
 {
    try
    {
@@ -53,8 +57,8 @@ GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, qu
    }
    catch (xmilib::Exception const& e)
    {
-      if (errorMsg)
-         *errorMsg = e.qwhat();
+      if (outErrorMsg)
+         *outErrorMsg = e.qwhat();
       return nullptr;
    }
 }
