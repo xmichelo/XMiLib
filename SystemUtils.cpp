@@ -14,7 +14,7 @@
 namespace xmilib {
 
 
-void synthesizeKeyEvent(quint32 virtualCode, bool pressed); ///< Synthesize a key event based on a virtual key code
+void synthesizeKeyEvent(quint16 virtualCode, bool pressed); ///< Synthesize a key event based on a virtual key code
 void synthesizeUnicodeKeyEvent(quint16 unicodeChar, bool pressed); ///< Synthesize a key event for a unicode character
 
 
@@ -40,7 +40,7 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 /// \param[in] virtualCode The virtual key code
 /// \param[in] pressed Should the event be a key press or a key release
 //**********************************************************************************************************************
-void synthesizeKeyEvent(quint32 virtualCode, bool pressed)
+void synthesizeKeyEvent(quint16 virtualCode, bool pressed)
 {
 #ifdef WIN32
    INPUT input;
@@ -60,7 +60,7 @@ void synthesizeKeyEvent(quint32 virtualCode, bool pressed)
 //**********************************************************************************************************************
 /// \param[in] virtualCode The virtual key code
 //**********************************************************************************************************************
-void synthesizeKeyDown(quint32 virtualCode)
+void synthesizeKeyDown(quint16 virtualCode)
 {
    synthesizeKeyEvent(virtualCode, true);
 }
@@ -69,7 +69,7 @@ void synthesizeKeyDown(quint32 virtualCode)
 //**********************************************************************************************************************
 /// \param[in] virtualCode The virtual key code
 //**********************************************************************************************************************
-void synthesizeKeyUp(quint32 virtualCode)
+void synthesizeKeyUp(quint16 virtualCode)
 {
    synthesizeKeyEvent(virtualCode, false);
 }
@@ -78,7 +78,7 @@ void synthesizeKeyUp(quint32 virtualCode)
 //**********************************************************************************************************************
 /// \param[in] virtualCode The virtual key code
 //**********************************************************************************************************************
-void synthesizeKeyDownAndUp(quint32 virtualCode)
+void synthesizeKeyDownAndUp(quint16 virtualCode)
 {
 #ifdef WIN32
    std::vector<INPUT> input(2);

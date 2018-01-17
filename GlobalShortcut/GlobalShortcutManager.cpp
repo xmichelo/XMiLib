@@ -32,8 +32,10 @@ GlobalShortcutManager& GlobalShortcutManager::instance()
 GlobalShortcutManager::GlobalShortcutManager()
    : QAbstractNativeEventFilter()
 {
+   // we register this class to be notified of Windows message posted for this application
    qApp->installNativeEventFilter(this);
 }
+
 
 //**********************************************************************************************************************
 /// \param[in] nativeModifiers A bitfield containing the modifiers for the short (available values are MOD_SHIFT, 
