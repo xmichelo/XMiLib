@@ -14,7 +14,6 @@
 #include "ui_MainWindow.h"
 #include <XMiLib/DebugLog/DebugLogWindow.h>
 #include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
-#include <memory>
 
 
 //**********************************************************************************************************************
@@ -23,19 +22,20 @@
 class MainWindow : public QMainWindow
 {
    Q_OBJECT
-
 public: // member functions
    MainWindow(QWidget *parent = nullptr); ///< Default constructor
+   MainWindow(MainWindow const&) = delete; ///< Disabled copy constructor
+   MainWindow(MainWindow&&) = delete; ///< Disabled move copy constructor
    virtual ~MainWindow() override = default; ///< Default destructor
+   MainWindow& operator=(MainWindow const&) = delete; ///< Disabled assignment operator
+   MainWindow& operator=(MainWindow&&) = delete; ///< Disabled move assignment operator
 
 private: // member functions
-   MainWindow(MainWindow const&); ///< Disabled copy constructor
-   MainWindow& operator=(MainWindow const&); ///< Disabled assignment operator
    void addDebugLogEntry(xmilib::DebugLogEntry::EType type, QString const& message);
 
 private slots:
-   void onActionQuit(); ///< Slot for the 'Quit' action
-   void onActionShowStyleSheetEditor(); ///< Slot for the theme editor window
+   static void onActionQuit(); ///< Slot for the 'Quit' action
+   void onActionShowStyleSheetEditor() const; ///< Slot for the theme editor window
    void onActionShowDebugLog(); ///< Slot for the 'Show Debug Log' action
    void onActionAddInfo(); ///< Slot for the 'Add Info' action
    void onActionAddWarning(); ///< Slot for the 'Add Warning' action
@@ -43,7 +43,7 @@ private slots:
    void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
    void onMaxEntryCountChange(int value); ///< Slot for the change max entry count
    void onActionLaunchThreadWithoutDialog(); ///< Slot for the 'Launch Thread Without Dialog' action
-   void onActionLaunchThreadWithDialog(); ///< Slot for the 'Launch Thread With Dialog' action
+   static void onActionLaunchThreadWithDialog(); ///< Slot for the 'Launch Thread With Dialog' action
 
 private: // data members
    Ui::MainWindow ui_; ///< The GUI for the window

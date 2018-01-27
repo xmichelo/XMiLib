@@ -44,7 +44,7 @@ namespace xmilib {
 /// \param[in] extension The file extension, without leading '.'
 /// \return A random file name with the specified base name length and extension
 //**********************************************************************************************************************
-QString getRandomFileName(qint32 length, QString extension)
+QString getRandomFileName(qint32 length, QString const& extension)
 {
    QString result;
    for (int i = 0; i < length; ++i)
@@ -63,7 +63,7 @@ QString createTempDir()
    while (retryCount++ < kMaxRetryCount)
    {
       QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
-         .absoluteFilePath(getRandomFileName(16));
+         .absoluteFilePath(getRandomFileName(kTempDirNameLength));
       QFileInfo fileInfo(path);
       if ((fileInfo.exists()) || (!QDir().mkpath(path)))
          continue;

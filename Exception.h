@@ -8,11 +8,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__EXCEPTION__H
-#define XMILIB__EXCEPTION__H
-
-
-#include <stdexcept>
+#ifndef XMILIB_EXCEPTION_H
+#define XMILIB_EXCEPTION_H
 
 
 namespace xmilib {
@@ -24,14 +21,14 @@ namespace xmilib {
 class Exception: public std::exception
 {
 public: // member functions
-   Exception(QString const&  what = QString()) throw(); ///< Constructor
-   Exception(Exception const& ref) throw(); ///< copy constructor
-   virtual ~Exception() throw() override = default; ///< Destructor
-   virtual char const* what() const throw() override; ///< Return the description of the exception as a C-style string
-   virtual QString const& qwhat() const throw(); ///< Return the description of the exception as a QString
-
-private: // member functions
-   Exception& operator=(Exception const&) throw(); ///< Disabled assignment operator
+   Exception(QString const&  what = QString()) noexcept; ///< Constructor
+   Exception(Exception const& ref) noexcept; ///< copy constructor
+   Exception(Exception&& ref) noexcept; ///< copy constructor
+   Exception& operator=(Exception const&) = delete; ///< Disabled assignment operator
+   Exception& operator=(Exception&&) = delete; ///< Disabled assignment operator
+   virtual ~Exception() noexcept = default; ///< Destructor
+   virtual char const* what() const noexcept override; ///< Return the description of the exception as a C-style string
+   virtual QString const& qwhat() const noexcept; ///< Return the description of the exception as a QString
 
 private: // data members
    QString const qWhat_; ///< The description of the exception
@@ -42,5 +39,4 @@ private: // data members
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__EXCEPTION__H
- 
+#endif // #ifndef XMILIB_EXCEPTION_H

@@ -33,8 +33,10 @@ void XMiLibTest::stringUtils_byteToHexString()
 {
    try
    {
+      // ReSharper disable CppLocalVariableMayBeConst
       QFETCH(char, byte);
       QFETCH(QString, expectedResult);
+      // ReSharper restore CppLocalVariableMayBeConst
       QCOMPARE(xmilib::byteToHexString(byte), expectedResult);
    }
    catch (...)
@@ -82,10 +84,12 @@ void XMiLibTest::stringUtils_byteArrayToHexString()
 {
    try 
    {
+      // ReSharper disable CppLocalVariableMayBeConst
       QFETCH(QByteArray, array);
       QFETCH(QString, separator);
       QFETCH(qint32, bytesPerLine);
       QFETCH(QString, expectedResult);
+      // ReSharper restore CppLocalVariableMayBeConst
       QCOMPARE(xmilib::byteArrayToHexString(array, separator, bytesPerLine), expectedResult);
    }
    catch (...)

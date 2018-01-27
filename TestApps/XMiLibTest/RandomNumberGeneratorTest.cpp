@@ -12,7 +12,6 @@
 #include <XMiLib/RandomNumberGenerator.h>
 #include <XMiLib/Exception.h>
 #include <vector>
-#include <numeric>
 
 
 using namespace xmilib;
@@ -40,9 +39,11 @@ void XMiLibTest::randomNumberGenerator_range_data()
 void XMiLibTest::randomNumberGenerator_range()
 {
    qint32 const sampleCount = 1000;
+   // ReSharper disable CppLocalVariableMayBeConst
    QFETCH(qint32, minValue);
    QFETCH(qint32, maxValue);
    QFETCH(bool, shouldThrowException);
+   // ReSharper restore CppLocalVariableMayBeConst
    try
    {
       RandomNumberGenerator rng(minValue, maxValue);
@@ -54,7 +55,7 @@ void XMiLibTest::randomNumberGenerator_range()
       if (shouldThrowException)
          QFAIL("The test should have thrown an exception, but did not.");
    }
-   catch (xmilib::Exception const& e)
+   catch (xmilib::Exception const&)
    {
       if (!shouldThrowException)   	
          QFAIL("The test threw an unexpected exception");

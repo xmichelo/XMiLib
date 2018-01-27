@@ -26,9 +26,8 @@ void XMiLibTest::exceptionHandling()
    try 
    {
       throw xmilib::Exception();
-      exitPoint = 1;
    }
-   catch (xmilib::Exception const& e)
+   catch (xmilib::Exception const&)
    {
       exitPoint = 2;
    }
@@ -57,7 +56,9 @@ void XMiLibTest::exceptionMessage()
    {
       QString whatStr("foo");
       QString qWhatStr("bar");
+      // ReSharper disable CppLocalVariableMayBeConst
       QFETCH(QString, message);
+      // ReSharper restore CppLocalVariableMayBeConst
       try 
       {
          throw xmilib::Exception(message);

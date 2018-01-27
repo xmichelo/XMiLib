@@ -23,8 +23,8 @@ void XMiLibTest::globalShortcut()
    try
    {
       GlobalShortcutManager& gsm = GlobalShortcutManager::instance();
-      quint32 modifiers = MOD_CONTROL | MOD_ALT | MOD_SHIFT;
-      quint32 key = 'X';
+      quint32 const modifiers = MOD_CONTROL | MOD_ALT | MOD_SHIFT;
+      quint32 const key = 'X';
       QString errMsg;
       GlobalShortcut const* shortcut = gsm.create(modifiers, key, &errMsg);
       QVERIFY2(shortcut, QString("Could not register the global shortcut: %1").arg(errMsg).toLocal8Bit());

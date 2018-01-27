@@ -28,9 +28,9 @@ namespace xmilib {
 /// \param[in] max The maximum value the generator will return
 //**********************************************************************************************************************
 RandomNumberGenerator::RandomNumberGenerator(qint32 min, qint32 max)
-   : generator_(std::random_device()())
+   : mutex_()
+   , generator_(std::random_device()())
    , distrib_() // we defer the initialization of the distribution with the right values in order to be able to raise our own exception
-   , mutex_()
 {
    if (min > max)
       throw xmilib::Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));
@@ -44,9 +44,9 @@ RandomNumberGenerator::RandomNumberGenerator(qint32 min, qint32 max)
 /// \param[in] max The maximum value the generator will return
 //**********************************************************************************************************************
 RandomNumberGenerator::RandomNumberGenerator(quint32 seed, qint32 min, qint32 max)
-   : generator_(seed)
+   : mutex_()
+   , generator_(seed)
    , distrib_() // we defer the initialization of the distribution with the right values in order to be able to raise our own exception
-   , mutex_()
 {
    if (min > max)
       throw xmilib::Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));

@@ -28,28 +28,28 @@ private: // member functions
    XMiLibTest& operator=(XMiLibTest&&) = delete; ///< Disabled move assignment operator
 
 private slots:
-   void exceptionHandling(); ///< Test function for xmilib::Exception exception handling
-   void exceptionMessage_data(); ///< Test data for xmilib::Exception messages 
-   void exceptionMessage(); ///< Test function for xmilib::Exception messages 
-   void fileUtils_getRandomFileName(); ///< Test function for xmilib::getRandomFileName()
-   void fileUtils_createTempDir(); ///< Test function for xmilib::createTempDir()
-   void fileUtils_createTempFile(); ///< Test function for xmilib::createTempFile()
-   void stringUtils_byteToHexString_data(); ///< Test data for xmilib::byteToHexString()
-   void stringUtils_byteToHexString(); ///< Test function for xmilib::byteToHexString()
-   void stringUtils_byteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
-   void stringUtils_byteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
-   void randomNumberGenerator_range_data(); ///< Test data for the first randomness test
-   void randomNumberGenerator_range(); ///< Test the range of the value returned by the random number generator
-   void randomNumberGenerator_randomness(); ///< Test the randomness of the values returned by the random number generator
-   void randomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
-   void debugLog_size(); ///< Test the size of the debug log
-   void debugLog_contents(); ///< Test the contents of the debug log
-   void debugLog_tableModel(); ///< Test the table model for the debug log
-   void debugLog_file(); ///< Test logging to file
-   void threadedOperation_success(); ///< Test successful cases for the ThreadedOperation class
-   void threadedOperation_failure(); ///< Test failure cases for the ThreadedOperation class
-   void threadedOperation_cancel(); ///< Test for canceling of threaded operation
-   void globalShortcut(); ///< Test for the global shortcut classes
+   static void exceptionHandling(); ///< Test function for xmilib::Exception exception handling
+   static void exceptionMessage_data(); ///< Test data for xmilib::Exception messages 
+   static void exceptionMessage(); ///< Test function for xmilib::Exception messages 
+   static void fileUtils_getRandomFileName(); ///< Test function for xmilib::getRandomFileName()
+   static void fileUtils_createTempDir(); ///< Test function for xmilib::createTempDir()
+   static void fileUtils_createTempFile(); ///< Test function for xmilib::createTempFile()
+   static void stringUtils_byteToHexString_data(); ///< Test data for xmilib::byteToHexString()
+   static void stringUtils_byteToHexString(); ///< Test function for xmilib::byteToHexString()
+   static void stringUtils_byteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
+   static void stringUtils_byteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
+   static void randomNumberGenerator_range_data(); ///< Test data for the first randomness test
+   static void randomNumberGenerator_range(); ///< Test the range of the value returned by the random number generator
+   static void randomNumberGenerator_randomness(); ///< Test the randomness of the values returned by the random number generator
+   static void randomNumberGenerator_seed(); ///< Test the seed mechanics of the random number generator
+   static void debugLog_size(); ///< Test the size of the debug log
+   static void debugLog_contents(); ///< Test the contents of the debug log
+   static void debugLog_tableModel(); ///< Test the table model for the debug log
+   static void debugLog_file(); ///< Test logging to file
+   static void threadedOperation_success(); ///< Test successful cases for the ThreadedOperation class
+   static void threadedOperation_failure(); ///< Test failure cases for the ThreadedOperation class
+   static void threadedOperation_cancel(); ///< Test for canceling of threaded operation
+   static void globalShortcut(); ///< Test for the global shortcut classes
 };
 
 

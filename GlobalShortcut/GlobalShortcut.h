@@ -27,20 +27,20 @@ class GlobalShortcut: public QObject
    Q_OBJECT
 public: // member functions
 	~GlobalShortcut(); ///< Default destructor
+   GlobalShortcut(GlobalShortcut const&) = delete; ///< Disabled copy constructor
+	GlobalShortcut(GlobalShortcut&&) = delete; ///< Disabled move constructor
+	GlobalShortcut& operator=(GlobalShortcut const&) = delete; ///< Disabled assignment operator
+	GlobalShortcut& operator=(GlobalShortcut&&) = delete; ///< Disabled move assignment operator
 
 signals :
    void triggered(); ///< Signal emitted when the shortcut has been triggered
 
 private: // member functions
    GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey); ///< constructor
-   GlobalShortcut(GlobalShortcut const&) = delete; ///< Disabled copy constructor
-	GlobalShortcut(GlobalShortcut&&) = delete; ///< Disabled move constructor
-	GlobalShortcut& operator=(GlobalShortcut const&) = delete; ///< Disabled assignment operator
-	GlobalShortcut& operator=(GlobalShortcut&&) = delete; ///< Disabled move assignment operator
    void trigger(); ///< trigger the shortcut
 
 private:
-   qint32 const id_; ///< The ID for the shortcut
+   quint32 const id_; ///< The ID for the shortcut
 
    friend class GlobalShortcutManager;
 };

@@ -74,7 +74,7 @@ void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int star
 /// \param[in] first The index of the first inserted row
 /// \param[in] last The index of the last inserted row
 //**********************************************************************************************************************
-void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int last)
+void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int last) const
 {
    for (qint32 i = first; i <= last; ++i)
       ui_->tableView->resizeRowToContents(i);
@@ -86,7 +86,7 @@ void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int la
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogWindow::onFilterChanged()
+void DebugLogWindow::onFilterChanged() const
 {
    filterModel_->setEntryTypes((ui_->checkboxInfoFilter->isChecked() ? DebugLogEntry::Info : 0)
       | (ui_->checkboxWarningFilter->isChecked() ? DebugLogEntry::Warning : 0)
@@ -106,7 +106,7 @@ void DebugLogWindow::onActionClose()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void DebugLogWindow::onActionClearLog()
+void DebugLogWindow::onActionClearLog() const
 {
    if (debugLog_)
       debugLog_->clear();

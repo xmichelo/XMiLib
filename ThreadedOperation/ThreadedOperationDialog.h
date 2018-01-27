@@ -32,23 +32,25 @@ public: // static member functions
 
 public: // member functions
 	ThreadedOperationDialog(ThreadedOperation& operation, QWidget* parent = nullptr); ///< Default constructor
+	ThreadedOperationDialog(ThreadedOperationDialog const&) = delete; ///< Disabled copy constructor
+	ThreadedOperationDialog(ThreadedOperationDialog&&) = delete; ///< Disabled move copy constructor
 	virtual ~ThreadedOperationDialog() override = default; ///< Default destructor
+	ThreadedOperationDialog& operator=(ThreadedOperationDialog const&) = delete; ///< Disabled assignment operator
+	ThreadedOperationDialog& operator=(ThreadedOperationDialog&&) = delete; ///< Disabled move assignment operator
 	void cleanupThread(); ///< Clean-up the thread
 
 public slots:
-   virtual int exec(); ///< Execute the dialog (and the operation)
-   void onActionCancel(); ///< Slot for the 'Cancel' action
+   int exec() override; ///< Execute the dialog (and the operation)
+   void onActionCancel() const; ///< Slot for the 'Cancel' action
    void onOperationFinished(); ///< Slot for the finishing of the threaded operation
    void onOperationCanceled(); ///< Slot for the canceling of the operation
    void onOperationError(QString const& message); ///< Slot for errors in the threaded operation
-   void onOperationStatusChanged(QString const& message); ///< Slot for status changes in the threaded operation
-   void onOperationProgress(qint32 progress); ///< Slot of progress report of the operation
+   void onOperationStatusChanged(QString const& message) const; ///< Slot for status changes in the threaded operation
+   void onOperationProgress(qint32 progress) const; ///< Slot of progress report of the operation
 
 private: // member functions
-	ThreadedOperationDialog(ThreadedOperationDialog const&); ///< Disabled copy constructor
-	ThreadedOperationDialog& operator=(ThreadedOperationDialog const&); ///< Disabled assignment operator
-   void closeEvent(QCloseEvent *event); ///< Window close event handler
-   void keyPressEvent(QKeyEvent *event); ///< Key press event handler
+   virtual void closeEvent(QCloseEvent *event) override; ///< Window close event handler
+   virtual void keyPressEvent(QKeyEvent *event) override; ///< Key press event handler
 
 private: // data members
    ThreadedOperation& operation_; ///< The threaded operation

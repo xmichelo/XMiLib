@@ -43,7 +43,11 @@ public: // static member functions
 
 public: // member functions
 	ThreadedOperation(QString const& description, QObject* parent = nullptr); ///< Default constructor
+	ThreadedOperation(ThreadedOperation const&) = delete; ///< Disabled copy constructor
+	ThreadedOperation(ThreadedOperation&&) = delete; ///< Disabled move copy constructor
 	virtual ~ThreadedOperation() override = default; ///< Default destructor
+	ThreadedOperation& operator=(ThreadedOperation const&) = delete; ///< Disabled assignment operator
+	ThreadedOperation& operator=(ThreadedOperation&&) = delete; ///< Disabled move assignment operator
    QString getDescription() const; ///< Retrieve the description of the operation
    bool isCanceled() const; ///< Check whether the operation has been canceled
    virtual bool isCancelable() const = 0; ///< Can the operation be canceled
@@ -59,10 +63,6 @@ signals:
    void error(QString const& message); ///< Signal for errors
    void canceled(); ///< Signal for when the operation has been canceled
    void statusChanged(QString const& status); ///< Signal for reporting the operation status
-
-private: // member functions
-	ThreadedOperation(ThreadedOperation const&); ///< Disabled copy constructor
-	ThreadedOperation& operator=(ThreadedOperation const&); ///< Disabled assignment operator
 
 private: // data members
    QString description_; ///< The description of the operation

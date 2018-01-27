@@ -33,15 +33,15 @@ public: // data structures
 
 public: // member functions
 	DebugLogEntry(EType type, QString const& message); ///< Default constructor
+	DebugLogEntry(DebugLogEntry const&) = delete; ///< Disabled copy constructor
+   DebugLogEntry(DebugLogEntry&&) = delete; ///< Disabled move constructor
 	~DebugLogEntry() = default; ///< Default destructor
+	DebugLogEntry& operator=(DebugLogEntry const&) = delete; ///< Disabled assignment operator
+   DebugLogEntry& operator=(DebugLogEntry&&) = delete; ///< Disabled move assignment operator
 	QDateTime getDateTime() const; ///< Return the entry date time
    EType getType() const; ///< Return the message type
    QString getMessage() const; ///< Return the message
    QString toString() const; ///< Return the log entry as a string
-
-private: // member functions
-	DebugLogEntry(DebugLogEntry const&); ///< Disabled copy constructor
-	DebugLogEntry& operator=(DebugLogEntry const&); ///< Disabled assignment operator
 
 private: // data members
    QDateTime dateTime_; ///< The timestamp of the log entry

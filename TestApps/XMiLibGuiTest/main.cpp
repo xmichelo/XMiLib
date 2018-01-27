@@ -9,9 +9,7 @@
 
 #include "stdafx.h"
 #include "MainWindow.h"
-#include "Constants.h"
 #include "OriginalStyleSheet.h"
-#include <XMiLib/StyleSheetEditor/StyleSheetEditor.h>
 #include <XMiLib/SystemUtils.h>
 #include <XMiLib/Exception.h>
 

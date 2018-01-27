@@ -33,8 +33,8 @@ bool ThreadedOperationDialog::run(ThreadedOperation& operation, QWidget* parent)
 //**********************************************************************************************************************
 ThreadedOperationDialog::ThreadedOperationDialog(ThreadedOperation& operation, QWidget *parent)
    : QDialog(parent, Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint)
-   , ui_(std::make_unique<Ui::ThreadedOperationDialog>())
    , operation_(operation)
+   , ui_(std::make_unique<Ui::ThreadedOperationDialog>())
    , thread_(nullptr)
    , canClose_(true)
 {
@@ -86,7 +86,7 @@ int ThreadedOperationDialog::exec()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void ThreadedOperationDialog::onActionCancel()
+void ThreadedOperationDialog::onActionCancel() const
 {
    if (!operation_.isCancelable())
       return;
@@ -132,7 +132,7 @@ void ThreadedOperationDialog::onOperationError(QString const& message)
 //**********************************************************************************************************************
 /// \param[in] status The new status message
 //**********************************************************************************************************************
-void ThreadedOperationDialog::onOperationStatusChanged(QString const& status)
+void ThreadedOperationDialog::onOperationStatusChanged(QString const& status) const
 {
    ui_->labelStatus->setText(status);
 }
@@ -141,7 +141,7 @@ void ThreadedOperationDialog::onOperationStatusChanged(QString const& status)
 //**********************************************************************************************************************
 /// \param[in] progress The current progress of the operation
 //**********************************************************************************************************************
-void ThreadedOperationDialog::onOperationProgress(qint32 progress)
+void ThreadedOperationDialog::onOperationProgress(qint32 progress) const
 {
    ui_->progressBar->setRange(0, 100);
    ui_->progressBar->setValue(qBound<qint32>(0, progress, 100));

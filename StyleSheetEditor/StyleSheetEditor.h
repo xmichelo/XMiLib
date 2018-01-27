@@ -11,9 +11,6 @@
 #define XMILIB__STYLE__SHEET__EDITOR__H
 
 
-#include <memory>
-
-
 namespace Ui { class StyleSheetEditor; };
 
 
@@ -27,21 +24,19 @@ class StyleSheetEditor: public QWidget
 {
    Q_OBJECT
 public: // member function
-   bool loadStyleSheet(); ///< Load a style sheet from file
+	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
+	StyleSheetEditor(StyleSheetEditor const&) = delete; ///< Disabled copy constructor
+	StyleSheetEditor(StyleSheetEditor&&) = delete; ///< Disabled move copy constructor
+	virtual ~StyleSheetEditor() override; ///< Default destructor
+	StyleSheetEditor& operator=(StyleSheetEditor const&) = delete; ///< Disabled assignment operator
+	StyleSheetEditor& operator=(StyleSheetEditor&&) = delete; ///< Disabled move assignment operator
+   bool loadStyleSheet() const; ///< Load a style sheet from file
    bool saveStyleSheet() const; ///< Save the style sheet
-   void applyStyleSheet(); ///< Apply the style sheet from the editor
+   void applyStyleSheet() const; ///< Apply the style sheet from the editor
    void setOriginalStyleSheet(QString const& originalStyleSheet); ///< Set the original stylesheet
 
-public: // member functions
-	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
-	virtual ~StyleSheetEditor() override; ///< Default destructor
-
-private: // member functions
-	StyleSheetEditor(StyleSheetEditor const&); ///< Disabled copy constructor
-	StyleSheetEditor& operator=(StyleSheetEditor const&); ///< Disabled assignment operator
-
 private slots:
-   void onActionApply(); ///< Slot for the 'Apply' action
+   void onActionApply() const; ///< Slot for the 'Apply' action
    void onActionOk(); ///< Slot for the 'Close' action
    void onActionCancel(); ///< Slot for the 'Cancel' action
 

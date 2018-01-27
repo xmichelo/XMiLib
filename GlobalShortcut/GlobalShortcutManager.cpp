@@ -30,7 +30,6 @@ GlobalShortcutManager& GlobalShortcutManager::instance()
 // 
 //**********************************************************************************************************************
 GlobalShortcutManager::GlobalShortcutManager()
-   : QAbstractNativeEventFilter()
 {
    // we register this class to be notified of Windows message posted for this application
    qApp->installNativeEventFilter(this);
@@ -71,7 +70,7 @@ GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, qu
 //**********************************************************************************************************************
 bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 {
-   std::list<UPGlobalShortcut>::iterator it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
+   std::list<UPGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
       [&shortcut](UPGlobalShortcut const& sc) -> bool { return sc.get() == shortcut; });
    if (shortcuts_.end() == it)
       return false;
@@ -81,16 +80,18 @@ bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 
 
 //**********************************************************************************************************************
+/// \param[in] eventType unused
 /// \param[in] message The message
+/// \param[in] result unused
 /// \return true if the message has been processed
 //**********************************************************************************************************************
-bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void *message, long*)
+bool GlobalShortcutManager::nativeEventFilter(QByteArray const& eventType, void *message, long* result)
 {
    MSG* msg = static_cast<MSG*>(message);
    if (WM_HOTKEY == msg->message)
    {
       quint32 const id = msg->wParam;
-      std::list<UPGlobalShortcut>::iterator it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
+      std::list<UPGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
          [&id](UPGlobalShortcut const& sc) -> bool { return sc->id_ == id; });
       if (shortcuts_.end() == it)
          return false;

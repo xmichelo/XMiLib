@@ -97,7 +97,7 @@ void XMiLibTest::fileUtils_createTempFile()
          QVERIFY2(!path.isEmpty(), "The file could not be created.");
          QVERIFY2(file.isOpen(), "The file is invalid");
          qint32 const fileSize = rng.get() + 1;
-         QByteArray data(fileSize, char(rng.get()));
+         QByteArray const data(fileSize, char(rng.get()));
          QVERIFY2(fileSize == file.write(data), "An error occurred while writing to file");
          file.close();
          QFileInfo fileInfo(path);

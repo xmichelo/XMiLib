@@ -45,7 +45,7 @@ StyleSheetEditor::~StyleSheetEditor()
 //**********************************************************************************************************************
 /// \return True if and only if a stylesheet file was found an loaded
 //**********************************************************************************************************************
-bool StyleSheetEditor::loadStyleSheet()
+bool StyleSheetEditor::loadStyleSheet() const
 {
    QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
       .absoluteFilePath(kDefaultStyleSheetFileName));
@@ -76,7 +76,7 @@ bool StyleSheetEditor::saveStyleSheet() const
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void StyleSheetEditor::applyStyleSheet()
+void StyleSheetEditor::applyStyleSheet() const
 {
    qApp->setStyleSheet((originalStylesheet_ + "\n\n"+ ui_->edit->toPlainText()).trimmed());
 }
@@ -95,7 +95,7 @@ void StyleSheetEditor::setOriginalStyleSheet(QString const& originalStyleSheet)
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void StyleSheetEditor::onActionApply()
+void StyleSheetEditor::onActionApply() const
 {
    this->saveStyleSheet();
    this->applyStyleSheet();

@@ -80,7 +80,7 @@ void DebugLog::disableLoggingToFile()
 //**********************************************************************************************************************
 /// \return true if and only if logging to file is enabled
 //**********************************************************************************************************************
-bool DebugLog::isLoggingToFileEnabled()
+bool DebugLog::isLoggingToFileEnabled() const
 {
    return logFile_.isOpen();
 }
@@ -103,7 +103,7 @@ void DebugLog::setMaxEntryCount(qint32 maxEntryCount)
 {
    if (maxEntryCount < 0)
       throw Exception();
-   if ((0 == maxEntryCount) || (maxEntryCount >= entries_.size()))
+   if ((0 == maxEntryCount) || (maxEntryCount >= qint32(entries_.size())))
    {
       maxEntryCount_ = maxEntryCount;
       return;
@@ -172,7 +172,7 @@ int DebugLog::columnCount(const QModelIndex &parent) const
 QVariant DebugLog::data(const QModelIndex &index, int role) const
 {
    qint32 const row = index.row();
-   if ((row < 0) || (row >= entries_.size()))
+   if ((row < 0) || (row >= qint32(entries_.size())))
       return QVariant();
    SPDebugLogEntry entry(entries_[row]);
    if (!entry.get())
@@ -270,7 +270,7 @@ void DebugLog::addError(QString const& message)
 void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
 {
    // check if we can add one more line to the log, and if not, remove the oldest entry
-   if ((maxEntryCount_ > 0) && (entries_.size() >= maxEntryCount_))
+   if ((maxEntryCount_ > 0) && (qint32(entries_.size()) >= maxEntryCount_))
    {
       this->beginRemoveRows(QModelIndex(), 0, 0);
       entries_.pop_front();

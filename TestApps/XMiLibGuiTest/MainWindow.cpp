@@ -24,6 +24,10 @@ class DummyThreadedOperation: public ThreadedOperation
 public: // member functions
    DummyThreadedOperation(QObject* parent = nullptr): ThreadedOperation("Dummy operation", parent) {}  ///< Default constructor
 	virtual ~DummyThreadedOperation() override = default; ///< Default destructor
+   DummyThreadedOperation(DummyThreadedOperation const&) = delete; ///< Disabled copy constructor
+   DummyThreadedOperation(DummyThreadedOperation&&) = delete; ///< Disabled move copy constructor
+	DummyThreadedOperation& operator=(DummyThreadedOperation const&) = delete; ///< Disabled assignment operator
+	DummyThreadedOperation& operator=(DummyThreadedOperation &&) = delete; ///< Disabled move assignment operator
    /// \brief run the operation
 	virtual void run() override
    { 
@@ -45,9 +49,6 @@ public: // member functions
       emit finished();
    }
    virtual bool isCancelable() const override { return true; }
-private: // member functions
-	DummyThreadedOperation(DummyThreadedOperation const&); ///< Disabled copy constructor
-	DummyThreadedOperation& operator=(DummyThreadedOperation const&); ///< Disabled assignment operator
 };
 
 
@@ -57,9 +58,9 @@ private: // member functions
 MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
-   , styleSheetEditor_(nullptr)
    , debugLog_()
    , debugLogWindow_(nullptr)
+   , styleSheetEditor_(nullptr)
 {
    ui_.setupUi(this);
    debugLog_.enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
@@ -72,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //**********************************************************************************************************************
 /// \param[in] type The type of log entry to add
-/// \para,[in] message The message for the log entry
+/// \param[in] message The message for the log entry
 //**********************************************************************************************************************
 void MainWindow::addDebugLogEntry(DebugLogEntry::EType type, QString const& message)
 {
@@ -104,7 +105,7 @@ void MainWindow::onActionQuit()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void MainWindow::onActionShowStyleSheetEditor()
+void MainWindow::onActionShowStyleSheetEditor() const
 {
    styleSheetEditor_->show();
 }
@@ -210,10 +211,11 @@ void MainWindow::onActionLaunchThreadWithoutDialog()
    try
    {
       this->setEnabled(false);
-      ThreadedOperation::runInEventLoop(DummyThreadedOperation());
+      DummyThreadedOperation op;
+      ThreadedOperation::runInEventLoop(op);
       QMessageBox::information(this, tr("Info"), tr("The thread executed successfully."));
    }
-   catch (xmilib::Exception const& e)
+   catch (xmilib::Exception const&)
    {
    	QMessageBox::critical(this, tr("Error"), tr("The thread failed."));
    }
@@ -226,7 +228,8 @@ void MainWindow::onActionLaunchThreadWithoutDialog()
 //**********************************************************************************************************************
 void MainWindow::onActionLaunchThreadWithDialog()
 {
-   ThreadedOperationDialog::run(DummyThreadedOperation());
+   DummyThreadedOperation op;
+   ThreadedOperationDialog::run(op);
 }
 
 
