@@ -14,9 +14,10 @@
 namespace xmilib {
 
 
-QString getRandomFileName(qint32 length = 16, QString const& extension = QString()); ///< Create a temporary file name
+QString getRandomFileName(qint32 length = 16, QString const& prefix = QString(), QString const& extension = QString()); ///< Create a temporary file name
 QString createTempDir(); ///< Create a new directory with a random name in the user temporary folder
-QString createTempFile(QFile& outFile, QString const& extension = QString(), bool textMode = false); ///< Create a temporary file in the temporary folder and open it for writing
+QString createTempFile(QFile& outFile, QString const& prefix = QString(), QString const& extension = QString(), 
+   bool textMode = false); ///< Create a temporary file in the temporary folder and open it for writing
 
 } // namespace xmilib
 

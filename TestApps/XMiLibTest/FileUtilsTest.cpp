@@ -16,6 +16,11 @@
 using namespace xmilib;
 
 
+namespace {
+   QString const kFileNamePrefix = "prefix_"; ///< The prefix for temp file names
+}
+
+
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
@@ -28,7 +33,10 @@ void XMiLibTest::fileUtils_getRandomFileName()
 
       for (qint32 i = 0; i < 100; ++i)
       {
-         // we first use the generator to generate an extension.
+         bool const usePrefix = i % 2;
+         quint32 const prefixSize = usePrefix ? kFileNamePrefix.size() : 0;
+
+         // we use the generator to generate an extension.
          qint32 const extLength = rng.get();
          QString const ext = getRandomFileName(extLength);
          QVERIFY2(ext.length() == extLength, "The generated extension does not have the appropriate length.");
@@ -36,15 +44,20 @@ void XMiLibTest::fileUtils_getRandomFileName()
 
          // then we generate another name with an extension
          qint32 const baseLength = rng.get();
-         QString const fileName = getRandomFileName(baseLength, ext);
-         QVERIFY2(fileName.length() == 1 + extLength + baseLength, "The generated file name does not have the "
-            "appropriate length.");
-         QRegularExpressionMatch match = QRegularExpression(R"(^([0-9a-z]+)\.([0-9a-z]+)$)").match(fileName);
+         QString const fileName = getRandomFileName(baseLength, usePrefix ? kFileNamePrefix : QString(), ext);
+         QVERIFY2(fileName.length() == 1 + extLength + baseLength + prefixSize,  
+            "The generated file name does not have the appropriate length.");
+         QRegularExpressionMatch match = QRegularExpression(QString(R"(^((.{%1})([0-9a-z]+))\.([0-9a-z]+)$)")
+            .arg(prefixSize)).match(fileName);
          QVERIFY2(match.hasMatch(), "The generated file name is invalid.");
-         QVERIFY2(match.captured(2) == ext, "The generated file name does not have the expected extension.");
+         QVERIFY2(match.captured(4) == ext, "The generated file name does not have the expected extension.");
          QString const baseName = match.captured(1);
-         QVERIFY2(baseName.length() == baseLength, "The generated file name does not have the expected base name.");
-         QVERIFY2(hexaStringRegExp.match(baseName).hasMatch(), "The generated base name is not valid.");
+         QVERIFY2(baseName.length() == baseLength + prefixSize , 
+            "The generated file name does not have the expected base name.");
+         QVERIFY2(QRegularExpression(QString(R"(^.{%1}[0-9a-z]+$)").arg(prefixSize)).match(baseName).hasMatch(), 
+            "The generated base name is not valid.");
+         if (usePrefix)
+            QVERIFY2(fileName.startsWith(kFileNamePrefix), "The file name does not have the expected prefix.");
       }
    }
    catch (...)
@@ -93,7 +106,7 @@ void XMiLibTest::fileUtils_createTempFile()
       for (qint32 i = 0; i < 100; ++i)
       {
          QFile file;
-         QString path = createTempFile(file, "tmp");
+         QString path = createTempFile(file, QString(), "tmp", false);
          QVERIFY2(!path.isEmpty(), "The file could not be created.");
          QVERIFY2(file.isOpen(), "The file is invalid");
          qint32 const fileSize = rng.get() + 1;

@@ -40,13 +40,14 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
-/// \param[in] length the length of the base file name (i.e. without the extension)
+/// \param[in] length the length of the random portion of the file (i.e. without the extension and prefix)
+/// \param[in] prefix The prefix that starts the file name. This value can be null or empty
 /// \param[in] extension The file extension, without leading '.'
 /// \return A random file name with the specified base name length and extension
 //**********************************************************************************************************************
-QString getRandomFileName(qint32 length, QString const& extension)
+QString getRandomFileName(qint32 length, QString const& prefix, QString const& extension)
 {
-   QString result;
+   QString result = prefix;
    for (int i = 0; i < length; ++i)
       result += QString("%1").arg(nameRng().get(), 1, 16);
    return extension.isEmpty() ? result : result + "." + extension;
@@ -75,17 +76,18 @@ QString createTempDir()
 
 //**********************************************************************************************************************
 /// \param[out] outFile The created file, open for writing
+/// \param[in] prefix The prefix that starts the file name. This value can be null or empty
 /// \param[in] extension The file extension, without the leading '.'
 /// \param[in] textMode Should the file be open in text mode
 /// \return The absolute path of the created file
 //**********************************************************************************************************************
-QString createTempFile(QFile& outFile, QString const& extension, bool textMode)
+QString createTempFile(QFile& outFile, QString const& prefix, QString const& extension, bool textMode)
 {
    qint32 retryCount = 0;
    while (retryCount++ < kMaxRetryCount)
    {
       QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
-         .absoluteFilePath(getRandomFileName(16, extension));
+         .absoluteFilePath(getRandomFileName(16, prefix, extension));
       if (path.isEmpty() || (QFileInfo(path).exists()))
          continue;
       outFile.close();
