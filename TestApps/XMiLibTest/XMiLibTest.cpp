@@ -9,7 +9,6 @@
 
 #include "stdafx.h"
 #include "XMiLibTest.h"
-#include "moc_XMiLibTest.cpp"
 
 
 QTEST_MAIN(XMiLibTest)

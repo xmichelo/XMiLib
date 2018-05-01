@@ -21,23 +21,17 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="ExceptionTest.cpp" />
     <ClCompile Include="StringUtilsTest.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_XMiLibTest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_XMiLibTest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="XMiLibTest.cpp" />
     <ClCompile Include="RandomNumberGeneratorTest.cpp" />
     <ClCompile Include="DebugLogTest.cpp" />
     <ClCompile Include="ThreadedOperationTest.cpp" />
     <ClCompile Include="FileUtilsTest.cpp" />
     <ClCompile Include="GlobalShortcutTest.cpp" />
+    <ClCompile Include="XMiLibTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="XMiLibTest.h" />
+    <QtMoc Include="XMiLibTest.h" />
   </ItemGroup>
 </Project>

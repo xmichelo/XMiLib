@@ -5,12 +5,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_MainWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_MainWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="OriginalStyleSheet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -22,8 +18,8 @@
     <ClInclude Include="OriginalStyleSheet.h" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="MainWindow.h" />
-    <CustomBuild Include="MainWindow.ui" />
+    <QtMoc Include="MainWindow.h" />
+    <QtUic Include="MainWindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Generated Files">

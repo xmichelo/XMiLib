@@ -65,57 +65,33 @@
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp">
       <Filter>StyleSheetEditor</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_StyleSheetEditor.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_StyleSheetEditor.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="DebugLog\DebugLog.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
     <ClCompile Include="DebugLog\DebugLogEntry.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DebugLog.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DebugLog.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="DebugLog\DebugLogWindow.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DebugLogWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DebugLogWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DebugLogFilterProxyModel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DebugLogFilterProxyModel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
+    
+    
     <ClCompile Include="DebugLog\DebugLogFilterProxyModel.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp">
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ThreadedOperation.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ThreadedOperation.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ThreadedOperationDialog.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ThreadedOperationDialog.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
+    
+    
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp">
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
@@ -124,47 +100,43 @@
     <ClCompile Include="GlobalShortcut\GlobalShortcut.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GlobalShortcut.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GlobalShortcut.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
+    
+    
     <ClCompile Include="GlobalShortcut\GlobalShortcutManager.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.h">
+    <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
       <Filter>StyleSheetEditor</Filter>
-    </CustomBuild>
-    <CustomBuild Include="StyleSheetEditor\StyleSheetEditor.ui">
+    </QtMoc>
+    <QtUic Include="StyleSheetEditor\StyleSheetEditor.ui">
       <Filter>StyleSheetEditor</Filter>
-    </CustomBuild>
-    <CustomBuild Include="DebugLog\DebugLog.h">
+    </QtUic>
+    <QtMoc Include="DebugLog\DebugLog.h">
       <Filter>DebugLog</Filter>
-    </CustomBuild>
-    <CustomBuild Include="DebugLog\DebugLogWindow.h">
+    </QtMoc>
+    <QtMoc Include="DebugLog\DebugLogWindow.h">
       <Filter>DebugLog</Filter>
-    </CustomBuild>
-    <CustomBuild Include="DebugLog\DebugLogWindow.ui">
+    </QtMoc>
+    <QtUic Include="DebugLog\DebugLogWindow.ui">
       <Filter>DebugLog</Filter>
-    </CustomBuild>
-    <CustomBuild Include="DebugLog\DebugLogFilterProxyModel.h">
+    </QtUic>
+    <QtMoc Include="DebugLog\DebugLogFilterProxyModel.h">
       <Filter>DebugLog</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ThreadedOperation\ThreadedOperation.h">
+    </QtMoc>
+    <QtMoc Include="ThreadedOperation\ThreadedOperation.h">
       <Filter>ThreadedOperation</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.h">
+    </QtMoc>
+    <QtMoc Include="ThreadedOperation\ThreadedOperationDialog.h">
       <Filter>ThreadedOperation</Filter>
-    </CustomBuild>
-    <CustomBuild Include="ThreadedOperation\ThreadedOperationDialog.ui">
+    </QtMoc>
+    <QtUic Include="ThreadedOperation\ThreadedOperationDialog.ui">
       <Filter>ThreadedOperation</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GlobalShortcut\GlobalShortcut.h">
+    </QtUic>
+    <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <Filter>GlobalShortcut</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="Translations\xmilib_fr.ts">
