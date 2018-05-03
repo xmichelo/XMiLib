@@ -13,3 +13,7 @@ build/
 *.sdf
 *.opensdf
 *.qm
+*.iml
+cmake-*
+.idea/workspace.xml
+.idea/tasks.xml
