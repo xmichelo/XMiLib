@@ -21,7 +21,7 @@ namespace xmilib {
 //**********************************************************************************************************************
 DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
    : QWidget(parent)
-   , ui_(std::make_unique<Ui::DebugLogWindow>())
+   , ui_(new Ui::DebugLogWindow())
    , debugLog_(debugLog)
    , lastRowWasVisible_(true)
    , filterModel_(new DebugLogFilterProxyModel(DebugLogEntry::Info | DebugLogEntry::Warning | DebugLogEntry::Error, 
@@ -48,6 +48,15 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
 //**********************************************************************************************************************
 /// \return true if and only if the last row of the log is visible
 //**********************************************************************************************************************
+DebugLogWindow::~DebugLogWindow()
+{
+    // MinGW requires presence of this implementation in the cpp file, otherwise it will complain about
+    // partial definition of the UI class that is incompatible with std::unique_ptr
+}
+
+//**********************************************************************************************************************
+/// \return true if and only if the last row of the log is visible
+//**********************************************************************************************************************
 bool DebugLogWindow::isLastRowVisible() const
 {
    if (!filterModel_)
@@ -59,11 +68,9 @@ bool DebugLogWindow::isLastRowVisible() const
 
 
 //**********************************************************************************************************************
-/// \param[in] parent The parent index
-/// \param[in] start The index of the first inserted row
-/// \param[in] end The index of the last inserted row
+//
 //**********************************************************************************************************************
-void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int start, int end)
+void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex&, int, int)
 {
    lastRowWasVisible_ = this->isLastRowVisible();
 }
@@ -74,7 +81,7 @@ void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex &parent, int star
 /// \param[in] first The index of the first inserted row
 /// \param[in] last The index of the last inserted row
 //**********************************************************************************************************************
-void DebugLogWindow::onRowsInserted(QModelIndex const& parent, int first, int last) const
+void DebugLogWindow::onRowsInserted(QModelIndex const&, int first, int last) const
 {
    for (qint32 i = first; i <= last; ++i)
       ui_->tableView->resizeRowToContents(i);

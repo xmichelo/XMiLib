@@ -17,3 +17,4 @@ build/
 cmake-*
 workspace.xml
 tasks.xml
+*.pro.user

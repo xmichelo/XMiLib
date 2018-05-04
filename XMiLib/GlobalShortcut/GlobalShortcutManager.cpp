@@ -80,12 +80,10 @@ bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 
 
 //**********************************************************************************************************************
-/// \param[in] eventType unused
 /// \param[in] message The message
-/// \param[in] result unused
 /// \return true if the message has been processed
 //**********************************************************************************************************************
-bool GlobalShortcutManager::nativeEventFilter(QByteArray const& eventType, void *message, long* result)
+bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, long*)
 {
    MSG* msg = static_cast<MSG*>(message);
    if (WM_HOTKEY == msg->message)

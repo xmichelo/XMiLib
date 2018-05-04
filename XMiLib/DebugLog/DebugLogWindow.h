@@ -32,7 +32,7 @@ public: // member functions
 	DebugLogWindow(DebugLog* debugLog = nullptr, QWidget* parent = nullptr); ///< Default constructor
 	DebugLogWindow(DebugLogWindow const&) = delete; ///< Disabled copy constructor
 	DebugLogWindow(DebugLogWindow&&) = delete; ///< Disabled move copy constructor
-	virtual ~DebugLogWindow() override = default; ///< Default destructor
+    virtual ~DebugLogWindow() override; ///< Default destructor
 	DebugLogWindow& operator=(DebugLogWindow const&) = delete; ///< Disabled assignment operator
 	DebugLogWindow& operator=(DebugLogWindow&&) = delete; ///< Disabled move assignment operator
 
@@ -40,8 +40,8 @@ private: // member functions
    bool isLastRowVisible() const; ///< Check whether the last row of the log is visible
 
 private slots:
-   void onRowsAboutToBeInserted(const QModelIndex &parent, int start, int end); ///< Slot for before the insertion of a row
-   void onRowsInserted(QModelIndex const& parent, int first, int last) const; ///< Slot for the insertion of a row
+   void onRowsAboutToBeInserted(const QModelIndex&, int, int); ///< Slot for before the insertion of a row
+   void onRowsInserted(QModelIndex const&, int first, int last) const; ///< Slot for the insertion of a row
    void onFilterChanged() const; ///< Slot for the changing of the filtering
    void onActionClose(); ///< Slot for the 'Close' action
    void onActionClearLog() const; ///< Slot for the 'Clear Log' action

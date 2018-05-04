@@ -30,7 +30,7 @@ public: // member functions
 	void setEntryTypes(quint32 entryTypes); ///< Set the filter by specifying the allowed entry types
 
 protected: // member functions
-   virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override; ///< Check whether a row should be displayed
+   virtual bool filterAcceptsRow(int sourceRow, const QModelIndex&) const override; ///< Check whether a row should be displayed
 
 private: // data members
    quint32 entryTypes_; ///< The allowed log entry types as a bitfield

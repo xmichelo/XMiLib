@@ -38,10 +38,9 @@ void DebugLogFilterProxyModel::setEntryTypes(quint32 entryTypes)
 
 //**********************************************************************************************************************
 /// \param[in] sourceRow The row in the source model
-/// \param[in] sourceParent The source parent
 /// \return true if and only if the specified row should be included in the model
 //**********************************************************************************************************************
-bool DebugLogFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool DebugLogFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex&) const
 {
    DebugLog* model = dynamic_cast<DebugLog*>(this->sourceModel());
    if (!model)

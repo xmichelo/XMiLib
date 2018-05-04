@@ -29,7 +29,7 @@ public: // member functions
 	~GlobalShortcutManager() = default; ///< Default destructor
    GlobalShortcut const* create(quint32 nativeModifiers, quint32 nativeVirtualKey, QString* outErrorMsg = nullptr); ///< Create a global shortcut
    bool remove(GlobalShortcut const* shortcut); ///< Remove (a.ka. delete) a global shortcut given its id
-   bool nativeEventFilter(QByteArray const& eventType, void *message, long *result) override; ///< The Native event filter receiving thread event
+   bool nativeEventFilter(QByteArray const&, void* message, long*) override; ///< The Native event filter receiving thread event
 
 private: // member functions
    GlobalShortcutManager(); ///< Default constructor

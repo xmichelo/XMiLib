@@ -147,19 +147,18 @@ SPDebugLogEntry& DebugLog::operator[](qint64 index)
 
 
 //**********************************************************************************************************************
-/// \param[in] parent The index of the parent model
-/// \return The number of entries in log
+//
 //**********************************************************************************************************************
-int DebugLog::rowCount(const QModelIndex &parent) const
+int DebugLog::rowCount(const QModelIndex&) const
 {
    return int(entries_.size());
 }
 
 
 //**********************************************************************************************************************
-/// \return The number of rows in the model
+//
 //**********************************************************************************************************************
-int DebugLog::columnCount(const QModelIndex &parent) const
+int DebugLog::columnCount(const QModelIndex&) const
 {
    return 2;
 }

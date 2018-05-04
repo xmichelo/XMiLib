@@ -34,7 +34,7 @@ public: // member functions
 	ThreadedOperationDialog(ThreadedOperation& operation, QWidget* parent = nullptr); ///< Default constructor
 	ThreadedOperationDialog(ThreadedOperationDialog const&) = delete; ///< Disabled copy constructor
 	ThreadedOperationDialog(ThreadedOperationDialog&&) = delete; ///< Disabled move copy constructor
-	virtual ~ThreadedOperationDialog() override = default; ///< Default destructor
+    ~ThreadedOperationDialog() override;; ///< Default destructor
 	ThreadedOperationDialog& operator=(ThreadedOperationDialog const&) = delete; ///< Disabled assignment operator
 	ThreadedOperationDialog& operator=(ThreadedOperationDialog&&) = delete; ///< Disabled move assignment operator
 	void cleanupThread(); ///< Clean-up the thread

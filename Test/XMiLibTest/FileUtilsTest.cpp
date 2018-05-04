@@ -34,7 +34,7 @@ void XMiLibTest::fileUtils_getRandomFileName()
       for (qint32 i = 0; i < 100; ++i)
       {
          bool const usePrefix = i % 2;
-         quint32 const prefixSize = usePrefix ? kFileNamePrefix.size() : 0;
+         qint32 const prefixSize = usePrefix ? kFileNamePrefix.size() : 0;
 
          // we use the generator to generate an extension.
          qint32 const extLength = rng.get();

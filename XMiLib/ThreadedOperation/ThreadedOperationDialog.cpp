@@ -41,6 +41,15 @@ ThreadedOperationDialog::ThreadedOperationDialog(ThreadedOperation& operation, Q
     ui_->setupUi(this);
 }
 
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+ThreadedOperationDialog::~ThreadedOperationDialog()
+{
+    // MinGW requires presence of this implementation in the cpp file, otherwise it will complain about
+    // partial definition of the UI class
+}
+
 
 //**********************************************************************************************************************
 // 
