@@ -15,5 +15,5 @@ build/
 *.qm
 *.iml
 cmake-*
-.idea/workspace.xml
-.idea/tasks.xml
+workspace.xml
+tasks.xml

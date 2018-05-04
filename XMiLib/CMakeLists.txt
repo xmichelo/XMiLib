@@ -8,7 +8,8 @@ include_directories(.)
 find_package(Qt5Core)
 find_package(Qt5Widgets)
 
-set(CMAKE_AUTOMOC_ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOMOC_MOC_OPTIONS "-bstdafx.h" "-fstdafx.h")
 set(CMAKE_AUTOUIC ON)
 
 add_definitions(-DUNICODE -D_UNICODE)
