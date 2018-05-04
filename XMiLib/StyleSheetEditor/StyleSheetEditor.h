@@ -11,7 +11,7 @@
 #define XMILIB__STYLE__SHEET__EDITOR__H
 
 
-namespace Ui { class StyleSheetEditor; };
+namespace Ui { class StyleSheetEditor; }
 
 
 namespace xmilib {

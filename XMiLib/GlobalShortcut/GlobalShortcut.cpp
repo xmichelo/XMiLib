@@ -15,6 +15,9 @@
 namespace xmilib {
 
 
+#ifdef _WIN32
+
+
 //**********************************************************************************************************************
 /// This function will throw a xmilib::Exception if the shortcut cannot be registered
 ///
@@ -50,6 +53,9 @@ GlobalShortcut::~GlobalShortcut()
    UnregisterHotKey(nullptr, id_);
    GlobalDeleteAtom(id_);
 }
+
+
+#endif // #ifdef _WIN32
 
 
 } // namespace xmilib

@@ -17,6 +17,9 @@
 namespace xmilib {
 
 
+#ifdef _WIN32
+
+
 //**********************************************************************************************************************
 /// \brief Manager class for global (system wide) shortcuts
 //**********************************************************************************************************************
@@ -43,8 +46,10 @@ private: // data members
 };
 
 
-} // namespace xmilib
+#endif // #ifdef _WIN32
 
+
+} // namespace xmilib
 
 
 #endif // #ifndef XMILIB__GLOBAL__SHORTCUT__MANAGER__H

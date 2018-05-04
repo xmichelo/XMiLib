@@ -14,7 +14,13 @@
 namespace xmilib {
 
 
+
 void displaySystemErrorDialog(QString const& title, QString const& message); ///< Display a system error message using the native GUI API.
+
+
+#ifdef _WIN32
+
+
 void synthesizeKeyDown(quint16 virtualCode); ///< Synthesize a keyboard key press event based on virtual key code
 void synthesizeKeyUp(quint16 virtualCode); ///< Synthesize a keyboard key release event based on virtual key code
 void synthesizeKeyDownAndUp(quint16 virtualCode); ///< Synthesize a keyboard key press then release event based on virtual key code
@@ -23,6 +29,8 @@ void synthesizeUnicodeKeyDown(quint16 unicodeChar); ///< Synthesize a keyboard k
 void synthesizeUnicodeKeyUp(quint16 unicodeChar); ///< Synthesize a keyboard key release event for a Unicode character
 void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar); ///< Synthesize a keyboard key press then release event for a Unicode character
 
+
+#endif // #ifdef _WIN32
 
 }
 

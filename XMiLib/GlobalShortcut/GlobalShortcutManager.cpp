@@ -16,6 +16,9 @@
 namespace xmilib {
 
 
+#ifdef _WIN32
+
+
 //**********************************************************************************************************************
 /// \return The only allowed instance of the class
 //**********************************************************************************************************************
@@ -99,6 +102,9 @@ bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, 
    // The documentation for WM_HOTKEY does not state anything about the result so we leave it untouched
    return false;
 }
+
+
+#endif // #ifdef _WIN32
 
 
 } // namespace xmilib

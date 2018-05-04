@@ -14,8 +14,14 @@
 namespace xmilib {
 
 
+#ifdef _WIN32
+
+
 void synthesizeKeyEvent(quint16 virtualCode, bool pressed); ///< Synthesize a key event based on a virtual key code
 void synthesizeUnicodeKeyEvent(quint16 unicodeChar, bool pressed); ///< Synthesize a key event for a unicode character
+
+
+#endif // #ifdef _WIN32
 
 
 //**********************************************************************************************************************
@@ -29,11 +35,13 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 {
 #ifdef WIN32
    MessageBox(nullptr, LPCWSTR(message.utf16()), LPCWSTR(title.utf16()), MB_OK | MB_ICONERROR);
-#else
-#error This function is not supported on this platform
 #endif
+   (void)title; // does nothing but avoid 'unused parameter warning on some compilers
    qDebug() << QString("Unhandled exception: %1").arg(message);
 }
+
+
+#ifdef _WIN32
 
 
 //**********************************************************************************************************************
@@ -190,6 +198,7 @@ void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar)
 }
 
 
+#endif // #ifdef _WIN32
 
 
 } // namespace xmilib

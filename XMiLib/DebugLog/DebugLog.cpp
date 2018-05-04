@@ -131,7 +131,7 @@ qint32 DebugLog::getMaxEntryCount() const
 //**********************************************************************************************************************
 SPDebugLogEntry const& DebugLog::operator[](qint64 index) const
 {
-   if ((index < 0) || (index >= entries_.size()))
+   if ((index < 0) || (quint64(index) >= entries_.size()))
       throw Exception(QString("Index out of range"));
    return entries_[index];
 }

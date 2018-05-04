@@ -5,6 +5,7 @@
 TEMPLATE = app
 TARGET = XMiLibGuiTest
 QT += core gui widgets
+CONFIG += precompile_header
 PRECOMPILED_HEADER = stdafx.h
 include(XMiLibGuiTest.pri)
 
