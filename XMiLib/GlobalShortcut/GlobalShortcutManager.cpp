@@ -16,7 +16,7 @@
 namespace xmilib {
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Win32)
 
 
 //**********************************************************************************************************************
@@ -104,7 +104,7 @@ bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, 
 }
 
 
-#endif // #ifdef _WIN32
+#endif #if defined(_WIN32) || defined(Win32)
 
 
 } // namespace xmilib

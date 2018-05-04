@@ -14,14 +14,14 @@
 namespace xmilib {
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Win32)
 
 
 void synthesizeKeyEvent(quint16 virtualCode, bool pressed); ///< Synthesize a key event based on a virtual key code
 void synthesizeUnicodeKeyEvent(quint16 unicodeChar, bool pressed); ///< Synthesize a key event for a unicode character
 
 
-#endif // #ifdef _WIN32
+#endif // #if defined(_WIN32) || defined(Win32)
 
 
 //**********************************************************************************************************************
@@ -41,7 +41,7 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 }
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Win32)
 
 
 //**********************************************************************************************************************
@@ -198,7 +198,7 @@ void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar)
 }
 
 
-#endif // #ifdef _WIN32
+#endif // #if defined(_WIN32) || defined(Win32)
 
 
 } // namespace xmilib

@@ -17,7 +17,7 @@
 namespace xmilib {
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(Win32)
 
 
 //**********************************************************************************************************************
@@ -52,7 +52,7 @@ private:
 typedef std::unique_ptr<GlobalShortcut> UPGlobalShortcut; ///< Type definition for unique pointer to global shortcut
 
 
-#endif // #ifdef _WIN32
+#endif // #if defined(_WIN32) || defined(Win32)
 
 
 } // namespace xmilib
