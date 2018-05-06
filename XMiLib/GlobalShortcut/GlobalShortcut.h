@@ -17,9 +17,6 @@
 namespace xmilib {
 
 
-#ifdef Q_OS_WIN32
-
-
 //**********************************************************************************************************************
 /// \brief A class for global (system-wide) shortcuts
 /// 
@@ -50,9 +47,6 @@ private:
 
 
 typedef std::unique_ptr<GlobalShortcut> UPGlobalShortcut; ///< Type definition for unique pointer to global shortcut
-
-
-#endif // #ifdef Q_OS_WIN32
 
 
 } // namespace xmilib

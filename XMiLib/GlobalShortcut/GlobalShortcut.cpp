@@ -55,7 +55,15 @@ GlobalShortcut::~GlobalShortcut()
 }
 
 
-#endif // #ifdef Q_OS_WIN
+#else // ! def QOS_WIN32
 
+// dummy methods
+
+GlobalShortcut::GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey) : QObject(), id_(0) {}
+void GlobalShortcut::trigger() {}
+GlobalShortcut::~GlobalShortcut() {}
+
+
+#endif
 
 } // namespace xmilib

@@ -13,11 +13,13 @@ set(CMAKE_AUTOMOC_MOC_OPTIONS "-bstdafx.h")
 set(CMAKE_AUTOMOC ON)
 
 
-if ((NOT DEFINED WIN32) AND (DEFINED ENV{QTDIR}))
-   set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} $ENV{QTDIR})
-else()
-   message(FATAL_ERROR "QTDIR needs to be defined and point to the root of your Qt folder. "
-      "(e.g. /Users/MyName/Qt/5.10.1/clang_64).")
+if (NOT DEFINED WIN32)
+   if (DEFINED ENV{QTDIR})
+      set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} $ENV{QTDIR})
+   else()
+      message(FATAL_ERROR "QTDIR needs to be defined and point to the root of your Qt folder. "
+         "(e.g. /Users/MyName/Qt/5.10.1/clang_64).")
+   endif()
 endif()
 
 
