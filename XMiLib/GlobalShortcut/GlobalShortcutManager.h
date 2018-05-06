@@ -17,7 +17,7 @@
 namespace xmilib {
 
 
-#if defined(_WIN32) || defined(Win32)
+#ifdef Q_OS_WIN
 
 
 //**********************************************************************************************************************
@@ -46,7 +46,7 @@ private: // data members
 };
 
 
-#endif // #if defined(_WIN32) || defined(Win32)
+#endif // #ifdef Q_OS_WIN
 
 
 } // namespace xmilib

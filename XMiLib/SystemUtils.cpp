@@ -14,14 +14,14 @@
 namespace xmilib {
 
 
-#if defined(_WIN32) || defined(Win32)
+#ifdef Q_OS_WIN
 
 
 void synthesizeKeyEvent(quint16 virtualCode, bool pressed); ///< Synthesize a key event based on a virtual key code
 void synthesizeUnicodeKeyEvent(quint16 unicodeChar, bool pressed); ///< Synthesize a key event for a unicode character
 
 
-#endif // #if defined(_WIN32) || defined(Win32)
+#endif // #ifdef Q_OS_WIN
 
 
 //**********************************************************************************************************************
@@ -33,7 +33,7 @@ void synthesizeUnicodeKeyEvent(quint16 unicodeChar, bool pressed); ///< Synthesi
 //**********************************************************************************************************************
 void displaySystemErrorDialog(QString const& title, QString const& message)
 {
-#ifdef WIN32
+#ifdef Q_OS_WIN
    MessageBox(nullptr, LPCWSTR(message.utf16()), LPCWSTR(title.utf16()), MB_OK | MB_ICONERROR);
 #endif
    (void)title; // does nothing but avoid 'unused parameter warning on some compilers
@@ -41,7 +41,7 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 }
 
 
-#if defined(_WIN32) || defined(Win32)
+#ifdef Q_OS_WIN
 
 
 //**********************************************************************************************************************
@@ -198,7 +198,7 @@ void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar)
 }
 
 
-#endif // #if defined(_WIN32) || defined(Win32)
+#endif // #ifdef Q_OS_WIN
 
 
 } // namespace xmilib

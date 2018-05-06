@@ -49,9 +49,7 @@ private slots:
    static void threadedOperation_success(); ///< Test successful cases for the ThreadedOperation class
    static void threadedOperation_failure(); ///< Test failure cases for the ThreadedOperation class
    static void threadedOperation_cancel(); ///< Test for canceling of threaded operation
-#ifdef _WIN32
    static void globalShortcut(); ///< Test for the global shortcut classes
-#endif
 };
 
 

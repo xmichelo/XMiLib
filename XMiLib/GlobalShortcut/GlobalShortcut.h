@@ -17,9 +17,6 @@
 namespace xmilib {
 
 
-#if defined(_WIN32) || defined(Win32)
-
-
 //**********************************************************************************************************************
 /// \brief A class for global (system-wide) shortcuts
 /// 
@@ -29,6 +26,7 @@ class GlobalShortcut: public QObject
 {
    Q_OBJECT
 public: // member functions
+	 GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey); ///< constructor
 	~GlobalShortcut(); ///< Default destructor
    GlobalShortcut(GlobalShortcut const&) = delete; ///< Disabled copy constructor
 	GlobalShortcut(GlobalShortcut&&) = delete; ///< Disabled move constructor
@@ -39,7 +37,6 @@ signals :
    void triggered(); ///< Signal emitted when the shortcut has been triggered
 
 private: // member functions
-   GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey); ///< constructor
    void trigger(); ///< trigger the shortcut
 
 private:
@@ -50,9 +47,6 @@ private:
 
 
 typedef std::unique_ptr<GlobalShortcut> UPGlobalShortcut; ///< Type definition for unique pointer to global shortcut
-
-
-#endif // #if defined(_WIN32) || defined(Win32)
 
 
 } // namespace xmilib

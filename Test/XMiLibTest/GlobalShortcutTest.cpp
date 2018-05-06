@@ -15,9 +15,6 @@
 using namespace xmilib;
 
 
-#ifdef _WIN32
-
-
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
@@ -25,6 +22,7 @@ void XMiLibTest::globalShortcut()
 {
    try
    {
+#ifdef Q_OS_WIN
       GlobalShortcutManager& gsm = GlobalShortcutManager::instance();
       quint32 const modifiers = MOD_CONTROL | MOD_ALT | MOD_SHIFT;
       quint32 const key = 'X';
@@ -36,13 +34,11 @@ void XMiLibTest::globalShortcut()
       QVERIFY2(gsm.remove(shortcut), "Removal of an existing shortcut failed.");
       QVERIFY2(!gsm.remove(shortcut), "Removal of an already removed shortcut should have failed but did not.");
       QVERIFY2(!gsm.remove(shortcut + 8), "Removal of an non existing shortcut should have failed but did not.");
+#endif // #ifdef Q_OS_WIN
    }
    catch (...)
    {
       QVERIFY2(false, "The function threw an exception.");
    }
 }
-
-
-#endif // #ifdef _WIN32
 

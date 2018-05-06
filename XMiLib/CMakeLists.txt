@@ -3,16 +3,22 @@ project(XMiLib)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
 
 find_package(Qt5Core)
+find_package(Qt5Gui)
 find_package(Qt5Widgets)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOMOC_MOC_OPTIONS "-bstdafx.h" "-fstdafx.h")
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC_MOC_OPTIONS "-bstdafx.h")
+set(CMAKE_AUTOMOC ON)
+
 
 add_definitions(-DUNICODE -D_UNICODE)
+
 
 add_library(XMiLib
         DebugLog/DebugLog.cpp
@@ -49,4 +55,8 @@ add_library(XMiLib
         SystemUtils.cpp
         SystemUtils.h)
 
+target_link_libraries(XMiLib Qt5::Core)
+target_link_libraries(XMiLib Qt5::Gui)
 target_link_libraries(XMiLib Qt5::Widgets)
+target_link_libraries(XMiLib Psapi)
+target_link_libraries(XMiLib Kernel32)
