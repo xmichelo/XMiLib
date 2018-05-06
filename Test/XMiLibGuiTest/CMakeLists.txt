@@ -6,6 +6,14 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 
+if ((NOT DEFINED WIN32) AND (DEFINED ENV{QTDIR}))
+   set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} $ENV{QTDIR})
+else()
+   message(FATAL_ERROR "QTDIR needs to be defined and point to the root of your Qt folder. "
+      "(e.g. /Users/MyName/Qt/5.10.1/clang_64).")
+endif()
+
+
 find_package(Qt5Core)
 find_package(Qt5Gui)
 find_package(Qt5Widgets)

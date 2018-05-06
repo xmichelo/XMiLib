@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
 project(XMiLib)
 
+
 set(CMAKE_CXX_STANDARD 14)
+
+
+if ((NOT DEFINED WIN32) AND (DEFINED ENV{QTDIR}))
+   set(CMAKE_PREFIX_PATH  ${CMAKE_PREFIX_PATH} $ENV{QTDIR})
+else()
+   message(FATAL_ERROR "QTDIR needs to be defined and point to the root of your Qt folder. "
+      "(e.g. /Users/MyName/Qt/5.10.1/clang_64).")
+endif()
 
 
 find_package(Qt5Core)
@@ -58,5 +67,7 @@ add_library(XMiLib
 target_link_libraries(XMiLib Qt5::Core)
 target_link_libraries(XMiLib Qt5::Gui)
 target_link_libraries(XMiLib Qt5::Widgets)
+if (WIN32)
 target_link_libraries(XMiLib Psapi)
 target_link_libraries(XMiLib Kernel32)
+endif()
