@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "Exception.h"
+#include <utility>
 
 
 namespace xmilib {
@@ -17,11 +18,9 @@ namespace xmilib {
 //**********************************************************************************************************************
 /// \param[in] what A description of the exception
 //**********************************************************************************************************************
-Exception::Exception(QString const& what) noexcept
-   : qWhat_(what)
-   , cachedWhat_()
+Exception::Exception(QString what) noexcept
+   : qWhat_(std::move(what))
 {
-
 }
 
 
@@ -29,11 +28,10 @@ Exception::Exception(QString const& what) noexcept
 /// \param[in] ref The Exception to copy from
 //**********************************************************************************************************************
 Exception::Exception(Exception const& ref) noexcept
-   : std::exception() 
-   , qWhat_(ref.qWhat_)
-   , cachedWhat_() // we do not copy cached what to save memory
+   : std::exception(ref),
+     qWhat_(ref.qWhat_)
+// we do not copy cached what to save memory
 {
-
 }
 
 
@@ -41,9 +39,8 @@ Exception::Exception(Exception const& ref) noexcept
 /// \param[in] ref The Exception to copy from
 //**********************************************************************************************************************
 Exception::Exception(Exception&& ref) noexcept
-   : std::exception()
-   , qWhat_(ref.qWhat_)
-   , cachedWhat_()
+   : std::exception(ref),
+     qWhat_(ref.qWhat_)
 {
 }
 
@@ -54,7 +51,8 @@ Exception::Exception(Exception&& ref) noexcept
 char const* Exception::what() const noexcept
 {
    if (0 == cachedWhat_.size())
-      cachedWhat_ = qWhat_.toLatin1() + '\0'; // the final zero is added for safety, as constData() should add it automatically
+      cachedWhat_ = qWhat_.toLatin1() + '\0';
+   // the final zero is added for safety, as constData() should add it automatically
    return cachedWhat_.constData();
 }
 
@@ -69,4 +67,3 @@ QString const& Exception::qwhat() const noexcept
 
 
 } // namespace xmilib
-

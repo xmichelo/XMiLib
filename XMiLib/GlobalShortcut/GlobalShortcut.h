@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__GLOBAL__SHORTCUT__H
-#define XMILIB__GLOBAL__SHORTCUT__H
+#ifndef XMILIB_GLOBAL_SHORTCUT_H
+#define XMILIB_GLOBAL_SHORTCUT_H
 
 
 #include <memory>
@@ -46,10 +46,10 @@ private:
 };
 
 
-typedef std::unique_ptr<GlobalShortcut> UPGlobalShortcut; ///< Type definition for unique pointer to global shortcut
+typedef std::unique_ptr<GlobalShortcut> UpGlobalShortcut; ///< Type definition for unique pointer to global shortcut
 
 
 } // namespace xmilib
 
 
-#endif // #ifndef BEEFTEXT__GLOBAL__SHORTCUT__H
+#endif // #ifndef XMILIB_GLOBAL_SHORTCUT_H

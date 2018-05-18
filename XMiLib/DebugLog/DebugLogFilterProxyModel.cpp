@@ -45,9 +45,9 @@ bool DebugLogFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex
    DebugLog* model = dynamic_cast<DebugLog*>(this->sourceModel());
    if (!model)
       return false;
-   if ((sourceRow < 0) || (sourceRow >= model->rowCount()))
+   if ((sourceRow < 0) || (sourceRow >= model->rowCount(QModelIndex())))
       return false;
-   SPDebugLogEntry entry((*model)[sourceRow]);
+   SpDebugLogEntry entry((*model)[sourceRow]);
    if (!entry.get())
       return false;
    return entry->getType() & entryTypes_;

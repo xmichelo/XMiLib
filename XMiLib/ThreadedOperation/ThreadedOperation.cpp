@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "ThreadedOperation.h"
+#include <utility>
 
 
 namespace xmilib {
@@ -25,10 +26,10 @@ bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* ou
    QThread thread;
    operation.moveToThread(&thread);
    bool ok = true;
-   loop.connect(&thread, &QThread::started, &operation, &ThreadedOperation::run);
-   loop.connect(&operation, &ThreadedOperation::finished, &loop, &QEventLoop::quit);
-   loop.connect(&operation, &ThreadedOperation::canceled, &loop, &QEventLoop::quit);
-   loop.connect(&operation, &ThreadedOperation::error, [&](QString const& message) { 
+   connect(&thread, &QThread::started, &operation, &ThreadedOperation::run);
+   connect(&operation, &ThreadedOperation::finished, &loop, &QEventLoop::quit);
+   connect(&operation, &ThreadedOperation::canceled, &loop, &QEventLoop::quit);
+   connect(&operation, &ThreadedOperation::error, [&](QString const& message) { 
       ok = false;
       if (outErrorMessage)
          *outErrorMessage = message;
@@ -46,9 +47,9 @@ bool ThreadedOperation::runInEventLoop(ThreadedOperation& operation, QString* ou
 /// \param[in] description The description of the operation
 /// \param[in] parent The parent object of the instance
 //**********************************************************************************************************************
-ThreadedOperation::ThreadedOperation(QString const& description, QObject* parent)
+ThreadedOperation::ThreadedOperation(QString description, QObject* parent)
    : QObject(parent)
-   , description_(description)
+   , description_(std::move(description))
    , canceled_(false)
 {
 

@@ -38,6 +38,7 @@ void XMiLibTest::exceptionHandling()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
+// ReSharper disable once CppInconsistentNaming
 void XMiLibTest::exceptionMessage_data()
 {
    QTest::addColumn<QString>("message");

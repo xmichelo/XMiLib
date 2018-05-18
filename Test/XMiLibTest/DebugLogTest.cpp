@@ -26,7 +26,7 @@ namespace {
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::debugLog_size()
+void XMiLibTest::debugLogSize()
 {
    try
    {
@@ -55,7 +55,7 @@ void XMiLibTest::debugLog_size()
          log.addInfo(kInfoMessage);
       QVERIFY2(1000 == log.size(), "Returning to unlimited entry count does not work");
       bool didThrow = false;
-      try { log.setMaxEntryCount(-1); } catch (xmilib::Exception const&) { didThrow = true; }
+      try { log.setMaxEntryCount(-1); } catch (Exception const&) { didThrow = true; }
       QVERIFY2(didThrow, "Setting the max entry count to a negative value should throw an exception");
    }
    catch (...)
@@ -68,7 +68,7 @@ void XMiLibTest::debugLog_size()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::debugLog_contents()
+void XMiLibTest::debugLogContents()
 {
    try
    {
@@ -77,18 +77,18 @@ void XMiLibTest::debugLog_contents()
       log.addWarning(kWarningMessage);
       log.addError(kErrorMessage);
       bool didThrow(false);
-      try { SPDebugLogEntry logEntry = log[-1]; }
-      catch (xmilib::Exception const&) { didThrow = true; }
+      try { SpDebugLogEntry logEntry = log[-1]; }
+      catch (Exception const&) { didThrow = true; }
       QVERIFY2(didThrow, "operator [] did not throw with negative index");
       didThrow = false;
-      try { SPDebugLogEntry logEntry = log[3]; }
-      catch (xmilib::Exception const&) { didThrow = true; }
+      try { SpDebugLogEntry logEntry = log[3]; }
+      catch (Exception const&) { didThrow = true; }
       QVERIFY2(didThrow, "operator [] did not throw with an out of range index");
       didThrow = false;
-      try { SPDebugLogEntry logEntry = log[2]; }
-      catch (xmilib::Exception const&) { didThrow = true; }
+      try { SpDebugLogEntry logEntry = log[2]; }
+      catch (Exception const&) { didThrow = true; }
       QVERIFY2(!didThrow, "operator [] threw an exception for an valid index");
-      SPDebugLogEntry entry = log[0];
+      SpDebugLogEntry entry = log[0];
       QString const invalidContents("The contents in invalid");
       char const* cInvalidContents = invalidContents.toLocal8Bit().constData();
       QVERIFY2(DebugLogEntry::Info == log[0]->getType(), cInvalidContents);
@@ -113,18 +113,18 @@ void XMiLibTest::debugLog_contents()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::debugLog_tableModel()
+void XMiLibTest::debugLogTableModel()
 {
    try
    {
       DebugLog log;
-      QVERIFY2(2 == log.columnCount(), "The number of column in the table model is invalid");
-      QVERIFY2(0 == log.rowCount(), "The number of row in the empty table model is invalid");
+      QVERIFY2(2 == log.columnCount(QModelIndex()), "The number of column in the table model is invalid");
+      QVERIFY2(0 == log.rowCount(QModelIndex()), "The number of row in the empty table model is invalid");
       log.addInfo(kInfoMessage);
       log.addWarning(kWarningMessage);
       log.addError(kErrorMessage);
-      QVERIFY2(2 == log.columnCount(), "The number of column in the table model is invalid");
-      QVERIFY2(3 == log.rowCount(), "The number of row in the table model is invalid");
+      QVERIFY2(2 == log.columnCount(QModelIndex()), "The number of column in the table model is invalid");
+      QVERIFY2(3 == log.rowCount(QModelIndex()), "The number of row in the table model is invalid");
       for (qint32 i = 0; i < 3; ++i)
       {
          QVERIFY2(log.data(log.index(i, 0), Qt::DisplayRole).toString() == log[i]->getDateTime()
@@ -140,10 +140,11 @@ void XMiLibTest::debugLog_tableModel()
    }
 }
 
+
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::debugLog_file()
+void XMiLibTest::debugLogFile()
 {
    try
    {

@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__DEBUG__LOG__WINDOW__H
-#define XMILIB__DEBUG__LOG__WINDOW__H
+#ifndef XMILIB_DEBUG_LOG_WINDOW_H
+#define XMILIB_DEBUG_LOG_WINDOW_H
 
 
 #include "DebugLog.h"
@@ -16,7 +16,8 @@
 #include <memory>
 
 
-namespace Ui { class DebugLogWindow; };
+// ReSharper disable once CppInconsistentNaming
+namespace Ui { class DebugLogWindow; }
 
 
 namespace xmilib {
@@ -29,10 +30,10 @@ class DebugLogWindow: public QWidget
 {
    Q_OBJECT
 public: // member functions
-	DebugLogWindow(DebugLog* debugLog = nullptr, QWidget* parent = nullptr); ///< Default constructor
+   explicit DebugLogWindow(DebugLog* debugLog = nullptr, QWidget* parent = nullptr); ///< Default constructor
 	DebugLogWindow(DebugLogWindow const&) = delete; ///< Disabled copy constructor
 	DebugLogWindow(DebugLogWindow&&) = delete; ///< Disabled move copy constructor
-    virtual ~DebugLogWindow() override; ///< Default destructor
+   ~DebugLogWindow() override; ///< Default destructor
 	DebugLogWindow& operator=(DebugLogWindow const&) = delete; ///< Disabled assignment operator
 	DebugLogWindow& operator=(DebugLogWindow&&) = delete; ///< Disabled move assignment operator
 
@@ -50,11 +51,11 @@ private:
    std::unique_ptr<Ui::DebugLogWindow> ui_; ///< The GUI for the window
    DebugLog* debugLog_; ///< The debug log to display
    bool lastRowWasVisible_; ///< Was the last row visible before insertion
-   xmilib::DebugLogFilterProxyModel* filterModel_; ///< The filter proxy model
+   DebugLogFilterProxyModel* filterModel_; ///< The filter proxy model
 };
 
 
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__DEBUG__LOG__WINDOW__H
+#endif // #ifndef XMILIB_DEBUG_LOG_WINDOW_H

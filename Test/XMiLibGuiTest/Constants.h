@@ -7,11 +7,11 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef STYLE__SHEET__EDITOR__TEST__CONSTANTS__H
-#define STYLE__SHEET__EDITOR__TEST__CONSTANTS__H
+#ifndef XMILIB_GUI_TEST_CONSTANTS_H
+#define XMILIB_GUI_TEST_CONSTANTS_H
 
 
 extern QString const kSampleStyleSheet; ///< The sample stylesheet
 
 
-#endif // #ifndef STYLE__SHEET__EDITOR__TEST__CONSTANTS__H
+#endif // #ifndef XMILIB_GUI_TEST_CONSTANTS_H

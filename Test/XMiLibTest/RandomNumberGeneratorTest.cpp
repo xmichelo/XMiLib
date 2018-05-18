@@ -20,7 +20,8 @@ using namespace xmilib;
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::randomNumberGenerator_range_data()
+// ReSharper disable once CppInconsistentNaming
+void XMiLibTest::randomNumberGeneratorRange_data()
 {
    QTest::addColumn<qint32>("minValue");
    QTest::addColumn<qint32>("maxValue");
@@ -36,7 +37,7 @@ void XMiLibTest::randomNumberGenerator_range_data()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::randomNumberGenerator_range()
+void XMiLibTest::randomNumberGeneratorRange()
 {
    qint32 const sampleCount = 1000;
    // ReSharper disable CppLocalVariableMayBeConst
@@ -55,7 +56,7 @@ void XMiLibTest::randomNumberGenerator_range()
       if (shouldThrowException)
          QFAIL("The test should have thrown an exception, but did not.");
    }
-   catch (xmilib::Exception const&)
+   catch (Exception const&)
    {
       if (!shouldThrowException)   	
          QFAIL("The test threw an unexpected exception");
@@ -70,7 +71,7 @@ void XMiLibTest::randomNumberGenerator_range()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::randomNumberGenerator_randomness()
+void XMiLibTest::randomNumberGeneratorRandomness()
 {
    qint32 const sampleCount = 1000; 
    qint32 const maxValue = 10; 
@@ -95,7 +96,7 @@ void XMiLibTest::randomNumberGenerator_randomness()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::randomNumberGenerator_seed()
+void XMiLibTest::randomNumberGeneratorSeed()
 {
    try
    {

@@ -22,20 +22,20 @@ using namespace xmilib;
 class DummyThreadedOperation: public ThreadedOperation
 {
 public: // member functions
-   DummyThreadedOperation(QObject* parent = nullptr): ThreadedOperation("Dummy operation", parent) {}  ///< Default constructor
-	virtual ~DummyThreadedOperation() override = default; ///< Default destructor
+   explicit DummyThreadedOperation(QObject* parent = nullptr): ThreadedOperation("Dummy operation", parent) {}  ///< Default constructor
+   ~DummyThreadedOperation() override = default; ///< Default destructor
    DummyThreadedOperation(DummyThreadedOperation const&) = delete; ///< Disabled copy constructor
    DummyThreadedOperation(DummyThreadedOperation&&) = delete; ///< Disabled move copy constructor
 	DummyThreadedOperation& operator=(DummyThreadedOperation const&) = delete; ///< Disabled assignment operator
 	DummyThreadedOperation& operator=(DummyThreadedOperation &&) = delete; ///< Disabled move assignment operator
    /// \brief run the operation
-	virtual void run() override
+   void run() override
    { 
       emit started();
       emit statusChanged("First Half.");
       for (qint32 i = 0; i <= 100; ++i)
       {
-         this->thread()->msleep(30);
+         QThread::msleep(30);
          if (50 == i)
             emit statusChanged("Second Half.");
          emit progress(i);
@@ -48,7 +48,7 @@ public: // member functions
       emit statusChanged("Done.");
       emit finished();
    }
-   virtual bool isCancelable() const override { return true; }
+   bool isCancelable() const override { return true; }
 };
 
 
@@ -58,7 +58,6 @@ public: // member functions
 MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
-   , debugLog_()
    , debugLogWindow_(nullptr)
    , styleSheetEditor_(nullptr)
 {
@@ -66,7 +65,8 @@ MainWindow::MainWindow(QWidget *parent)
    debugLog_.enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
       .absoluteFilePath("Log.txt"));
    styleSheetEditor_ = new StyleSheetEditor(this);
-   styleSheetEditor_->setOriginalStyleSheet(qApp->styleSheet());
+   styleSheetEditor_->setOriginalStyleSheet(dynamic_cast<QApplication *>(QCoreApplication::instance())->styleSheet());
+   // ReSharper disable once CppExpressionWithoutSideEffects
    styleSheetEditor_->loadStyleSheet();
 }
 
@@ -122,7 +122,7 @@ void MainWindow::onActionShowDebugLog()
          debugLogWindow_ = new DebugLogWindow(&debugLog_, this);
       debugLogWindow_->show();
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
@@ -138,7 +138,7 @@ void MainWindow::onActionAddInfo()
    {
       this->addDebugLogEntry(DebugLogEntry::Info, ui_.editMessage->text());
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
@@ -154,7 +154,7 @@ void MainWindow::onActionAddWarning()
    {
       this->addDebugLogEntry(DebugLogEntry::Warning, ui_.editMessage->text());
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
@@ -170,7 +170,7 @@ void MainWindow::onActionAddError()
    {
       this->addDebugLogEntry(DebugLogEntry::Error, ui_.editMessage->text());
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
@@ -186,7 +186,7 @@ void MainWindow::onActionOpenLogFile()
    {
       QDesktopServices::openUrl(QUrl::fromLocalFile(debugLog_.getLogFilePath()));
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       QMessageBox::critical(this, tr("Error"), e.qwhat());
    }
@@ -215,7 +215,7 @@ void MainWindow::onActionLaunchThreadWithoutDialog()
       ThreadedOperation::runInEventLoop(op);
       QMessageBox::information(this, tr("Info"), tr("The thread executed successfully."));
    }
-   catch (xmilib::Exception const&)
+   catch (Exception const&)
    {
    	QMessageBox::critical(this, tr("Error"), tr("The thread failed."));
    }

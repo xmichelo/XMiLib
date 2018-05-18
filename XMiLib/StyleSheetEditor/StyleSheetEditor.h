@@ -7,10 +7,11 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__STYLE__SHEET__EDITOR__H
-#define XMILIB__STYLE__SHEET__EDITOR__H
+#ifndef XMILIB_STYLE_SHEET_EDITOR_H
+#define XMILIB_STYLE_SHEET_EDITOR_H
 
 
+// ReSharper disable once CppInconsistentNaming
 namespace Ui { class StyleSheetEditor; }
 
 
@@ -24,10 +25,10 @@ class StyleSheetEditor: public QWidget
 {
    Q_OBJECT
 public: // member function
-	StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
+   explicit StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
 	StyleSheetEditor(StyleSheetEditor const&) = delete; ///< Disabled copy constructor
 	StyleSheetEditor(StyleSheetEditor&&) = delete; ///< Disabled move copy constructor
-	virtual ~StyleSheetEditor() override; ///< Default destructor
+	~StyleSheetEditor() override; ///< Default destructor
 	StyleSheetEditor& operator=(StyleSheetEditor const&) = delete; ///< Disabled assignment operator
 	StyleSheetEditor& operator=(StyleSheetEditor&&) = delete; ///< Disabled move assignment operator
    bool loadStyleSheet() const; ///< Load a style sheet from file
@@ -50,4 +51,4 @@ private: // data members
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__STYLE__SHEET__EDITOR__H
+#endif // #ifndef XMILIB_STYLE_SHEET_EDITOR_H

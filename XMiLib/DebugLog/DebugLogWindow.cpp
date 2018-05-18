@@ -48,7 +48,7 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
 //**********************************************************************************************************************
 /// \return true if and only if the last row of the log is visible
 //**********************************************************************************************************************
-DebugLogWindow::~DebugLogWindow()
+DebugLogWindow::~DebugLogWindow()  // NOLINT(hicpp-use-equals-default, modernize-use-equals-default)
 {
     // MinGW requires presence of this implementation in the cpp file, otherwise it will complain about
     // partial definition of the UI class that is incompatible with std::unique_ptr
@@ -77,7 +77,6 @@ void DebugLogWindow::onRowsAboutToBeInserted(const QModelIndex&, int, int)
 
 
 //**********************************************************************************************************************
-/// \param[in] parent The parent index
 /// \param[in] first The index of the first inserted row
 /// \param[in] last The index of the last inserted row
 //**********************************************************************************************************************

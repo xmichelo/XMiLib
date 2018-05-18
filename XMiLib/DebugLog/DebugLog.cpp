@@ -13,10 +13,10 @@
 
 
 namespace {
-   QBrush const kWhiteBrush(QColor(255, 255, 255, 255)); ///< A white brush
-   QBrush const kRedBrush(QColor(255, 24, 0, 255)); ///< A red brush
-   QBrush const kOrangeBrush(QColor(255, 150, 0, 255)); ///< An orange brush
-   QBrush const kGreenBrush(QColor(115, 200, 64, 255)); ///< A green brush
+QBrush const kWhiteBrush(QColor(255, 255, 255, 255)); ///< A white brush
+QBrush const kRedBrush(QColor(255, 24, 0, 255)); ///< A red brush
+QBrush const kOrangeBrush(QColor(255, 150, 0, 255)); ///< An orange brush
+QBrush const kGreenBrush(QColor(115, 200, 64, 255)); ///< A green brush
 }
 
 
@@ -27,10 +27,8 @@ namespace xmilib {
 /// \param[in] parent The parent object of the DebugLog instance
 //**********************************************************************************************************************
 DebugLog::DebugLog(QObject* parent)
-   : QAbstractTableModel(parent)
-   , entries_()
-   , logFile_()
-   , maxEntryCount_(0)
+   : QAbstractTableModel(parent),
+     maxEntryCount_(0)
 {
 }
 
@@ -129,7 +127,7 @@ qint32 DebugLog::getMaxEntryCount() const
 //**********************************************************************************************************************
 /// \param[in] index The index of the log entry
 //**********************************************************************************************************************
-SPDebugLogEntry const& DebugLog::operator[](qint64 index) const
+SpDebugLogEntry const& DebugLog::operator[](qint64 index) const
 {
    if ((index < 0) || (quint64(index) >= entries_.size()))
       throw Exception(QString("Index out of range"));
@@ -140,9 +138,9 @@ SPDebugLogEntry const& DebugLog::operator[](qint64 index) const
 //**********************************************************************************************************************
 /// \param[in] index The index of the log entry
 //**********************************************************************************************************************
-SPDebugLogEntry& DebugLog::operator[](qint64 index)
+SpDebugLogEntry& DebugLog::operator[](qint64 index)
 {
-   return const_cast<SPDebugLogEntry&>(static_cast<const DebugLog&>(*this).operator[](index));
+   return const_cast<SpDebugLogEntry&>(static_cast<const DebugLog&>(*this).operator[](index));
 }
 
 
@@ -168,12 +166,12 @@ int DebugLog::columnCount(const QModelIndex&) const
 /// \param[in] index The index
 /// \param[in] role The role
 //**********************************************************************************************************************
-QVariant DebugLog::data(const QModelIndex &index, int role) const
+QVariant DebugLog::data(const QModelIndex& index, int role) const
 {
    qint32 const row = index.row();
    if ((row < 0) || (row >= qint32(entries_.size())))
       return QVariant();
-   SPDebugLogEntry entry(entries_[row]);
+   SpDebugLogEntry entry(entries_[row]);
    if (!entry.get())
       return QVariant();
    switch (role)
@@ -225,9 +223,9 @@ QVariant DebugLog::headerData(int section, Qt::Orientation orientation, int role
    case Qt::DisplayRole:
       switch (section)
       {
-         case 0: return tr("Date/Time");
-         case 1: return tr("Message");
-         default: return QVariant();
+      case 0: return tr("Date/Time");
+      case 1: return tr("Message");
+      default: return QVariant();
       }
    default:
       return QAbstractTableModel::headerData(section, orientation, role);
@@ -278,7 +276,7 @@ void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
 
    // Add the entry to the log
    this->beginInsertRows(QModelIndex(), entries_.size(), entries_.size());
-   SPDebugLogEntry const logEntry(std::make_shared<DebugLogEntry>(type, message));
+   SpDebugLogEntry const logEntry(std::make_shared<DebugLogEntry>(type, message));
    entries_.push_back(logEntry);
    this->endInsertRows();
 
@@ -286,7 +284,8 @@ void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
    if (logFile_.isOpen())
    {
       logFile_.write(logEntry->toString().toLocal8Bit() + "\n");
-      logFile_.flush(); // we flush to allow live viewing and to be sure the last entries are written if the application crash
+      logFile_.flush();
+      // we flush to allow live viewing and to be sure the last entries are written if the application crash
    }
 }
 

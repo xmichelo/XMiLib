@@ -35,7 +35,7 @@ GlobalShortcutManager& GlobalShortcutManager::instance()
 GlobalShortcutManager::GlobalShortcutManager()
 {
    // we register this class to be notified of Windows message posted for this application
-   qApp->installNativeEventFilter(this);
+   QCoreApplication::instance()->installNativeEventFilter(this);
 }
 
 
@@ -54,12 +54,12 @@ GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, qu
 {
    try
    {
-      UPGlobalShortcut shortcut = UPGlobalShortcut(new GlobalShortcut(nativeModifiers, nativeVirtualKey));
+      UpGlobalShortcut shortcut = std::make_unique<GlobalShortcut>(nativeModifiers, nativeVirtualKey);
       GlobalShortcut* result = shortcut.get();
       shortcuts_.push_back(std::move(shortcut));
       return result;
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
       if (outErrorMsg)
          *outErrorMsg = e.qwhat();
@@ -73,8 +73,8 @@ GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, qu
 //**********************************************************************************************************************
 bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 {
-   std::list<UPGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
-      [&shortcut](UPGlobalShortcut const& sc) -> bool { return sc.get() == shortcut; });
+   std::list<UpGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
+      [&shortcut](UpGlobalShortcut const& sc) -> bool { return sc.get() == shortcut; });
    if (shortcuts_.end() == it)
       return false;
    shortcuts_.erase(it);
@@ -92,8 +92,8 @@ bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, 
    if (WM_HOTKEY == msg->message)
    {
       quint32 const id = msg->wParam;
-      std::list<UPGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
-         [&id](UPGlobalShortcut const& sc) -> bool { return sc->id_ == id; });
+      std::list<UpGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
+         [&id](UpGlobalShortcut const& sc) -> bool { return sc->id_ == id; });
       if (shortcuts_.end() == it)
          return false;
       (*it)->trigger();

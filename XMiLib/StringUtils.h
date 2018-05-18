@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__STRING__UTILS__H
-#define XMILIB__STRING__UTILS__H
+#ifndef XMILIB_STRING_UTILS_H
+#define XMILIB_STRING_UTILS_H
 
 
 namespace xmilib {
@@ -21,4 +21,4 @@ QString byteArrayToHexString(QByteArray const& array, QString const& separator =
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__STRING__UTILS__H
+#endif // #ifndef XMILIB_STRING_UTILS_H

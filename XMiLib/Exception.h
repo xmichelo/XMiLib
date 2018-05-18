@@ -21,13 +21,13 @@ namespace xmilib {
 class Exception: public std::exception
 {
 public: // member functions
-   Exception(QString const&  what = QString()) noexcept; ///< Constructor
+   explicit Exception(QString what = QString()) noexcept; ///< Constructor
    Exception(Exception const& ref) noexcept; ///< copy constructor
    Exception(Exception&& ref) noexcept; ///< copy constructor
    Exception& operator=(Exception const&) = delete; ///< Disabled assignment operator
    Exception& operator=(Exception&&) = delete; ///< Disabled assignment operator
    virtual ~Exception() noexcept = default; ///< Destructor
-   virtual char const* what() const noexcept override; ///< Return the description of the exception as a C-style string
+   char const* what() const noexcept override; ///< Return the description of the exception as a C-style string
    virtual QString const& qwhat() const noexcept; ///< Return the description of the exception as a QString
 
 private: // data members
