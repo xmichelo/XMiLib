@@ -16,6 +16,7 @@ namespace xmilib {
 
 QString byteToHexString(char byte); ///< Returns a string containing the two characters hexadecimal representation of a byte
 QString byteArrayToHexString(QByteArray const& array, QString const& separator = QString(), qint32 bytesPerLine = 0); ///< Returns a string containing the hexadecimal representation of a byte array
+QString boolToString(bool value); ///< Returns a string representing the given value
 
 
 } // namespace xmilib

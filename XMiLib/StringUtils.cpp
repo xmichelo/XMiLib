@@ -44,4 +44,14 @@ QString byteArrayToHexString(QByteArray const& array, QString const& separator, 
 }
 
 
+//**********************************************************************************************************************
+/// \return "true" if value is true
+/// \return "false" if value is false
+//**********************************************************************************************************************
+QString boolToString(bool value)
+{
+   return value ? "true" : "false";
+}
+
+
 } // namespace xmilib
