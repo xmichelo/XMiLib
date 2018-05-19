@@ -37,6 +37,7 @@ private slots:
    static void stringUtilsByteToHexString(); ///< Test function for xmilib::byteToHexString()
    static void stringUtilsByteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
    static void stringUtilsByteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
+   static void stringUtilsBoolToString(); ///< Test function for xmilib::boolToString()
    static void randomNumberGeneratorRange_data(); ///< Test data for the first randomness test
    static void randomNumberGeneratorRange(); ///< Test the range of the value returned by the random number generator
    static void randomNumberGeneratorRandomness(); ///< Test the randomness of the values returned by the random number generator

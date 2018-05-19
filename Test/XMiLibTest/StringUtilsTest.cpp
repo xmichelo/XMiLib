@@ -101,3 +101,20 @@ void XMiLibTest::stringUtilsByteArrayToHexString()
 }
 
 
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+void XMiLibTest::stringUtilsBoolToString()
+{
+   try
+   {
+      QVERIFY2(xmilib::boolToString(false) == "false", R"(boolToString(false) did not return "false".)");
+      QVERIFY2(xmilib::boolToString(true) == "true", R"(boolToString(true) did not return "true".)");
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception.");
+   }
+}
+
+
