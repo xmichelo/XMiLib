@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__SYSTEM__UTILS__H
-#define XMILIB__SYSTEM__UTILS__H
+#ifndef XMILIB_SYSTEM_UTILS_H
+#define XMILIB_SYSTEM_UTILS_H
 
 
 namespace xmilib {
@@ -35,4 +35,4 @@ void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar); ///< Synthesize a keybo
 }
 
 
-#endif // #ifdef Q_OS_WIN
+#endif // #ifdef XMILIB_SYSTEM_UTILS_H

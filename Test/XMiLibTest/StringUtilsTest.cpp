@@ -15,7 +15,8 @@
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::stringUtils_byteToHexString_data()
+// ReSharper disable once CppInconsistentNaming
+void XMiLibTest::stringUtilsByteToHexString_data()
 {
    QTest::addColumn<char>("byte");
    QTest::addColumn<QString>("expectedResult");
@@ -29,7 +30,7 @@ void XMiLibTest::stringUtils_byteToHexString_data()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::stringUtils_byteToHexString()
+void XMiLibTest::stringUtilsByteToHexString()
 {
    try
    {
@@ -50,7 +51,8 @@ void XMiLibTest::stringUtils_byteToHexString()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::stringUtils_byteArrayToHexString_data()
+// ReSharper disable once CppInconsistentNaming
+void XMiLibTest::stringUtilsByteArrayToHexString_data()
 {
    QByteArray array;
    qint32 const arraySize(18);
@@ -80,7 +82,7 @@ void XMiLibTest::stringUtils_byteArrayToHexString_data()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::stringUtils_byteArrayToHexString()
+void XMiLibTest::stringUtilsByteArrayToHexString()
 {
    try 
    {

@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__THREADED__OPERATION__H
-#define XMILIB__THREADED__OPERATION__H
+#ifndef XMILIB_THREADED_OPERATION_H
+#define XMILIB_THREADED_OPERATION_H
 
 
 namespace xmilib {
@@ -42,10 +42,10 @@ public: // static member functions
    static bool runInEventLoop(ThreadedOperation& operation, QString* outErrorMessage = nullptr); ///< Run a threaded operation in event loop
 
 public: // member functions
-	ThreadedOperation(QString const& description, QObject* parent = nullptr); ///< Default constructor
+   explicit ThreadedOperation(QString description, QObject* parent = nullptr); ///< Default constructor
 	ThreadedOperation(ThreadedOperation const&) = delete; ///< Disabled copy constructor
 	ThreadedOperation(ThreadedOperation&&) = delete; ///< Disabled move copy constructor
-	virtual ~ThreadedOperation() override = default; ///< Default destructor
+   ~ThreadedOperation() override = default; ///< Default destructor
 	ThreadedOperation& operator=(ThreadedOperation const&) = delete; ///< Disabled assignment operator
 	ThreadedOperation& operator=(ThreadedOperation&&) = delete; ///< Disabled move assignment operator
    QString getDescription() const; ///< Retrieve the description of the operation
@@ -73,4 +73,4 @@ private: // data members
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__THREADED__OPERATION__H
+#endif // #ifndef XMILIB_THREADED_OPERATION_H

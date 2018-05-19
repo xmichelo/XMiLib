@@ -7,11 +7,11 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__GUI__TEST__ORIGINAL__STYLE__SHEET__H
-#define XMILIB__GUI__TEST__ORIGINAL__STYLE__SHEET__H
+#ifndef XMILIB_TEST_GUI_TEST_ORIGINAL_STYLESHEET_H
+#define XMILIB_TEST_GUI_TEST_ORIGINAL_STYLESHEET_H
 
 
 extern QString const kOriginalStyleSheet; ///< The original style sheet for the application
 
 
-#endif // #ifndef XMILIB__GUI__TEST__ORIGINAL__STYLE__SHEET__H
+#endif // #ifndef XMILIB_TEST_GUI_TEST_ORIGINAL_STYLESHEET_H

@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIBTEXT__STDAFX__H
-#define XMILIBTEXT__STDAFX__H
+#ifndef XMILIB_TEST_STDAFX_H
+#define XMILIB_TEST_STDAFX_H
 
 
 #include <QtTest>
@@ -16,4 +16,4 @@
 #include <QtGui>
 
 
-#endif // XMILIBTEXT__STDAFX__H
+#endif // XMILIB_TEST_STDAFX_H

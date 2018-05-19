@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__GLOBAL__SHORTCUT__MANAGER__H
-#define XMILIB__GLOBAL__SHORTCUT__MANAGER__H
+#ifndef XMILIB_GLOBAL_SHORTCUT_MANAGER_H
+#define XMILIB_GLOBAL_SHORTCUT_MANAGER_H
 
 
 #include "GlobalShortcut.h"
@@ -29,20 +29,20 @@ public: // static member functions
    static GlobalShortcutManager& instance(); ///< Return the only allowed instance of the class
 
 public: // member functions
+   GlobalShortcutManager(GlobalShortcutManager const&) = delete; ///< Disabled copy constructor
+	GlobalShortcutManager(GlobalShortcutManager&&) = delete; ///< Disabled move constructor
 	~GlobalShortcutManager() = default; ///< Default destructor
+	GlobalShortcutManager& operator=(GlobalShortcutManager const&) = delete; ///< Disabled assignment operator
+	GlobalShortcutManager& operator=(GlobalShortcutManager&&) = delete; ///< Disabled move assignment operator
    GlobalShortcut const* create(quint32 nativeModifiers, quint32 nativeVirtualKey, QString* outErrorMsg = nullptr); ///< Create a global shortcut
    bool remove(GlobalShortcut const* shortcut); ///< Remove (a.ka. delete) a global shortcut given its id
    bool nativeEventFilter(QByteArray const&, void* message, long*) override; ///< The Native event filter receiving thread event
 
 private: // member functions
    GlobalShortcutManager(); ///< Default constructor
-   GlobalShortcutManager(GlobalShortcutManager const&) = delete; ///< Disabled copy constructor
-	GlobalShortcutManager(GlobalShortcutManager&&) = delete; ///< Disabled move constructor
-	GlobalShortcutManager& operator=(GlobalShortcutManager const&) = delete; ///< Disabled assignment operator
-	GlobalShortcutManager& operator=(GlobalShortcutManager&&) = delete; ///< Disabled move assignment operator
 
 private: // data members
-   std::list<UPGlobalShortcut> shortcuts_; ///< The list of active shortcuts
+   std::list<UpGlobalShortcut> shortcuts_; ///< The list of active shortcuts
 };
 
 
@@ -52,4 +52,4 @@ private: // data members
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__GLOBAL__SHORTCUT__MANAGER__H
+#endif // #ifndef XMILIB_GLOBAL_SHORTCUT_MANAGER_H

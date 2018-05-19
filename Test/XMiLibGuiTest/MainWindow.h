@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H
-#define STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H
+#ifndef XMILIB_TEST_GUI_TEST_MAIN_WINDOW_H
+#define XMILIB_TEST_GUI_TEST_MAIN_WINDOW_H
 
 
 #include "ui_MainWindow.h"
@@ -23,10 +23,10 @@ class MainWindow : public QMainWindow
 {
    Q_OBJECT
 public: // member functions
-   MainWindow(QWidget *parent = nullptr); ///< Default constructor
+   explicit MainWindow(QWidget *parent = nullptr); ///< Default constructor
    MainWindow(MainWindow const&) = delete; ///< Disabled copy constructor
    MainWindow(MainWindow&&) = delete; ///< Disabled move copy constructor
-   virtual ~MainWindow() override = default; ///< Default destructor
+   ~MainWindow() override = default; ///< Default destructor
    MainWindow& operator=(MainWindow const&) = delete; ///< Disabled assignment operator
    MainWindow& operator=(MainWindow&&) = delete; ///< Disabled move assignment operator
 
@@ -53,4 +53,4 @@ private: // data members
 };
 
 
-#endif // #ifndef STYLE__SHEET__EDITOR__TEST__MAIN__WINDOW__H
+#endif // #ifndef XMILIB_TEST_GUI_TEST_MAIN_WINDOW_H

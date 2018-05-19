@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__DEBUG__LOG__ENTRY__H
-#define XMILIB__DEBUG__LOG__ENTRY__H
+#ifndef XMILIB_DEBUG_LOG_ENTRY_H
+#define XMILIB_DEBUG_LOG_ENTRY_H
 
 
 #include <memory>
@@ -32,7 +32,7 @@ public: // data structures
    };
 
 public: // member functions
-	DebugLogEntry(EType type, QString const& message); ///< Default constructor
+	DebugLogEntry(EType type, QString message); ///< Default constructor
 	DebugLogEntry(DebugLogEntry const&) = delete; ///< Disabled copy constructor
    DebugLogEntry(DebugLogEntry&&) = delete; ///< Disabled move constructor
 	~DebugLogEntry() = default; ///< Default destructor
@@ -50,11 +50,11 @@ private: // data members
 };
 
 
-typedef std::shared_ptr<DebugLogEntry> SPDebugLogEntry; ///< Type definition for shared pointer to DebugLogEntry
-typedef std::deque<SPDebugLogEntry> DeqSPLogEntry; ///< Type definition for double ended queue of SPLogEntry
+typedef std::shared_ptr<DebugLogEntry> SpDebugLogEntry; ///< Type definition for shared pointer to DebugLogEntry
+typedef std::deque<SpDebugLogEntry> DeqSpLogEntry; ///< Type definition for double ended queue of SPLogEntry
 
 
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__DEBUG__LOG__ENTRY__H
+#endif // #ifndef XMILIB_DEBUG_LOG_ENTRY_H

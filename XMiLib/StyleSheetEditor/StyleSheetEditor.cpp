@@ -26,7 +26,6 @@ namespace xmilib {
 StyleSheetEditor::StyleSheetEditor(QWidget* parent)
    : QWidget(parent)
    , ui_(new Ui::StyleSheetEditor())
-   , originalStylesheet_()
 {
    ui_->setupUi(this);
    this->setWindowFlags(this->windowFlags() | Qt::Window);
@@ -63,8 +62,8 @@ bool StyleSheetEditor::loadStyleSheet() const
 bool StyleSheetEditor::saveStyleSheet() const
 {
    QDir appDataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-   if (!appDataDir.exists())
-      QDir().mkpath(appDataDir.absolutePath());
+   if (!appDataDir.exists() && (!QDir().mkpath(appDataDir.absolutePath())))
+      return false;
    QFile file(appDataDir.absoluteFilePath(kDefaultStyleSheetFileName));
    if (!file.open(QIODevice::WriteOnly))
       return false;
@@ -78,7 +77,8 @@ bool StyleSheetEditor::saveStyleSheet() const
 //**********************************************************************************************************************
 void StyleSheetEditor::applyStyleSheet() const
 {
-   qApp->setStyleSheet((originalStylesheet_ + "\n\n"+ ui_->edit->toPlainText()).trimmed());
+   dynamic_cast<QApplication *>(QCoreApplication::instance())->setStyleSheet(
+      (originalStylesheet_ + "\n\n"+ ui_->edit->toPlainText()).trimmed());
 }
 
 
@@ -97,6 +97,7 @@ void StyleSheetEditor::setOriginalStyleSheet(QString const& originalStyleSheet)
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionApply() const
 {
+   // ReSharper disable once CppExpressionWithoutSideEffects
    this->saveStyleSheet();
    this->applyStyleSheet();
 }
@@ -107,8 +108,7 @@ void StyleSheetEditor::onActionApply() const
 //**********************************************************************************************************************
 void StyleSheetEditor::onActionOk()
 {
-   this->saveStyleSheet();
-   this->applyStyleSheet();
+   this->onActionApply();
    this->close();
 }
 

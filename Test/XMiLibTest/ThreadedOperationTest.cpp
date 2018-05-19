@@ -29,7 +29,7 @@ public:
    ThreadedOperationSuccess() : ThreadedOperation(kOperationDescription) {}
    void run() override {
       emit started();
-      this->thread()->msleep(100);
+      QThread::msleep(100);
       emit finished();
    }
    bool isCancelable() const override { return false; }
@@ -42,9 +42,14 @@ public:
 class ThreadedOperationFailure : public ThreadedOperation {
 public:
    ThreadedOperationFailure() : ThreadedOperation(kOperationDescription) {}
+   ThreadedOperationFailure(ThreadedOperationFailure const&) = delete;
+   ThreadedOperationFailure(ThreadedOperationFailure&&) = delete;
+   ThreadedOperationFailure& operator=(ThreadedOperationFailure const&) = delete;
+   ThreadedOperationFailure& operator=(ThreadedOperationFailure&&) = delete;
+   ~ThreadedOperationFailure() override = default; ///< Default destructor
    void run() override {
       emit started();
-      this->thread()->msleep(100);
+      QThread::msleep(100);
       emit error(kErrMessage);
    }
    bool isCancelable() const override { return false; }
@@ -56,8 +61,13 @@ public:
 /// \brief 
 //**********************************************************************************************************************
 class ThreadedOperationCancelable : public ThreadedOperation {
-public: // member functions
+public:
+   // member functions
    ThreadedOperationCancelable() : ThreadedOperation(kOperationDescription) {}
+   ThreadedOperationCancelable(ThreadedOperationCancelable const&) = delete; ///< Disabled copy constructor
+   ThreadedOperationCancelable(ThreadedOperationCancelable&&) = delete; ///< Disabled move copy constructor
+   ThreadedOperationCancelable& operator=(ThreadedOperationCancelable const&) = delete; ///< Disabled assignment operator
+   ThreadedOperationCancelable& operator=(ThreadedOperationCancelable&&) = delete; ///< Disabled move assignment operator
    ~ThreadedOperationCancelable() override = default; ///< Default destructor
    void run() override {
       emit started();
@@ -68,21 +78,18 @@ public: // member functions
             emit canceled();
             return;
          }
-         this->thread()->msleep(100);
+         QThread::msleep(100);
          emit finished();
       }
    }
    bool isCancelable() const override { return true; }
-private: // member functions
-   ThreadedOperationCancelable(ThreadedOperationCancelable const&); ///< Disabled copy constructor
-   ThreadedOperationCancelable& operator=(ThreadedOperationCancelable const&); ///< Disabled assignment operator
 };
 
 
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::threadedOperation_success()
+void XMiLibTest::threadedOperationSuccess()
 {
    try 
    {
@@ -101,7 +108,7 @@ void XMiLibTest::threadedOperation_success()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::threadedOperation_failure()
+void XMiLibTest::threadedOperationFailure()
 {
    try
    {
@@ -120,7 +127,7 @@ void XMiLibTest::threadedOperation_failure()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void XMiLibTest::threadedOperation_cancel()
+void XMiLibTest::threadedOperationCancel()
 {
    try
    {
@@ -130,10 +137,11 @@ void XMiLibTest::threadedOperation_cancel()
       QThread thread;
       operation.moveToThread(&thread);
       enum { Running, Finished, Canceled, Error } status = Running;
-      loop.connect(&thread, &QThread::started, &operation, &ThreadedOperationCancelable::run);
-      loop.connect(&operation, &ThreadedOperationCancelable::canceled, [&]() { status = Canceled; loop.quit(); });
-      loop.connect(&operation, &ThreadedOperationCancelable::finished, [&]() { status = Finished; loop.quit(); });
-      loop.connect(&operation, &ThreadedOperationCancelable::error, [&](QString const&) {status = Error; loop.quit();});
+      connect(&thread, &QThread::started, &operation, &ThreadedOperationCancelable::run);
+      connect(&operation, &ThreadedOperationCancelable::canceled, [&]() { status = Canceled; loop.quit(); });
+      connect(&operation, &ThreadedOperationCancelable::finished, [&]() { status = Finished; loop.quit(); });
+      connect(&operation, &ThreadedOperationCancelable::error, 
+         [&](QString const&) {status = Error; loop.quit();});
       QElapsedTimer timer;
       timer.start();
       thread.start();

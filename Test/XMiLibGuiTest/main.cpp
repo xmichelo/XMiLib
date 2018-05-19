@@ -27,30 +27,30 @@ void checkAndCreateDataDir(); ///< Check if the application data folder exists a
 //**********************************************************************************************************************
 int main(int argc, char *argv[])
 {
-   QString const kUnhandledException(QObject::tr("Unhandled Exception"));
+   QString const unhandledException(QObject::tr("Unhandled Exception"));
    try 
    {
       QApplication a(argc, argv);
-      a.setApplicationName("XMiLib GUI Test");
-      a.setOrganizationName("x-mi.com");
-      a.setApplicationVersion("1.0");
+      QApplication::setApplicationName("XMiLib GUI Test");
+      QApplication::setOrganizationName("x-mi.com");
+      QApplication::setApplicationVersion("1.0");
       checkAndCreateDataDir();
-      qApp->setStyleSheet(kOriginalStyleSheet);
+      dynamic_cast<QApplication *>(QCoreApplication::instance())->setStyleSheet(kOriginalStyleSheet);
       MainWindow w;
       w.show();
-      return a.exec();
+      return QApplication::exec();
    }
-   catch (xmilib::Exception const& e)
+   catch (Exception const& e)
    {
-      displaySystemErrorDialog(kUnhandledException, e.qwhat());
+      displaySystemErrorDialog(unhandledException, e.qwhat());
    }
    catch (std::exception const& e)
    {
-      displaySystemErrorDialog(kUnhandledException, e.what());
+      displaySystemErrorDialog(unhandledException, e.what());
    }
    catch (...)
    {
-      displaySystemErrorDialog(kUnhandledException, "An unhandled exception occurred.");
+      displaySystemErrorDialog(unhandledException, "An unhandled exception occurred.");
    }
    return 1;
 }
@@ -62,8 +62,6 @@ int main(int argc, char *argv[])
 void checkAndCreateDataDir()
 {
    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
-   if (!dataDir.exists())
-      QDir().mkpath(dataDir.absolutePath());
-   if (!dataDir.exists())
+   if ((!dataDir.exists()) && (!QDir().mkpath(dataDir.absolutePath())))
       throw Exception("The application data folder could not be created.");
 }

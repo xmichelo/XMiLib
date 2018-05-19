@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMLIBGUITEST__STDAFX_H
-#define XMLIBGUITEST__STDAFX_H
+#ifndef XMILIB_TEST_GUI_TEST_MAIN_STDAFX_H
+#define XMILIB_TEST_GUI_TEST_MAIN_STDAFX_H
 
 
 #include <QtWidgets>
@@ -16,4 +16,4 @@
 #include <QtCore>
 
 
-#endif // XMLIBGUITEST__STDAFX_H
+#endif // XMILIB_TEST_GUI_TEST_MAIN_STDAFX_H

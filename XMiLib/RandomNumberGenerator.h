@@ -8,8 +8,8 @@
 
 
 
-#ifndef XMILIB__RANDOM__NUMBER__GENERATOR__H
-#define XMILIB__RANDOM__NUMBER__GENERATOR__H
+#ifndef XMILIB_RANDOM_NUMBER_GENERATOR_H
+#define XMILIB_RANDOM_NUMBER_GENERATOR_H
 
 
 #include <random>
@@ -24,8 +24,8 @@ namespace xmilib {
 class RandomNumberGenerator
 {
 public: // member functions
-   RandomNumberGenerator(qint32 min = 0, qint32 max = std::numeric_limits<int>::max()); ///< Default constructor
-   RandomNumberGenerator(quint32 seed, qint32 man = 0, qint32 max = std::numeric_limits<int>::max()); ///< Constructor using a user-provided seed
+   explicit RandomNumberGenerator(qint32 min = 0, qint32 max = std::numeric_limits<int>::max()); ///< Default constructor
+   explicit RandomNumberGenerator(quint32 seed, qint32 min = 0, qint32 max = std::numeric_limits<int>::max()); ///< Constructor using a user-provided seed
 	RandomNumberGenerator(RandomNumberGenerator const&) = delete; ///< Disabled copy constructor
 	RandomNumberGenerator(RandomNumberGenerator&&) = delete; ///< Disabled move copy constructor
 	~RandomNumberGenerator() = default; ///< Default destructor
@@ -43,4 +43,4 @@ private: // data members
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__RANDOM__NUMBER__GENERATOR__H
+#endif // #ifndef XMILIB_RANDOM_NUMBER_GENERATOR_H

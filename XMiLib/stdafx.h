@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__STDAFX_H
-#define XMILIB__STDAFX_H
+#ifndef XMILIB_STDAFX_H
+#define XMILIB_STDAFX_H
 
 
 #include <QtWidgets>
@@ -16,4 +16,4 @@
 #include <QtCore>
 
 
-#endif // XMILIB__STDAFX_H
+#endif // XMILIB_SSTDAFX_H

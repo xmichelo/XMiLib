@@ -7,8 +7,8 @@
 /// Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-#ifndef XMILIB__FILE__UTILS__H
-#define XMILIB__FILE__UTILS__H
+#ifndef XMILIB_FILE_UTILS_H
+#define XMILIB_FILE_UTILS_H
 
 
 namespace xmilib {
@@ -22,4 +22,4 @@ QString createTempFile(QFile& outFile, QString const& prefix = QString(), QStrin
 } // namespace xmilib
 
 
-#endif // #ifndef XMILIB__FILE__UTILS__H
+#endif // #ifndef XMILIB_FILE_UTILS_H

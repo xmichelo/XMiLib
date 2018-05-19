@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "DebugLogEntry.h"
+#include <utility>
 
 
 namespace xmilib {
@@ -18,10 +19,10 @@ namespace xmilib {
 /// \param[in] type The log entry type
 /// \param[in] message The message
 //**********************************************************************************************************************
-DebugLogEntry::DebugLogEntry(EType type, QString const& message)
+DebugLogEntry::DebugLogEntry(EType type, QString message)
    : dateTime_(QDateTime::currentDateTime())
    , type_(type)
-   , message_(message)
+   , message_(std::move(message))
 {
 
 }
@@ -39,7 +40,7 @@ QDateTime DebugLogEntry::getDateTime() const
 //**********************************************************************************************************************
 /// \return The log entry type
 //**********************************************************************************************************************
-xmilib::DebugLogEntry::EType DebugLogEntry::getType() const
+DebugLogEntry::EType DebugLogEntry::getType() const
 {
    return type_;
 }
@@ -60,7 +61,7 @@ QString DebugLogEntry::getMessage() const
 QString DebugLogEntry::toString() const
 {
    return QString("%1 - %2 - %3").arg(dateTime_.toString("yyyy-MM-dd HH:mm:ss.zzz"))
-      .arg(DebugLogEntry::Info == type_ ? "INFO   " : (DebugLogEntry::Warning == type_ ? "WARNING" : "ERROR  "))
+      .arg(Info == type_ ? "INFO   " : (Warning == type_ ? "WARNING" : "ERROR  "))
       .arg(message_);
 }
 

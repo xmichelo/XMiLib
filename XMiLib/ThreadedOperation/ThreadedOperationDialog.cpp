@@ -23,7 +23,7 @@ namespace xmilib {
 //**********************************************************************************************************************
 bool ThreadedOperationDialog::run(ThreadedOperation& operation, QWidget* parent)
 {
-   return QDialog::Accepted == ThreadedOperationDialog(operation, parent).exec();
+   return Accepted == ThreadedOperationDialog(operation, parent).exec();
 }
 
 
@@ -44,7 +44,7 @@ ThreadedOperationDialog::ThreadedOperationDialog(ThreadedOperation& operation, Q
 //**********************************************************************************************************************
 //
 //**********************************************************************************************************************
-ThreadedOperationDialog::~ThreadedOperationDialog()
+ThreadedOperationDialog::~ThreadedOperationDialog()  // NOLINT
 {
     // MinGW requires presence of this implementation in the cpp file, otherwise it will complain about
     // partial definition of the UI class
