@@ -10,6 +10,7 @@
 #include "stdafx.h"
 #include "XMiLibTest.h"
 #include <XMiLib/GlobalShortcut/GlobalShortcutManager.h>
+#include <windows.h>
 
 
 using namespace xmilib;

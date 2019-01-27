@@ -10,6 +10,7 @@
 #include "stdafx.h"
 #include "GlobalShortcut.h"
 #include "Exception.h"
+#include <windows.h>
 
 
 namespace xmilib {

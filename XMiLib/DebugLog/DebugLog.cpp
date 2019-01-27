@@ -218,18 +218,16 @@ QVariant DebugLog::headerData(int section, Qt::Orientation orientation, int role
 {
    if (Qt::Vertical == orientation)
       return QAbstractTableModel::headerData(section, orientation, role);
-   switch (role)
-   {
-   case Qt::DisplayRole:
+   if (Qt::DisplayRole == role)
+   {     
       switch (section)
       {
       case 0: return tr("Date/Time");
       case 1: return tr("Message");
       default: return QVariant();
       }
-   default:
-      return QAbstractTableModel::headerData(section, orientation, role);
    }
+   return QAbstractTableModel::headerData(section, orientation, role);
 }
 
 

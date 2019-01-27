@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "SystemUtils.h"
+#include <windows.h>
 
 
 namespace xmilib {
@@ -89,16 +90,16 @@ void synthesizeKeyUp(quint16 virtualCode)
 void synthesizeKeyDownAndUp(quint16 virtualCode)
 {
 #ifdef WIN32
-   std::vector<INPUT> input(2);
-   for (int i = 0; i < 2; ++i)
-   {
-      input[i].type = INPUT_KEYBOARD;
-      input[i].ki.wVk = virtualCode;
-      input[i].ki.wScan = MapVirtualKey(VK_BACK, MAPVK_VK_TO_VSC);
-      input[i].ki.dwFlags = i % 2 ? KEYEVENTF_KEYUP : 0;
-      input[i].ki.time = 0;
-      input[i].ki.dwExtraInfo = 0;
-   }
+   INPUT sampleInput;
+   sampleInput.type = INPUT_KEYBOARD;
+   sampleInput.ki.wVk = virtualCode;
+   sampleInput.ki.wScan = MapVirtualKey(virtualCode, MAPVK_VK_TO_VSC);
+   sampleInput.ki.dwFlags = 0;
+   sampleInput.ki.time = 0;
+   sampleInput.ki.dwExtraInfo = 0;
+   
+   std::vector<INPUT> input(2, sampleInput);
+   input[1].ki.dwFlags = KEYEVENTF_KEYUP;
    SendInput(2, input.data(), sizeof(INPUT));
 #else
 #error This function is not supported on this platform
@@ -181,16 +182,16 @@ void synthesizeUnicodeKeyUp(quint16 unicodeChar)
 void synthesizeUnicodeKeyDownAndUp(quint16 unicodeChar)
 {
 #ifdef WIN32
-   std::vector<INPUT> input(2);
-   for (int i = 0; i < 2; ++i)
-   {
-      input[i].type = INPUT_KEYBOARD;
-      input[i].ki.wVk = 0;
-      input[i].ki.wScan = unicodeChar;
-      input[i].ki.dwFlags = (i % 2 ? KEYEVENTF_KEYUP : 0) | KEYEVENTF_UNICODE;
-      input[i].ki.time = 0;
-      input[i].ki.dwExtraInfo = 0;
-   }
+   INPUT sampleInput;
+   sampleInput.type = INPUT_KEYBOARD;
+   sampleInput.ki.wVk = 0;
+   sampleInput.ki.wScan = unicodeChar;
+   sampleInput.ki.dwFlags = KEYEVENTF_UNICODE;
+   sampleInput.ki.time = 0;
+   sampleInput.ki.dwExtraInfo = 0;
+   
+   std::vector<INPUT> input(2, sampleInput);
+   input[1].ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_KEYUP;
    SendInput(2, input.data(), sizeof(INPUT));
 #else
 #error This function is not supported on this platform
