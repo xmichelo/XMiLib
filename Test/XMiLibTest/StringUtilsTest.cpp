@@ -9,7 +9,7 @@
 
 #include "stdafx.h"
 #include "XMiLibTest.h"
-#include <XMiLib/StringUtils.h>
+#include <XMiLib/String/StringUtils.h>
 
 
 //**********************************************************************************************************************

@@ -33,11 +33,13 @@
     <Filter Include="GlobalShortcut">
       <UniqueIdentifier>{e3d04afe-b5e7-431d-a92d-03ab167d605c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{3724d3f9-2047-4a44-a79d-76cea7e51944}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="StringUtils.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="GeneratedFiles\ui_StyleSheetEditor.h">
       <Filter>Generated Files</Filter>
@@ -57,11 +59,13 @@
       <Filter>GlobalShortcut</Filter>
     </ClInclude>
     <ClInclude Include="XMiLibConstants.h" />
+    <ClInclude Include="String\StringUtils.h">
+      <Filter>String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Exception.cpp" />
-    <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp">
       <Filter>StyleSheetEditor</Filter>
@@ -93,6 +97,9 @@
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
     <ClCompile Include="XMiLibConstants.cpp" />
+    <ClCompile Include="String\StringUtils.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">

@@ -159,7 +159,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="String\StringUtils.cpp" />
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp" />
     <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp" />
@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileUtils.h" />
+    <ClInclude Include="String\StringUtils.h" />
     <ClInclude Include="XMiLibConstants.h" />
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
@@ -202,7 +203,6 @@
     <ClInclude Include="GeneratedFiles\ui_ThreadedOperationDialog.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="StringUtils.h" />
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
