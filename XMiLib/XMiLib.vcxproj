@@ -93,6 +93,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
+      <PrependInclude>stdafx.h</PrependInclude>
     </QtMoc>
     <QtUic>
       <InputFile>%(FullPath)</InputFile>
@@ -137,6 +138,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
+      <PrependInclude>stdafx.h</PrependInclude>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -159,6 +161,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="String\StringListEditorDialog.cpp" />
+    <ClCompile Include="String\StringListEditorModel.cpp" />
     <ClCompile Include="String\StringUtils.cpp" />
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp" />
     <ClCompile Include="SystemUtils.cpp" />
@@ -168,6 +172,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileUtils.h" />
+    <QtMoc Include="String\StringListEditorDialog.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
+    </QtMoc>
+    <ClInclude Include="String\StringListEditorModel.h" />
     <ClInclude Include="String\StringUtils.h" />
     <ClInclude Include="XMiLibConstants.h" />
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
@@ -209,6 +220,7 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="String\StringListEditorDialog.ui" />
     <QtUic Include="StyleSheetEditor\StyleSheetEditor.ui">
     </QtUic>
   </ItemGroup>

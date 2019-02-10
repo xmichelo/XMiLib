@@ -62,6 +62,9 @@
     <ClInclude Include="String\StringUtils.h">
       <Filter>String</Filter>
     </ClInclude>
+    <ClInclude Include="String\StringListEditorModel.h">
+      <Filter>String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -100,6 +103,12 @@
     <ClCompile Include="String\StringUtils.cpp">
       <Filter>String</Filter>
     </ClCompile>
+    <ClCompile Include="String\StringListEditorDialog.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
+    <ClCompile Include="String\StringListEditorModel.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
@@ -132,10 +141,18 @@
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <Filter>GlobalShortcut</Filter>
     </QtMoc>
+    <QtMoc Include="String\StringListEditorDialog.h">
+      <Filter>String</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="Translations\xmilib_fr.ts">
       <Filter>Translation Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="String\StringListEditorDialog.ui">
+      <Filter>String</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>

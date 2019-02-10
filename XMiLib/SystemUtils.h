@@ -11,11 +11,15 @@
 #define XMILIB_SYSTEM_UTILS_H
 
 
+#include "DebugLog/DebugLog.h"
+
+
 namespace xmilib {
 
 
 
 void displaySystemErrorDialog(QString const& title, QString const& message); ///< Display a system error message using the native GUI API.
+void reportInternalError(DebugLog& debugLog, QString const& error, QWidget* parent = nullptr); ///< Report an internal error using a message box and write details in the log
 
 
 #ifdef Q_OS_WIN
