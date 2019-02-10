@@ -164,9 +164,11 @@
     <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp" />
+    <ClCompile Include="XMiLibConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileUtils.h" />
+    <ClInclude Include="XMiLibConstants.h" />
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>

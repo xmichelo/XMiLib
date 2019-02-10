@@ -56,6 +56,7 @@
     <ClInclude Include="GlobalShortcut\GlobalShortcutManager.h">
       <Filter>GlobalShortcut</Filter>
     </ClInclude>
+    <ClInclude Include="XMiLibConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -65,33 +66,21 @@
     <ClCompile Include="StyleSheetEditor\StyleSheetEditor.cpp">
       <Filter>StyleSheetEditor</Filter>
     </ClCompile>
-    
-    
     <ClCompile Include="DebugLog\DebugLog.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
     <ClCompile Include="DebugLog\DebugLogEntry.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
-    
-    
     <ClCompile Include="DebugLog\DebugLogWindow.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
-    
-    
-    
-    
     <ClCompile Include="DebugLog\DebugLogFilterProxyModel.cpp">
       <Filter>DebugLog</Filter>
     </ClCompile>
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp">
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
-    
-    
-    
-    
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp">
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
@@ -100,11 +89,10 @@
     <ClCompile Include="GlobalShortcut\GlobalShortcut.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
-    
-    
     <ClCompile Include="GlobalShortcut\GlobalShortcutManager.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
+    <ClCompile Include="XMiLibConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
