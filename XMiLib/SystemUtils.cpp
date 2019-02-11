@@ -42,17 +42,6 @@ void displaySystemErrorDialog(QString const& title, QString const& message)
 }
 
 
-//**********************************************************************************************************************
-/// \param[in] error The error message
-/// \param[in] parent The parent widget of the message box to display
-//**********************************************************************************************************************
-void reportInternalError(DebugLog& debugLog, QString const& error, QWidget* parent)
-{
-   debugLog.addError(error);
-   QMessageBox::critical(parent, QObject::tr("Error"), QObject::tr("Internal error. See the log file for details."));
-}
-
-
 #ifdef Q_OS_WIN
 
 

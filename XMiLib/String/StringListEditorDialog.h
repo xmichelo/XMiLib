@@ -11,9 +11,16 @@
 #define XMILIB_STRING_LIST_EDITOR_DIALOG_H
 
 
-#include "ui_StringListEditorDialog.h"
 #include "StringListEditorModel.h"
 
+
+namespace Ui {
+
+
+class StringListEditorDialog;
+
+
+}
 
 namespace xmilib {
 
@@ -28,7 +35,7 @@ public: // member functions
    explicit StringListEditorDialog(QStringList const& stringList, QWidget* parent = nullptr); ///< Default constructor
    StringListEditorDialog(StringListEditorDialog const&) = delete; ///< Disabled copy-constructor
    StringListEditorDialog(StringListEditorDialog&&) = delete; ///< Disabled assignment copy-constructor
-   ~StringListEditorDialog() = default; ///< Destructor
+   ~StringListEditorDialog(); ///< Destructor
    StringListEditorDialog& operator=(StringListEditorDialog const&) = delete; ///< Disabled assignment operator
    StringListEditorDialog& operator=(StringListEditorDialog&&) = delete; ///< Disabled move assignment operator
    QStringList stringList() const; ///< Return the string list
@@ -45,7 +52,7 @@ private: // member function
    void updateGui(); ///< Update the GUI state
 
 private: // data members
-   Ui::StringListEditorDialog ui_ {}; ///< The GUI for the dialog
+   std::unique_ptr<Ui::StringListEditorDialog> ui_ { nullptr }; ///< The GUI for the dialog
    StringListEditorModel model_; ///< The model used by the list view
    QPushButton* lastActionButton_ { nullptr }; ///< The last action button, used to ensure proper tab order when adding custom buttons
 };
