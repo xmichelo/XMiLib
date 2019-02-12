@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "StringUtils.h"
+#include "Exception.h"
 
 
 namespace xmilib {
@@ -52,6 +53,118 @@ QString boolToString(bool value)
 {
    return value ? "true" : "false";
 }
+
+
+//**********************************************************************************************************************
+/// \param[in] stringList The stringList.
+/// \param[in] arrayName The name of the array containing the strings in the JSON document.
+/// \return The JSON document containing the array.
+//**********************************************************************************************************************
+QJsonDocument stringListToJsonDocument(QStringList const& stringList, QString const& arrayName)
+{
+   QJsonObject rootObject;
+   QJsonArray array;
+   for (QString const& str: stringList)
+      array.append(str);
+   rootObject.insert(arrayName, array);
+   return QJsonDocument(rootObject);
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] doc The JSON document to read from.
+/// \param[in] arrayName The name of the array containing the string list in the JSON document.
+/// \param[out] outStringList The string list read from the JSON document.
+/// \param[out] outErrorMessage message if the function returns false and this parameter is not null, it contains a 
+/// description of the error on exit.
+/// \return true if and only if the string list was successfully loaded
+//**********************************************************************************************************************
+bool jsonDocumentToStringList(QJsonDocument const& doc, QString const& arrayName, QStringList& outStringList, 
+   QString* outErrorMessage)
+{
+   try
+   {
+      if (!doc.isObject())
+         throw Exception("The root element of the JSON document is not an object.");
+      QJsonObject rootObject = doc.object();
+      QJsonValue const arrayValue = rootObject.value(arrayName);
+      if (arrayValue.isNull() || !arrayValue.isArray())
+         throw Exception("The JSON document does not contain an array with the requested name");
+      QJsonArray array = arrayValue.toArray();
+      for (QJsonValueRef const& value: array)
+      {
+         if (!value.isString())
+            throw Exception("The JSON document does not contain a valid string array");
+         outStringList.append(value.toString());
+      }
+      return true;
+   }
+   catch (Exception const& e)
+   {
+      if (outErrorMessage)
+         *outErrorMessage = e.qwhat();
+      return false;
+   }
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] stringList The string list.
+/// \param[in] arrayName The name of the array containing the string list in the JSON document.
+/// \param[in] filePath The path of the file to write to.
+/// \param[out] outErrorMessage message if the function returns false and this parameter is not null, it contains a 
+/// description of the error on exit.
+//**********************************************************************************************************************
+bool saveStringListToJsonFile(QStringList const& stringList, QString const& arrayName, QString const& filePath,
+   QString* outErrorMessage)
+{
+   try
+   {
+      QJsonDocument const doc = stringListToJsonDocument(stringList, arrayName);
+      QFile file(filePath);
+      if (!file.open(QIODevice::WriteOnly))
+         throw Exception("The input file could not be opened.");
+      QByteArray const data = doc.toJson();
+      if (data.size() != file.write(data))
+         throw Exception("An error occurred while trying to write file.");
+      return true;
+   }
+   catch (Exception const& e)
+   {
+      if (outErrorMessage)
+         *outErrorMessage = e.qwhat();
+      return false;
+   }
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] filePath The path of the file to read from.
+/// \param[in] arrayName The name of the array containing the string list in the JSON document.
+/// \param[out] outStringList The string list read from the JSON document.
+/// \param[out] outErrorMessage message if the function returns false and this parameter is not null, it contains a 
+/// description of the error on exit.
+/// \return true if and only if the string list was successfully loaded
+//**********************************************************************************************************************
+bool loadStringListFromJsonFile(QString const& filePath, QString const& arrayName, QStringList& outStringList,
+   QString* outErrorMessage)
+{
+   try
+   {
+      QFile file(filePath);
+      if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+         throw Exception("The output file could not be opened.");
+      QJsonDocument const doc = QJsonDocument::fromJson(file.readAll());
+      if (doc.isNull())
+         throw Exception("The input file is not a valid JSON file.");
+      return jsonDocumentToStringList(doc, arrayName, outStringList, outErrorMessage);
+   }
+   catch (Exception const& e)
+   {
+      if (outErrorMessage)
+         *outErrorMessage = e.qwhat();
+      return false;
+   }}
 
 
 } // namespace xmilib
