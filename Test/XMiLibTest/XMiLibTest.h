@@ -31,6 +31,7 @@ private slots:
    static void exceptionMessage_data(); ///< Test data for xmilib::Exception messages 
    static void exceptionMessage(); ///< Test function for xmilib::Exception messages 
    static void fileUtilsGetRandomFileName(); ///< Test function for xmilib::getRandomFileName()
+   static void fileUtilsGetTempFilePath(); ///< Test function for xmilib::getTempFilePath()
    static void fileUtilsCreateTempDir(); ///< Test function for xmilib::createTempDir()
    static void fileUtilsCreateTempFile(); ///< Test function for xmilib::createTempFile()
    static void stringUtilsByteToHexString_data(); ///< Test data for xmilib::byteToHexString()
@@ -38,6 +39,8 @@ private slots:
    static void stringUtilsByteArrayToHexString_data(); ///< Test data for xmilib::byteToHexString()
    static void stringUtilsByteArrayToHexString(); ///< Test function for xmilib::byteToHexString()
    static void stringUtilsBoolToString(); ///< Test function for xmilib::boolToString()
+   static void stringUtilsToAndFromJsonDoc(); ///< Test function for xmilib::stringListToJsonDocument() xmilib::jsonDocumentToStringList()
+   static void stringUtilsToAndFromJsonFile(); ///< Test function for xmilib::saveStringListToJsonFile() xmilib::loadStringListFromJsonFile()
    static void randomNumberGeneratorRange_data(); ///< Test data for the first randomness test
    static void randomNumberGeneratorRange(); ///< Test the range of the value returned by the random number generator
    static void randomNumberGeneratorRandomness(); ///< Test the randomness of the values returned by the random number generator

@@ -55,6 +55,24 @@ QString getRandomFileName(qint32 length, QString const& prefix, QString const& e
 
 
 //**********************************************************************************************************************
+/// \param[in] prefix The prefix that starts the file name. This value can be null or empty
+/// \param[in] extension The file extension, without the leading '.'
+/// \return The full path of an non-existing file in the user temporary folder
+////**********************************************************************************************************************
+QString getTempFilePath(QString const& prefix, QString const& extension)
+{
+   for (qint32 retryCount = 0; retryCount < kMaxRetryCount; ++retryCount)
+   {
+      QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+         .absoluteFilePath(getRandomFileName(16, prefix, extension));
+      if (!QFileInfo(path).exists())
+         return path;
+   }
+   return QString();
+}
+
+
+//**********************************************************************************************************************
 /// \return The path of the newly created folder
 /// \return A null string if the temporary folder could not be created
 //**********************************************************************************************************************

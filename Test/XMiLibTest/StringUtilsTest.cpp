@@ -9,7 +9,21 @@
 
 #include "stdafx.h"
 #include "XMiLibTest.h"
+#include <XMiLib/FileUtils.h>
+#include <XMiLib/RandomNumberGenerator.h>
 #include <XMiLib/String/StringUtils.h>
+
+
+using namespace xmilib;
+
+
+namespace {
+
+
+RandomNumberGenerator rng(0, 10); ///< The random number generator used by some functions
+
+
+}
 
 
 //**********************************************************************************************************************
@@ -38,7 +52,7 @@ void XMiLibTest::stringUtilsByteToHexString()
       QFETCH(char, byte);
       QFETCH(QString, expectedResult);
       // ReSharper restore CppLocalVariableMayBeConst
-      QCOMPARE(xmilib::byteToHexString(byte), expectedResult);
+      QCOMPARE(byteToHexString(byte), expectedResult);
    }
    catch (...)
    {
@@ -92,7 +106,7 @@ void XMiLibTest::stringUtilsByteArrayToHexString()
       QFETCH(qint32, bytesPerLine);
       QFETCH(QString, expectedResult);
       // ReSharper restore CppLocalVariableMayBeConst
-      QCOMPARE(xmilib::byteArrayToHexString(array, separator, bytesPerLine), expectedResult);
+      QCOMPARE(byteArrayToHexString(array, separator, bytesPerLine), expectedResult);
    }
    catch (...)
    {
@@ -108,8 +122,87 @@ void XMiLibTest::stringUtilsBoolToString()
 {
    try
    {
-      QVERIFY2(xmilib::boolToString(false) == "false", R"(boolToString(false) did not return "false".)");
-      QVERIFY2(xmilib::boolToString(true) == "true", R"(boolToString(true) did not return "true".)");
+      QVERIFY2(boolToString(false) == "false", R"(boolToString(false) did not return "false".)");
+      QVERIFY2(boolToString(true) == "true", R"(boolToString(true) did not return "true".)");
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception.");
+   }
+}
+
+
+//**********************************************************************************************************************
+/// \brief return a random QStringList
+///
+/// \return A random QStringList containing 0 to 10 string of a length ranging for 0 to 10
+//**********************************************************************************************************************
+QStringList randomStringList()
+{
+   QStringList result;
+   for (qint32 i = 0; i < rng.get(); ++i)
+   {
+      qint32 const length = rng.get();
+      result.append(length ? getRandomFileName(length): QString());
+   }
+   return result;
+}
+
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+void XMiLibTest::stringUtilsToAndFromJsonDoc()
+{
+   try
+   {
+      for (qint32 i = 0; i < 1000; ++i)
+      {
+         QStringList const source = randomStringList();
+         QJsonDocument const doc = stringListToJsonDocument(source);
+         QStringList result;
+         QString errMsg;
+         QVERIFY2(jsonDocumentToStringList(doc, result, &errMsg), 
+            QString("jsonDocumentToStringList() returned false. Error message = %1").arg(errMsg).toLocal8Bit());
+         QVERIFY2(result == source, "Converting back and forth returned a result that is not the source." );
+      }
+      QJsonDocument const doc;
+      QStringList strList;
+      QVERIFY2(!jsonDocumentToStringList(doc, strList), 
+         "An invalid document does not result in an error by jsonDocumentToStringList().");
+      QString errMsg;
+      QVERIFY2(!jsonDocumentToStringList(doc, strList, &errMsg), 
+         "An invalid document does not result in an error by jsonDocumentToStringList().");
+      QVERIFY2(!errMsg.isEmpty(), "jsonDocumentToStringList() return false as expected but did not provide an "
+         "error message");
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception.");
+   }
+}
+
+
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+void XMiLibTest::stringUtilsToAndFromJsonFile()
+{
+   try
+   {
+      for (qint32 i = 0; i < 20; ++i)
+      {
+         QStringList const source = randomStringList();
+         QString const path = getTempFilePath();
+         QString errMsg;
+         QVERIFY2(saveStringListToJsonFile(source, path, &errMsg),
+            QString("saveStringListToJsonFile() returned false. Error message = %1").arg(errMsg).toLocal8Bit());
+         QStringList result;
+         QVERIFY2(loadStringListFromJsonFile(path, result, &errMsg),
+            QString("loadStringListFromJsonFile() returned false. Error message = %1").arg(errMsg).toLocal8Bit());
+         QVERIFY2(source == result, "The loaded stringlist is different from the saved string list.");
+         QFileInfo fileInfo;
+         QFile(path).remove();
+      }
    }
    catch (...)
    {

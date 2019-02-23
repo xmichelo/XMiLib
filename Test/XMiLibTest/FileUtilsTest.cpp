@@ -70,6 +70,42 @@ void XMiLibTest::fileUtilsGetRandomFileName()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
+void XMiLibTest::fileUtilsGetTempFilePath()
+{
+   try
+   {
+      QString const tempPath = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation)).canonicalPath();
+      RandomNumberGenerator rng(0, 3);
+
+      for (qint32 i = 0; i < 1000; ++i)
+      {
+         bool const usePrefix = i % 2;
+         bool const extLen = rng.get();
+         QString const ext = extLen ? getRandomFileName(extLen) : QString();
+
+         QString const path = getTempFilePath(usePrefix ? kFileNamePrefix : QString(), ext);
+         QFileInfo fileInfo(path);
+         QVERIFY2(!fileInfo.exists(), "The temporary file exists.");
+         QVERIFY2(tempPath == QDir(fileInfo.absolutePath()).canonicalPath(), 
+            "The temporary file is not in the temporary folder.");
+         QString const fileName = fileInfo.fileName();
+         if (usePrefix)
+            QVERIFY2(fileName.startsWith(kFileNamePrefix), "The file does not have the requested prefix");
+         if (extLen)
+            QVERIFY2(fileName.endsWith(QString(".%1").arg(ext)), 
+               "The temporary file does not have the required extension" );
+      }
+   }
+   catch (...)
+   {
+      QVERIFY2(false, "The function threw an exception.");
+   }   
+}
+
+
+//**********************************************************************************************************************
+// 
+//**********************************************************************************************************************
 void XMiLibTest::fileUtilsCreateTempDir()
 {
    try
