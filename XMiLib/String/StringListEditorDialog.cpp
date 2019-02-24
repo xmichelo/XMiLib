@@ -115,7 +115,7 @@ void StringListEditorDialog::onActionRemoveString()
    {
       QItemSelectionModel const * const selModel = ui_->stringListView->selectionModel();
       if (!selModel)
-         throw Exception(tr("Could not retrieve selection model."));
+         throw Exception("Could not retrieve selection model.");
       QModelIndexList selection = selModel->selectedRows(); // we sort the select by descending column so that removal does not shift indexes
       std::sort(selection.begin(), selection.end(), [](QModelIndex const& a, QModelIndex const& b) -> bool 
          {return a.row() > b.row(); });
@@ -148,7 +148,7 @@ void StringListEditorDialog::updateGui()
    {
       QItemSelectionModel const * const selModel = ui_->stringListView->selectionModel();
       if (!selModel)
-         throw Exception(tr("Could not retrieve selection model."));
+         throw Exception("Could not retrieve selection model.");
       qint32 const selectedRowCount = selModel->selectedRows().size();
 
       ui_->buttonRemove->setEnabled(selectedRowCount > 0);
