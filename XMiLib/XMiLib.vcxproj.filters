@@ -70,7 +70,6 @@
     <ClInclude Include="String\StringListEditorModel.h">
       <Filter>String</Filter>
     </ClInclude>
-    <ClInclude Include="SingleInstanceApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -151,6 +150,7 @@
     <QtMoc Include="String\StringListEditorDialog.h">
       <Filter>String</Filter>
     </QtMoc>
+    <QtMoc Include="SingleInstanceApp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Translations\xmilib_fr.ts">
