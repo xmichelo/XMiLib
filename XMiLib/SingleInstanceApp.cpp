@@ -63,7 +63,7 @@ bool SingleInstanceApplication::isFirstInstance() const
 //**********************************************************************************************************************
 bool SingleInstanceApplication::isValid() const
 {
-   return this->isValid();
+   return isValid_;
 }
 
 
