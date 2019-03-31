@@ -2,6 +2,37 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU">
 <context>
+    <name>DebugLogWindow</name>
+    <message>
+        <source>Infos</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Show:</source>
+        <translation>Показать:</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Закрыть</translation>
+    </message>
+    <message>
+        <source>Ctrl+X</source>
+        <translation>Ctrl+X</translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation>Ошибки</translation>
+    </message>
+    <message>
+        <source>Warnings</source>
+        <translation>Предупреждения</translation>
+    </message>
+    <message>
+        <source>C&amp;lear Log</source>
+        <translation>&amp;Очистить журнал</translation>
+    </message>
+</context>
+<context>
     <name>StringListEditorDialog</name>
     <message>
         <source>&amp;OK</source>
@@ -36,52 +67,10 @@
     </message>
 </context>
 <context>
-    <name>xmilib::ThreadedOperationDialog</name>
+    <name>ThreadedOperationDialog</name>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-</context>
-<context>
-    <name>xmilib::StringListEditorDialog</name>
-    <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Internal error: %1</source>
-        <translation>Внутренняя ошибка: %1</translation>
-    </message>
-</context>
-<context>
-    <name>DebugLogWindow</name>
-    <message>
-        <source>Infos</source>
-        <translation>Информация</translation>
-    </message>
-    <message>
-        <source>Show:</source>
-        <translation>Показать:</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
-    </message>
-    <message>
-        <source>Errors</source>
-        <translation>Ошибки</translation>
-    </message>
-    <message>
-        <source>Warnings</source>
-        <translation>Предупреждения</translation>
-    </message>
-    <message>
-        <source>C&amp;lear Log</source>
-        <translation>&amp;Очистить журнал</translation>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Отмена</translation>
     </message>
 </context>
 <context>
@@ -96,10 +85,21 @@
     </message>
 </context>
 <context>
-    <name>ThreadedOperationDialog</name>
+    <name>xmilib::StringListEditorDialog</name>
     <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Отмена</translation>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <source>Internal error: %1</source>
+        <translation>Внутренняя ошибка: %1</translation>
+    </message>
+</context>
+<context>
+    <name>xmilib::ThreadedOperationDialog</name>
+    <message>
+        <source>Error</source>
+        <translation>Ошибка</translation>
     </message>
 </context>
 </TS>
