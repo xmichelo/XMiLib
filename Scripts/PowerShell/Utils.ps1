@@ -6,7 +6,7 @@
 # Licensed under the MIT License. See LICENSE file in the project root for full license information.  
 
 
-$vsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\devenv.com"
+$vsPath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com"
 
 
 #***********************************************************************************************************************
