@@ -32,10 +32,11 @@ function absolutePath([String]$path1, [String]$path2)
 #***********************************************************************************************************************
 function compileVisualStudioSolution([String]$solutionPath, [String]$configuration = "Release|x86")
 {
-   Invoke-Expression '& "$vsPath" "$solutionPath" /rebuild "$configuration"' | Out-Null
+   $buildLog = Invoke-Expression '& "$vsPath" "$solutionPath" /rebuild "$configuration"' | Out-Null
    if (0 -ne $LASTEXITCODE)
    {
-       Write-Error "Compilation of the application failed."
+      $buildLog # dump the build log
+      Write-Error "Compilation of the application failed."
    }
 }
 
@@ -45,14 +46,14 @@ function compileVisualStudioSolution([String]$solutionPath, [String]$configurati
 #***********************************************************************************************************************
 function checkQtInstallation()
 {
-   $qtDir = $env:QTDIR
+   $qtDir = $env:QTDIR_XMILIB
    if ([String]::IsNullOrEmpty($qtDir))
    {
-       Write-Error "The QTDIR environment variable is not define (should be something like C:\Qt\5.10\msvc217)"
+       Write-Error "The QTDIR_XMILIB environment variable is not define (should be something like C:\Qt\5.10\msvc217)"
    }
    if(!(Test-Path $qtDir -PathType Container))
    {
-      Write-Error "The Qt installation folder '$qtDir'does not exist."
+      Write-Error "The Qt installation folder '$qtDir' does not exist."
    }
    $qtDir
 }
@@ -62,12 +63,13 @@ function checkQtInstallation()
 #***********************************************************************************************************************
 function copyQtDlls([String]$dstPath)
 {
+   $qtDir = checkQtInstallation
    $qtDlls = "Qt5Core.dll", "Qt5Gui.dll", "Qt5Multimedia.dll", "Qt5Network.dll", "Qt5Widgets.dll"
-   foreach ($dll in $qtDlls) { Copy-Item -Path (absolutePath $env:QTDIR  "bin\$dll") -Destination $dstPath }
+   foreach ($dll in $qtDlls) { Copy-Item -Path (absolutePath $qtDir  "bin\$dll") -Destination $dstPath }
    $folders = "audio", "imageformats", "platforms", "styles"
    foreach ($folder in $folders) { New-Item -ItemType Directory -Force -Path (absolutePath $dstPath $folder) | Out-Null }
    $qtPlugins = "audio\qtaudio_windows.dll", "imageformats\qico.dll", "platforms\qwindows.dll", "styles\qwindowsvistastyle.dll"
-   foreach ($dll in $qtPlugins) { Copy-Item -Path (absolutePath $env:QTDIR "plugins\$dll") -Destination (absolutePath $dstPath $dll) }    
+   foreach ($dll in $qtPlugins) { Copy-Item -Path (absolutePath $qtDir "plugins\$dll") -Destination (absolutePath $dstPath $dll) }    
 }
 
 
