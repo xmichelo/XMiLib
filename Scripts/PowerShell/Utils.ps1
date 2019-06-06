@@ -46,10 +46,10 @@ function compileVisualStudioSolution([String]$solutionPath, [String]$configurati
 #***********************************************************************************************************************
 function checkQtInstallation()
 {
-   $qtDir = $env:QTDIR_XMILIB
+   $qtDir = $env:QTDIR
    if ([String]::IsNullOrEmpty($qtDir))
    {
-       Write-Error "The QTDIR_XMILIB environment variable is not define (should be something like C:\Qt\5.10\msvc217)"
+       Write-Error "The QTDIR environment variable is not define (should be something like C:\Qt\5.10\msvc217)"
    }
    if(!(Test-Path $qtDir -PathType Container))
    {
