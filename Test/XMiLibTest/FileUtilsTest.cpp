@@ -10,7 +10,7 @@
 #include "stdafx.h"
 #include "XMiLibTest.h"
 #include <XMiLib/RandomNumberGenerator.h>
-#include <XMiLib/FileUtils.h>
+#include <XMiLib/File/FileUtils.h>
 
 
 using namespace xmilib;

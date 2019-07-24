@@ -36,10 +36,8 @@
     <Filter Include="String">
       <UniqueIdentifier>{3724d3f9-2047-4a44-a79d-76cea7e51944}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-      <ParseFiles>true</ParseFiles>
+    <Filter Include="File">
+      <UniqueIdentifier>{7e7cd981-feb0-4549-b403-c7e75d0881f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +57,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="SystemUtils.h" />
-    <ClInclude Include="FileUtils.h" />
     <ClInclude Include="GlobalShortcut\GlobalShortcutManager.h">
       <Filter>GlobalShortcut</Filter>
     </ClInclude>
@@ -69,6 +66,12 @@
     </ClInclude>
     <ClInclude Include="String\StringListEditorModel.h">
       <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="File\FileUtils.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="File\CsvIO.h">
+      <Filter>File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +100,6 @@
       <Filter>ThreadedOperation</Filter>
     </ClCompile>
     <ClCompile Include="SystemUtils.cpp" />
-    <ClCompile Include="FileUtils.cpp" />
     <ClCompile Include="GlobalShortcut\GlobalShortcut.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
@@ -115,6 +117,12 @@
       <Filter>String</Filter>
     </ClCompile>
     <ClCompile Include="SingleInstanceApp.cpp" />
+    <ClCompile Include="File\FileUtils.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="File\CsvIO.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
