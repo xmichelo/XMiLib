@@ -118,6 +118,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CsvTest.cpp" />
     <ClCompile Include="DebugLogTest.cpp" />
     <ClCompile Include="ExceptionTest.cpp" />
     <ClCompile Include="FileUtilsTest.cpp" />

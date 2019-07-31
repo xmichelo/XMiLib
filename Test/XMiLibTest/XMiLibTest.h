@@ -53,6 +53,7 @@ private slots:
    static void threadedOperationFailure(); ///< Test failure cases for the ThreadedOperation class
    static void threadedOperationCancel(); ///< Test for canceling of threaded operation
    static void globalShortcut(); ///< Test for the global shortcut classes
+   static void csvIo(); ///< Test the CSV I/O routines.
    // ReSharper restore CppInconsistentNaming
 };
 

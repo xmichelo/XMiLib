@@ -19,8 +19,8 @@
 namespace xmilib {
 
 
-bool loadCsvFile(QString const& path, QList<QStringList>& outResult, QString &outErrorMsg); ///< \brief Load the content of a C
-
+bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString& outErrorMsg); ///< \brief Load the content of a C
+bool saveCsvFile(QString const& path ,QVector<QStringList> const& data, QString &outErrorMsg); ///< \brief Save data to a CSV file
 
 } // namespace xmilib
 

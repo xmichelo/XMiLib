@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "CsvIO.h"
+#include "Exception.h"
 
 
 namespace {
@@ -28,7 +29,7 @@ struct ParseInfo
    QChar currentChar; ///< The current character.
    QChar nextChar; ///< The next character.
    bool inQuotedSection { false }; ///< Are we currently parsing a quoted section.
-   QList<QStringList> result; ///< The current result of the parsing.
+   QVector<QStringList> result; ///< The current result of the parsing.
    QStringList currentRow; ///< The current row being parsed.
    QString currentString; ///< The current string being parsed.
 };
@@ -113,21 +114,21 @@ void processNewLine(ParseInfo& pi)
 
 //**********************************************************************************************************************
 /// \param[in] path The path of the file to parse.
-/// \param[out] outResult The parsed content
+/// \param[out] outResult The loaded content.
 /// \param[out] outErrorMsg If the function returns false this variables hold a description of the error on exit.
 /// \return true if and only if the file was successfully parsed.
 //**********************************************************************************************************************
-bool loadCsvFile(QString const& path, QList<QStringList>& outResult, QString &outErrorMsg)
+bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString& outErrorMsg)
 {
    outResult.clear();
    QFile file(path);
    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
    {
-      outErrorMsg = QString("Could not open file '%1' for reading").arg(path);
+      outErrorMsg = QString("Could not open file '%1' for reading.").arg(path);
       return false;
    }
 
-    ParseInfo pi;
+   ParseInfo pi;
    pi.stream.setDevice(&file);
    pi.currentChar = readChar(pi.stream);
    pi.nextChar = readChar(pi.stream);
@@ -159,7 +160,46 @@ bool loadCsvFile(QString const& path, QList<QStringList>& outResult, QString &ou
 }
 
 
+//**********************************************************************************************************************
+/// \param[in] path The path of the file to parse.
+/// \param[out] data The data to write.
+/// \param[out] outErrorMsg If the function returns false this variables hold a description of the error on exit.
+/// \return true if and only if the file was successfully saved.
+//**********************************************************************************************************************
+bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString& outErrorMsg)
+{
+   QString const writeErrorMsg("An error occured while writing data to'%1'.");
+   QByteArray const comma = QString(",").toUtf8();
+   QByteArray const newLine = QString("\n").toUtf8();
+   try
+   {
+      QFile file(path);
+      if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+         throw Exception("Could not open file '%1' for writing.");
+      for (QVector<QStringList>::const_iterator recordIt = data.begin(); recordIt != data.end(); ++recordIt)
+      {
+         QStringList const& record = *recordIt;
+         for (QStringList::const_iterator fieldIt = record.begin(); fieldIt != record.end(); ++fieldIt)
+         {
+            QByteArray utf8 = ('"' + QString(*fieldIt).replace("\"", "\"\"") + '"').toUtf8();
+            if (utf8.size() != file.write(utf8))
+               throw Exception(writeErrorMsg);
+            if (fieldIt + 1 != record.end())
+               if (comma.size() != file.write(comma))
+                  throw Exception(writeErrorMsg);
+         }
+         if ((recordIt + 1 != data.end()))
+            if (comma.size() != file.write(newLine))
+               throw Exception(writeErrorMsg);
+      }
+      return true;
+   }
+   catch (Exception const& e)
+   {
+      outErrorMsg = e.qwhat();
+      return false;
+   }
+}
+
+
 } // namespace xmilib
-
-
-
