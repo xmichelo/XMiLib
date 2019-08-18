@@ -12,6 +12,9 @@
 #include "Exception.h"
 
 
+using namespace xmilib;
+
+
 namespace {
 
 
@@ -113,23 +116,50 @@ void processNewLine(ParseInfo& pi)
 
 
 //**********************************************************************************************************************
+/// \param[in] csvData The loaded CSV data.
+/// \param[out] outErrorMsg If the function returns false this variables hold a description of the error on exit.
+/// \return true if and only if the loaded CSV data is valid.
+//**********************************************************************************************************************
+bool isLoadedCsvContentValid(QVector<QStringList> const& csvData, QString* outErrorMsg)
+{
+   try
+   {
+      if (csvData.isEmpty())
+         throw Exception("The CSV file is empty.");
+      qint32 const width = csvData.front().size();
+      for (QVector<QStringList>::const_iterator it = csvData.begin() + 1; it != csvData.end(); ++it)
+         if (it->size() != width)
+            throw Exception("Not all rows in the CSV file have the same number of columns.");
+      return true;
+   }
+   catch (Exception const& e)
+   {
+      if (outErrorMsg)
+         *outErrorMsg = e.qwhat();
+      return false;
+   }
+}
+      
+
+//**********************************************************************************************************************
 /// \param[in] path The path of the file to parse.
 /// \param[out] outResult The loaded content.
 /// \param[out] outErrorMsg If the function returns false this variables hold a description of the error on exit.
 /// \return true if and only if the file was successfully parsed.
 //**********************************************************************************************************************
-bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString& outErrorMsg)
+bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString* outErrorMsg)
 {
    outResult.clear();
    QFile file(path);
    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
    {
-      outErrorMsg = QString("Could not open file '%1' for reading.").arg(path);
+      if (outErrorMsg)
+         *outErrorMsg = QString("Could not open file '%1' for reading.").arg(path);
       return false;
    }
-
    ParseInfo pi;
    pi.stream.setDevice(&file);
+   pi.stream.setCodec("UTF-8");
    pi.currentChar = readChar(pi.stream);
    pi.nextChar = readChar(pi.stream);
 
@@ -155,6 +185,9 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString& 
    if (!pi.currentRow.isEmpty())
       pi.result += pi.currentRow;
 
+   if (!isLoadedCsvContentValid(pi.result, outErrorMsg))
+      return false;
+
    outResult = pi.result;
    return true;
 }
@@ -166,7 +199,7 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString& 
 /// \param[out] outErrorMsg If the function returns false this variables hold a description of the error on exit.
 /// \return true if and only if the file was successfully saved.
 //**********************************************************************************************************************
-bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString& outErrorMsg)
+bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString* outErrorMsg)
 {
    QString const writeErrorMsg("An error occured while writing data to'%1'.");
    QByteArray const comma = QString(",").toUtf8();
@@ -196,7 +229,8 @@ bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString&
    }
    catch (Exception const& e)
    {
-      outErrorMsg = e.qwhat();
+      if (outErrorMsg)
+         *outErrorMsg = e.qwhat();
       return false;
    }
 }

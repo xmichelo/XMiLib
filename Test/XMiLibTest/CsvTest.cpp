@@ -40,13 +40,19 @@ void XMiLibTest::csvIo()
       QVector<QStringList> result;
       QString const filePath = getTempFilePath();
       QString errMsg;
-      bool ok = loadCsvFile(filePath, result, errMsg);
+      bool ok = loadCsvFile(filePath, result);
       QVERIFY2(!ok, "The function should have failed.");
-      ok = saveCsvFile(filePath, kSampleData, errMsg);
+      ok = saveCsvFile(filePath, kSampleData, &errMsg);
       QVERIFY2(ok, QString("Saving of the CSV file failed. %1").arg(errMsg).toLocal8Bit());
-      ok = loadCsvFile(filePath, result, errMsg);
+      ok = loadCsvFile(filePath, result, &errMsg);
       QVERIFY2(ok, QString("Loading of the CSV file failed. %1").arg(errMsg).toLocal8Bit());
       QVERIFY2(result == kSampleData, "The loaded CSV content is not equal to the saved data.");
+      QVector<QStringList> badData = kSampleData;
+      badData[2].pop_back();
+      ok = saveCsvFile(filePath, badData, &errMsg);
+      QVERIFY2(ok, QString("Saving of the bad CSV file failed. %1").arg(errMsg).toLocal8Bit());
+      ok = loadCsvFile(filePath, badData);
+      QVERIFY2(!ok, "Loading an invalid CSV file should have failed.");
       QFile(filePath).remove();
    }
    catch (...)
