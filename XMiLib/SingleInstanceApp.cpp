@@ -17,6 +17,7 @@ namespace {
    qint32 kTimerIntervalMs = 200; ///< The timer interval in milliseconds.
 }
 
+
 namespace xmilib {
 
 
@@ -42,7 +43,7 @@ SingleInstanceApplication::SingleInstanceApplication(QString const& appKey)
          this->setSharedValue(1);
       }
    }
-   catch (xmilib::Exception const&)
+   catch (Exception const&)
    {
       isValid_ = false;
    }

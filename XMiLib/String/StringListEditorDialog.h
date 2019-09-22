@@ -14,6 +14,7 @@
 #include "StringListEditorModel.h"
 
 
+// ReSharper disable once CppInconsistentNaming
 namespace Ui {
 
 

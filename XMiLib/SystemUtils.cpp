@@ -9,7 +9,6 @@
 
 #include "stdafx.h"
 #include "SystemUtils.h"
-#include <windows.h>
 
 
 namespace xmilib {

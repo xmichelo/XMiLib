@@ -171,7 +171,7 @@ QVariant DebugLog::data(const QModelIndex& index, int role) const
    qint32 const row = index.row();
    if ((row < 0) || (row >= qint32(entries_.size())))
       return QVariant();
-   SpDebugLogEntry entry(entries_[row]);
+   SpDebugLogEntry const entry(entries_[row]);
    if (!entry.get())
       return QVariant();
    switch (role)
@@ -186,7 +186,7 @@ QVariant DebugLog::data(const QModelIndex& index, int role) const
       }
    case Qt::ForegroundRole:
       return kWhiteBrush;
-   case Qt::BackgroundColorRole:
+   case Qt::BackgroundRole:
    {
       int const rowIndex(index.row());
       switch (entries_[rowIndex]->getType())

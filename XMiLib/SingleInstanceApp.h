@@ -19,9 +19,9 @@ namespace xmilib {
 //**********************************************************************************************************************
 class SingleInstanceApplication: public QObject
 {
-   Q_OBJECT;
+   Q_OBJECT
 public: // member functions
-   SingleInstanceApplication(QString const& appKey); ///< Default constructor.
+   explicit SingleInstanceApplication(QString const& appKey); ///< Default constructor.
    SingleInstanceApplication(SingleInstanceApplication const&) = delete; ///< Disabled copy-constructor.
    SingleInstanceApplication(SingleInstanceApplication&&) = delete; ///< Disabled assignment copy-constructor.
    ~SingleInstanceApplication() = default; ///< Destructor.

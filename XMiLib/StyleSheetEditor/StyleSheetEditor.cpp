@@ -61,7 +61,7 @@ bool StyleSheetEditor::loadStyleSheet() const
 //**********************************************************************************************************************
 bool StyleSheetEditor::saveStyleSheet() const
 {
-   QDir appDataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+   QDir const appDataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
    if (!appDataDir.exists() && (!QDir().mkpath(appDataDir.absolutePath())))
       return false;
    QFile file(appDataDir.absoluteFilePath(kDefaultStyleSheetFileName));
