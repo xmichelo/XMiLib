@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}</ProjectGuid>
-    <Keyword>Qt4VSv1.0</Keyword>
+    <Keyword>QtVS_v301</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -33,9 +33,6 @@
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
   </Target>
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
-    <Import Project="$(QtMsBuild)\qt.props" />
-  </ImportGroup>
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
@@ -45,6 +42,20 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <QtInstall>Qt 5.13.1</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <QtInstall>Qt 5.13.1</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
   <PropertyGroup>
     <_ProjectFileVersion>14.0.25420.1</_ProjectFileVersion>
   </PropertyGroup>
@@ -58,8 +69,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;XMILIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -70,13 +81,14 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>26444;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
       <AdditionalLibraryDirectories>C:\Qt\5.12.0\msvc2017\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -87,26 +99,16 @@
       </Message>
     </PreBuildEvent>
     <QtMoc>
-      <QTDIR>$(QTDIR)</QTDIR>
-      <InputFile>%(FullPath)</InputFile>
-      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</IncludePath>
       <PrependInclude>stdafx.h</PrependInclude>
     </QtMoc>
     <QtUic>
-      <InputFile>%(FullPath)</InputFile>
-      <QTDIR>$(QTDIR)</QTDIR>
-      <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
-      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;XMILIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -116,13 +118,14 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>26444;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
       <AdditionalLibraryDirectories>C:\Qt\5.12.0\msvc2017\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -133,20 +136,10 @@
       </Message>
     </PreBuildEvent>
     <QtMoc>
-      <QTDIR>$(QTDIR)</QTDIR>
-      <InputFile>%(FullPath)</InputFile>
-      <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</IncludePath>
       <PrependInclude>stdafx.h</PrependInclude>
     </QtMoc>
     <QtUic>
-      <QTDIR>$(QTDIR)</QTDIR>
-      <InputFile>%(FullPath)</InputFile>
-      <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
-      <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -176,16 +169,8 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="String\StringListEditorDialog.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtMoc Include="SingleInstanceApp.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UNICODE;WIN32;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;XMILIB_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <ClInclude Include="File\CsvIO.h" />
     <ClInclude Include="File\FileUtils.h" />
@@ -195,41 +180,29 @@
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <ClInclude Include="GlobalShortcut\GlobalShortcutManager.h" />
     <ClInclude Include="SystemUtils.h" />
     <QtMoc Include="ThreadedOperation\ThreadedOperationDialog.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <QtMoc Include="ThreadedOperation\ThreadedOperation.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <QtMoc Include="DebugLog\DebugLog.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <ClInclude Include="DebugLog\DebugLogEntry.h" />
     <QtMoc Include="DebugLog\DebugLogWindow.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <QtMoc Include="DebugLog\DebugLogFilterProxyModel.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
     <ClInclude Include="Exception.h" />
     <ClInclude Include="GeneratedFiles\ui_DebugLogWindow.h" />
@@ -240,8 +213,6 @@
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\$(Configuration)Log;.\ThreadedOperation</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;C:\Qt\5.10.1\msvc2015\include;.\GeneratedFiles\$(ConfigurationName)\.;C:\Qt\5.10.1\msvc2015\include\QtCore;C:\Qt\5.10.1\msvc2015\include\QtGui;C:\Qt\5.10.1\msvc2015\include\QtWidgets;.\DebugLog;.\ThreadedOperation</IncludePath>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +243,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="$(DefaultQtVersion)" MocOptions="" />
+      <UserProperties />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

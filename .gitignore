@@ -18,3 +18,4 @@ workspace.xml
 tasks.xml
 *.pro.user
 *.DotSettings.user
+qtvars_*
