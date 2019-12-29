@@ -70,7 +70,7 @@ QString ThreadedOperation::getDescription() const
 //**********************************************************************************************************************
 bool ThreadedOperation::isCanceled() const
 {
-   return canceled_.load();
+   return canceled_.loadRelaxed();
 }
 
 
