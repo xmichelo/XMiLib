@@ -245,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Translations\xmilib_fr.ts" />
+    <None Include="Translations\xmilib_it.ts" />
     <None Include="Translations\xmilib_nl.ts" />
     <None Include="Translations\xmilib_ru.ts" />
   </ItemGroup>
