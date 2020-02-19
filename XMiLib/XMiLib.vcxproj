@@ -244,6 +244,7 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Translations\xmilib_de.ts" />
     <None Include="Translations\xmilib_fr.ts" />
     <None Include="Translations\xmilib_it.ts" />
     <None Include="Translations\xmilib_nl.ts" />
