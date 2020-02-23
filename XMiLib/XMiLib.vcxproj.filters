@@ -39,6 +39,9 @@
     <Filter Include="File">
       <UniqueIdentifier>{7e7cd981-feb0-4549-b403-c7e75d0881f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scoped">
+      <UniqueIdentifier>{2f22fc4b-2163-4bef-af3d-03759c0f3dda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -72,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="File\CsvIO.h">
       <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoped\ScopedGlobalMemoryLock.h">
+      <Filter>Scoped</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="File\CsvIO.cpp">
       <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="Scoped\ScopedGlobalMemoryLock.cpp">
+      <Filter>Scoped</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

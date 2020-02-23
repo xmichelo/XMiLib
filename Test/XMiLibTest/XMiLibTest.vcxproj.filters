@@ -33,6 +33,7 @@
     <ClCompile Include="GlobalShortcutTest.cpp" />
     <ClCompile Include="XMiLibTest.cpp" />
     <ClCompile Include="CsvTest.cpp" />
+    <ClCompile Include="ScopedGlobalMemoryLockTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

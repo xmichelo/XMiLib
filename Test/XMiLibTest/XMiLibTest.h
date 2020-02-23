@@ -54,6 +54,7 @@ private slots:
    static void threadedOperationCancel(); ///< Test for canceling of threaded operation
    static void globalShortcut(); ///< Test for the global shortcut classes
    static void csvIo(); ///< Test the CSV I/O routines.
+   static void scopedGlobalMemoryLock(); ///< Test the ScopedGlobalMemoryLock class.
    // ReSharper restore CppInconsistentNaming
 };
 
