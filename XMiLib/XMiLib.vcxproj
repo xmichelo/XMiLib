@@ -165,6 +165,7 @@
     <ClCompile Include="GlobalShortcut\GlobalShortcut.cpp" />
     <ClCompile Include="GlobalShortcut\GlobalShortcutManager.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
+    <ClCompile Include="Scoped\ScopedClipboardAccess.cpp" />
     <ClCompile Include="Scoped\ScopedGlobalMemoryLock.cpp" />
     <ClCompile Include="SingleInstanceApp.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -187,6 +188,7 @@
     </QtMoc>
     <ClInclude Include="File\CsvIO.h" />
     <ClInclude Include="File\FileUtils.h" />
+    <ClInclude Include="Scoped\ScopedClipboardAccess.h" />
     <ClInclude Include="Scoped\ScopedGlobalMemoryLock.h" />
     <ClInclude Include="String\StringListEditorModel.h" />
     <ClInclude Include="String\StringUtils.h" />

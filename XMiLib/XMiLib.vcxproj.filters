@@ -79,6 +79,9 @@
     <ClInclude Include="Scoped\ScopedGlobalMemoryLock.h">
       <Filter>Scoped</Filter>
     </ClInclude>
+    <ClInclude Include="Scoped\ScopedClipboardAccess.h">
+      <Filter>Scoped</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -130,6 +133,9 @@
       <Filter>File</Filter>
     </ClCompile>
     <ClCompile Include="Scoped\ScopedGlobalMemoryLock.cpp">
+      <Filter>Scoped</Filter>
+    </ClCompile>
+    <ClCompile Include="Scoped\ScopedClipboardAccess.cpp">
       <Filter>Scoped</Filter>
     </ClCompile>
   </ItemGroup>

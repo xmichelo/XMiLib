@@ -55,6 +55,8 @@ private slots:
    static void globalShortcut(); ///< Test for the global shortcut classes
    static void csvIo(); ///< Test the CSV I/O routines.
    static void scopedGlobalMemoryLock(); ///< Test the ScopedGlobalMemoryLock class.
+   static void scopedClipboardAccess(); ///< Test the ScopedClipboardAccess class.
+
    // ReSharper restore CppInconsistentNaming
 };
 

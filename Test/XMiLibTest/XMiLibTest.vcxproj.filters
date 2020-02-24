@@ -34,6 +34,7 @@
     <ClCompile Include="XMiLibTest.cpp" />
     <ClCompile Include="CsvTest.cpp" />
     <ClCompile Include="ScopedGlobalMemoryLockTest.cpp" />
+    <ClCompile Include="ScopedClipboardAccess.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
