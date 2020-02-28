@@ -41,7 +41,7 @@ void XMiLibTest::scopedGlobalMemoryLock()
          // Lock the global memory and write to it.
          ScopedGlobalMemoryLock const memLock(handle);
          quint32* pointer = reinterpret_cast<quint32*>(memLock.pointer());
-         QVERIFY2(pointer, "The scoped global memory locked failed.");
+         QVERIFY2(memLock.locked() && pointer, "The scoped global memory locked failed.");
          memcpy(pointer, origArray.constData(), size);
       }
 
@@ -49,7 +49,7 @@ void XMiLibTest::scopedGlobalMemoryLock()
          // Lock the global memory again, read back and verify it matches what was written.
          ScopedGlobalMemoryLock const memLock(handle);
          quint32* pointer = reinterpret_cast<quint32*>(memLock.pointer());
-         QVERIFY2(pointer, "The scoped global memory locked failed.");
+         QVERIFY2(memLock.locked() && pointer, "The scoped global memory locked failed.");
 
          QByteArray finalArray(size, 0);
          memcpy(finalArray.data(), pointer, size);

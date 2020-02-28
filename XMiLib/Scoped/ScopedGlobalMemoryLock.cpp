@@ -33,6 +33,15 @@ ScopedGlobalMemoryLock::~ScopedGlobalMemoryLock()
 
 
 //**********************************************************************************************************************
+/// \return true if and only if the global memory was successfully locked.
+//**********************************************************************************************************************
+bool ScopedGlobalMemoryLock::locked() const
+{
+   return pointer_;
+}
+
+
+//**********************************************************************************************************************
 /// \return A pointer to the locked memory. If locked_ is false, the return value is null.
 //**********************************************************************************************************************
 void* ScopedGlobalMemoryLock::pointer() const

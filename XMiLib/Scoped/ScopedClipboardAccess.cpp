@@ -18,7 +18,8 @@ namespace xmilib {
 
 
 //**********************************************************************************************************************
-/// \param[in] widget The widget that want to open the clipboard.
+/// \param[in] handle The handle of the window requesting clipboard access. This can be null if a process with no
+/// window is requesting access.
 //**********************************************************************************************************************
 ScopedClipboardAccess::ScopedClipboardAccess(HWND handle)
 {
