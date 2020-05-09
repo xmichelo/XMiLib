@@ -194,6 +194,9 @@
     <None Include="Translations\xmilib_pl.ts">
       <Filter>Translation Files</Filter>
     </None>
+    <None Include="xmilib_pt.ts">
+      <Filter>Translation Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="String\StringListEditorDialog.ui">
