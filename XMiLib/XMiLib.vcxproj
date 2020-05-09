@@ -253,8 +253,8 @@
     <None Include="Translations\xmilib_it.ts" />
     <None Include="Translations\xmilib_nl.ts" />
     <None Include="Translations\xmilib_pl.ts" />
+    <None Include="Translations\xmilib_pt.ts" />
     <None Include="Translations\xmilib_ru.ts" />
-    <None Include="xmilib_pt.ts" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
