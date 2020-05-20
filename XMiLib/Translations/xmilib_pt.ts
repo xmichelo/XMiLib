@@ -6,39 +6,39 @@
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="51"/>
         <source>Show:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar:</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="58"/>
         <source>Infos</source>
-        <translation type="unfinished"></translation>
+        <translation>Informações</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="68"/>
         <source>Warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>Avisos</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="78"/>
         <source>Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Erros</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="101"/>
         <location filename="DebugLog/DebugLogWindow.ui" line="118"/>
         <source>C&amp;lear Log</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Limpar Registro</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="108"/>
         <location filename="DebugLog/DebugLogWindow.ui" line="126"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fe&amp;char</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLogWindow.ui" line="121"/>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
 </context>
 <context>
@@ -46,22 +46,22 @@
     <message>
         <location filename="String/StringListEditorDialog.ui" line="58"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <location filename="String/StringListEditorDialog.ui" line="65"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <location filename="String/StringListEditorDialog.ui" line="106"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="String/StringListEditorDialog.ui" line="113"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancelar</translation>
     </message>
 </context>
 <context>
@@ -70,19 +70,19 @@
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="38"/>
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="66"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="45"/>
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="71"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="52"/>
         <location filename="StyleSheetEditor/StyleSheetEditor.ui" line="61"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aplicar</translation>
     </message>
 </context>
 <context>
@@ -91,7 +91,7 @@
         <location filename="ThreadedOperation/ThreadedOperationDialog.ui" line="77"/>
         <location filename="ThreadedOperation/ThreadedOperationDialog.ui" line="112"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancelar</translation>
     </message>
 </context>
 <context>
@@ -99,12 +99,12 @@
     <message>
         <location filename="DebugLog/DebugLog.cpp" line="225"/>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Data/Hora</translation>
     </message>
     <message>
         <location filename="DebugLog/DebugLog.cpp" line="226"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Mensagem</translation>
     </message>
 </context>
 <context>
@@ -114,14 +114,14 @@
         <location filename="String/StringListEditorDialog.cpp" line="128"/>
         <location filename="String/StringListEditorDialog.cpp" line="158"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <location filename="String/StringListEditorDialog.cpp" line="104"/>
         <location filename="String/StringListEditorDialog.cpp" line="128"/>
         <location filename="String/StringListEditorDialog.cpp" line="158"/>
         <source>Internal error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro interno: %1</translation>
     </message>
 </context>
 <context>
@@ -129,7 +129,7 @@
     <message>
         <location filename="ThreadedOperation/ThreadedOperationDialog.cpp" line="134"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
 </context>
 </TS>
