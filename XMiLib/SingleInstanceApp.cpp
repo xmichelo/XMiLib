@@ -94,7 +94,7 @@ qint32 SingleInstanceApplication::sharedValue()
 {
    if (!sharedMem_.lock())
       throw Exception();
-   qint32 const result = *reinterpret_cast<qint32*>(sharedMem_.data());
+   qint32 const result = *static_cast<qint32*>(sharedMem_.data());
    sharedMem_.unlock();
    return result;
 }
@@ -107,7 +107,7 @@ void SingleInstanceApplication::setSharedValue(qint32 value)
 {
    if (!sharedMem_.lock())
       throw Exception();
-   *reinterpret_cast<qint32*>(sharedMem_.data()) = value;
+   *static_cast<qint32*>(sharedMem_.data()) = value;
    sharedMem_.unlock();
 }
 

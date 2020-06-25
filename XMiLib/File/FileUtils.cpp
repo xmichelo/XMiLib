@@ -63,7 +63,7 @@ QString getTempFilePath(QString const& prefix, QString const& extension)
 {
    for (qint32 retryCount = 0; retryCount < kMaxRetryCount; ++retryCount)
    {
-      QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+      QString path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
          .absoluteFilePath(getRandomFileName(16, prefix, extension));
       if (!QFileInfo(path).exists())
          return path;
@@ -81,7 +81,7 @@ QString createTempDir()
    qint32 retryCount = 0;
    while (retryCount++ < kMaxRetryCount)
    {
-      QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+      QString path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
          .absoluteFilePath(getRandomFileName(kTempDirNameLength));
       QFileInfo fileInfo(path);
       if ((fileInfo.exists()) || (!QDir().mkpath(path)))
@@ -104,7 +104,7 @@ QString createTempFile(QFile& outFile, QString const& prefix, QString const& ext
    qint32 retryCount = 0;
    while (retryCount++ < kMaxRetryCount)
    {
-      QString const path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
+      QString path = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation))
          .absoluteFilePath(getRandomFileName(16, prefix, extension));
       if (path.isEmpty() || (QFileInfo(path).exists()))
          continue;
