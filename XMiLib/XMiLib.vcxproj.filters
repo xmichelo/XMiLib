@@ -197,9 +197,6 @@
     <None Include="Translations\xmilib_pt.ts">
       <Filter>Translation Files</Filter>
     </None>
-    <None Include="xmilib_en.ts">
-      <Filter>Translation Files</Filter>
-    </None>
     <None Include="Translations\xmilib_es.ts">
       <Filter>Translation Files</Filter>
     </None>
