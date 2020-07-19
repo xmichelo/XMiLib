@@ -201,14 +201,15 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString* 
 //**********************************************************************************************************************
 bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString* outErrorMsg)
 {
-   QString const writeErrorMsg("An error occured while writing data to'%1'.");
+   QString const writeErrorMsg(QObject::tr("An error occured while writing data to'%1'.")
+      .arg(QDir::toNativeSeparators(path)));
    QByteArray const comma = QString(",").toUtf8();
    QByteArray const newLine = QString("\n").toUtf8();
    try
    {
       QFile file(path);
       if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-         throw Exception("Could not open file '%1' for writing.");
+         throw Exception(QObject::tr("Could not open file '%1' for writing.").arg(QDir::toNativeSeparators(path)));
       for (QVector<QStringList>::const_iterator recordIt = data.begin(); recordIt != data.end(); ++recordIt)
       {
          QStringList const& record = *recordIt;
