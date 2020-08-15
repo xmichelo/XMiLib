@@ -31,7 +31,7 @@ ScopedClipboardAccess::ScopedClipboardAccess(HWND handle)
          return;
       }
       if (i != kRetryCount - 1)
-         QThread::msleep(kDelayBetweenRetriesMs);
+         QThread::msleep(static_cast<quint32>(kDelayBetweenRetriesMs));
    }
 }
 

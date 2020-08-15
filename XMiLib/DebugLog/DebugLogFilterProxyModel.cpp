@@ -21,7 +21,7 @@ namespace xmilib {
 //**********************************************************************************************************************
 DebugLogFilterProxyModel::DebugLogFilterProxyModel(qint32 entryTypes, QObject *parent)
    : QSortFilterProxyModel(parent)
-   , entryTypes_(entryTypes)
+   , entryTypes_(static_cast<quint32>(entryTypes))
 {
 }
 

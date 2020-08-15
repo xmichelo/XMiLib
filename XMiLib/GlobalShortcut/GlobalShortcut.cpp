@@ -31,7 +31,7 @@ GlobalShortcut::GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKe
 {
    if (!id_)
       throw Exception("Could not obtain an ID for the global shortcut to trigger combos.");
-   if (!RegisterHotKey(nullptr, id_, nativeModifiers | MOD_NOREPEAT, nativeVirtualKey))
+   if (!RegisterHotKey(nullptr, static_cast<qint32>(id_), nativeModifiers | MOD_NOREPEAT, nativeVirtualKey))
       throw Exception("Could not register global shortcut for combos.");
 }
 
@@ -50,8 +50,8 @@ void GlobalShortcut::trigger()
 //**********************************************************************************************************************
 GlobalShortcut::~GlobalShortcut()
 {
-   UnregisterHotKey(nullptr, id_);
-   GlobalDeleteAtom(id_);
+   UnregisterHotKey(nullptr, static_cast<qint32>(id_));
+   GlobalDeleteAtom(static_cast<ATOM>(id_));
 }
 
 

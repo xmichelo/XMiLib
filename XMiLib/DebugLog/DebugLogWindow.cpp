@@ -38,7 +38,7 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
    }
    int const estimatedWidth(ui_->tableView->horizontalHeader()->fontMetrics()
       .boundingRect("####-##-## ##:##:##.###").width());
-   ui_->tableView->setColumnWidth(0, qint32(float(estimatedWidth) * 1.05));
+   ui_->tableView->setColumnWidth(0, static_cast<qint32>(qint32(static_cast<float>(estimatedWidth) * 1.05f)));
    ui_->tableView->horizontalHeader()->setStretchLastSection(true);
    ui_->tableView->resizeRowsToContents();
    ui_->tableView->setSelectionMode(QAbstractItemView::NoSelection);
@@ -46,7 +46,7 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
 
 
 //**********************************************************************************************************************
-/// \return true if and only if the last row of the log is visible
+//
 //**********************************************************************************************************************
 DebugLogWindow::~DebugLogWindow()  // NOLINT(hicpp-use-equals-default, modernize-use-equals-default)
 {

@@ -31,7 +31,7 @@ public: // static member functions
 public: // member functions
    GlobalShortcutManager(GlobalShortcutManager const&) = delete; ///< Disabled copy constructor
 	GlobalShortcutManager(GlobalShortcutManager&&) = delete; ///< Disabled move constructor
-	~GlobalShortcutManager() = default; ///< Default destructor
+	~GlobalShortcutManager() override = default; ///< Default destructor
 	GlobalShortcutManager& operator=(GlobalShortcutManager const&) = delete; ///< Disabled assignment operator
 	GlobalShortcutManager& operator=(GlobalShortcutManager&&) = delete; ///< Disabled move assignment operator
    GlobalShortcut const* create(quint32 nativeModifiers, quint32 nativeVirtualKey, QString* outErrorMsg = nullptr); ///< Create a global shortcut

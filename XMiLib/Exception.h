@@ -26,7 +26,7 @@ public: // member functions
    Exception(Exception&& ref) noexcept; ///< copy constructor
    Exception& operator=(Exception const&) = delete; ///< Disabled assignment operator
    Exception& operator=(Exception&&) = delete; ///< Disabled assignment operator
-   virtual ~Exception() noexcept = default; ///< Destructor
+   ~Exception() noexcept override = default; ///< Destructor
    char const* what() const noexcept override; ///< Return the description of the exception as a C-style string
    virtual QString const& qwhat() const noexcept; ///< Return the description of the exception as a QString
 

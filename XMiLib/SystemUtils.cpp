@@ -123,10 +123,10 @@ void synthesizeBackspaces(qint32 count)
    sampleInput.ki.time = 0;
    sampleInput.ki.dwExtraInfo = 0;
 
-   std::vector<INPUT> input(count * 2, sampleInput);
+   std::vector<INPUT> input(static_cast<quint32>(count) * 2, sampleInput);
    for (int i = 1; i < count * 2; i += 2)
-      input[i].ki.dwFlags = KEYEVENTF_KEYUP;
-   SendInput(count * 2, input.data(), sizeof(INPUT));
+      input[static_cast<quint32>(i)].ki.dwFlags = KEYEVENTF_KEYUP;
+   SendInput(static_cast<quint32>(count) * 2, input.data(), sizeof(INPUT));
 #else
 #error This function is not supported on this platform
 #endif 

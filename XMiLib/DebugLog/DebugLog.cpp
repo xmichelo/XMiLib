@@ -38,7 +38,7 @@ DebugLog::DebugLog(QObject* parent)
 //**********************************************************************************************************************
 qint32 DebugLog::size() const
 {
-   return entries_.size();
+   return static_cast<qint32>(entries_.size());
 }
 
 
@@ -106,7 +106,7 @@ void DebugLog::setMaxEntryCount(qint32 maxEntryCount)
       maxEntryCount_ = maxEntryCount;
       return;
    }
-   qint32 const removeCount(entries_.size() - maxEntryCount);
+   qint32 const removeCount(static_cast<qint32>(entries_.size()) - maxEntryCount);
    Q_ASSERT(removeCount > 0);
    this->beginRemoveRows(QModelIndex(), 0, removeCount - 1);
    entries_.erase(entries_.begin(), entries_.begin() + removeCount);
@@ -131,7 +131,7 @@ SpDebugLogEntry const& DebugLog::operator[](qint64 index) const
 {
    if ((index < 0) || (quint64(index) >= entries_.size()))
       throw Exception(QString("Index out of range"));
-   return entries_[index];
+   return entries_[static_cast<quint32>(index)];
 }
 
 
@@ -171,7 +171,7 @@ QVariant DebugLog::data(const QModelIndex& index, int role) const
    qint32 const row = index.row();
    if ((row < 0) || (row >= qint32(entries_.size())))
       return QVariant();
-   SpDebugLogEntry const entry(entries_[row]);
+   SpDebugLogEntry const entry(entries_[static_cast<quint32>(row)]);
    if (!entry.get())
       return QVariant();
    switch (role)
@@ -189,7 +189,7 @@ QVariant DebugLog::data(const QModelIndex& index, int role) const
    case Qt::BackgroundRole:
    {
       int const rowIndex(index.row());
-      switch (entries_[rowIndex]->getType())
+      switch (entries_[static_cast<quint32>(rowIndex)]->getType())
       {
       case DebugLogEntry::Info:
          return kGreenBrush;
@@ -265,7 +265,7 @@ void DebugLog::addError(QString const& message)
 void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
 {
    // check if we can add one more line to the log, and if not, remove the oldest entry
-   if ((maxEntryCount_ > 0) && (qint32(entries_.size()) >= maxEntryCount_))
+   if ((maxEntryCount_ > 0) && (static_cast<qint32>(entries_.size()) >= maxEntryCount_))
    {
       this->beginRemoveRows(QModelIndex(), 0, 0);
       entries_.pop_front();
@@ -273,7 +273,7 @@ void DebugLog::addEntry(DebugLogEntry::EType type, QString const& message)
    }
 
    // Add the entry to the log
-   this->beginInsertRows(QModelIndex(), entries_.size(), entries_.size());
+   this->beginInsertRows(QModelIndex(), static_cast<qint32>(entries_.size()), static_cast<qint32>(entries_.size()));
    SpDebugLogEntry const logEntry(std::make_shared<DebugLogEntry>(type, message));
    entries_.push_back(logEntry);
    this->endInsertRows();

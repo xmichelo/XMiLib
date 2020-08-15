@@ -83,7 +83,7 @@ bool jsonDocumentToStringList(QJsonDocument const& doc, QStringList& outStringLi
       if (!doc.isArray())
          throw Exception("The JSON document is not an array");
       QJsonArray array = doc.array();
-      for (QJsonValueRef const& value: array)
+      for (QJsonValueRef const value: array)
       {
          if (!value.isString())
             throw Exception("The JSON document does not contain a valid string array");
