@@ -43,6 +43,19 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../File/CsvIO.cpp" line="204"/>
+        <source>An error occured while writing data to&apos;%1&apos;.</source>
+        <translation>Une erreur est survenue lors de l&apos;écriture dans le fichier &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <location filename="../File/CsvIO.cpp" line="212"/>
+        <source>Could not open file &apos;%1&apos; for writing.</source>
+        <translation>Impossible d&apos;ouvrir le fichier &apos;%1&apos; en écriture.</translation>
+    </message>
+</context>
+<context>
     <name>StringListEditorDialog</name>
     <message>
         <location filename="../String/StringListEditorDialog.ui" line="58"/>

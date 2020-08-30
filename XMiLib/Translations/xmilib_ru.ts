@@ -33,6 +33,17 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>An error occured while writing data to&apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not open file &apos;%1&apos; for writing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StringListEditorDialog</name>
     <message>
         <source>&amp;OK</source>
