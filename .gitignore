@@ -19,3 +19,4 @@ tasks.xml
 *.pro.user
 *.DotSettings.user
 qtvars_*
+temp/
