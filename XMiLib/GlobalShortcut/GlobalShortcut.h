@@ -27,7 +27,7 @@ class GlobalShortcut: public QObject
    Q_OBJECT
 public: // member functions
    GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey); ///< constructor
-	~GlobalShortcut(); ///< Default destructor
+	~GlobalShortcut() override; ///< Default destructor
    GlobalShortcut(GlobalShortcut const&) = delete; ///< Disabled copy constructor
 	GlobalShortcut(GlobalShortcut&&) = delete; ///< Disabled move constructor
 	GlobalShortcut& operator=(GlobalShortcut const&) = delete; ///< Disabled assignment operator

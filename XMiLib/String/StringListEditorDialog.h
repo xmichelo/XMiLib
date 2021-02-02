@@ -36,7 +36,7 @@ public: // member functions
    explicit StringListEditorDialog(QStringList const& stringList, QWidget* parent = nullptr); ///< Default constructor
    StringListEditorDialog(StringListEditorDialog const&) = delete; ///< Disabled copy-constructor
    StringListEditorDialog(StringListEditorDialog&&) = delete; ///< Disabled assignment copy-constructor
-   ~StringListEditorDialog(); ///< Destructor
+   ~StringListEditorDialog() override; ///< Destructor
    StringListEditorDialog& operator=(StringListEditorDialog const&) = delete; ///< Disabled assignment operator
    StringListEditorDialog& operator=(StringListEditorDialog&&) = delete; ///< Disabled move assignment operator
    QStringList stringList() const; ///< Return the string list

@@ -24,7 +24,7 @@ public: // member functions
    explicit SingleInstanceApplication(QString const& appKey); ///< Default constructor.
    SingleInstanceApplication(SingleInstanceApplication const&) = delete; ///< Disabled copy-constructor.
    SingleInstanceApplication(SingleInstanceApplication&&) = delete; ///< Disabled assignment copy-constructor.
-   ~SingleInstanceApplication() = default; ///< Destructor.
+   ~SingleInstanceApplication() override = default; ///< Destructor.
    SingleInstanceApplication& operator=(SingleInstanceApplication const&) = delete; ///< Disabled assignment operator.
    SingleInstanceApplication& operator=(SingleInstanceApplication&&) = delete; ///< Disabled move assignment operator.
    bool isFirstInstance() const; ///< Check whether this instance is the first instance of the application.
