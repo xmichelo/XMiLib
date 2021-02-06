@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E05296CB-0826-45DA-A14F-AC1050827C3A}"
 EndProject
@@ -13,22 +13,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMiLibTest", "Test\XMiLibTe
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Debug|x86.ActiveCfg = Debug|Win32
-		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Debug|x86.Build.0 = Debug|Win32
-		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Release|x86.ActiveCfg = Release|Win32
-		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Release|x86.Build.0 = Release|Win32
-		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x86.ActiveCfg = Debug|Win32
-		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x86.Build.0 = Debug|Win32
-		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.ActiveCfg = Release|Win32
-		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x86.Build.0 = Release|Win32
-		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Debug|x86.ActiveCfg = Debug|Win32
-		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Debug|x86.Build.0 = Debug|Win32
-		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x86.ActiveCfg = Release|Win32
-		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x86.Build.0 = Release|Win32
+		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Debug|x64.ActiveCfg = Debug|x64
+		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Debug|x64.Build.0 = Debug|x64
+		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Release|x64.ActiveCfg = Release|x64
+		{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}.Release|x64.Build.0 = Release|x64
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x64.ActiveCfg = Debug|x64
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Debug|x64.Build.0 = Debug|x64
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x64.ActiveCfg = Release|x64
+		{D8680D74-8ECD-483B-BECC-8E409550E70D}.Release|x64.Build.0 = Release|x64
+		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Debug|x64.ActiveCfg = Debug|x64
+		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Debug|x64.Build.0 = Debug|x64
+		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x64.ActiveCfg = Release|x64
+		{94912788-EF1B-4550-B571-54D7AA0F9FC8}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,7 +38,7 @@ Global
 		{94912788-EF1B-4550-B571-54D7AA0F9FC8} = {E05296CB-0826-45DA-A14F-AC1050827C3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = Qt 6.0.1
 		SolutionGuid = {489D96C8-FA17-45D1-8149-6D59B82BE9A3}
-		Qt5Version = $(DefaultQtVersion)
 	EndGlobalSection
 EndGlobal

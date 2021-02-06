@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 //**********************************************************************************************************************
 void checkAndCreateDataDir()
 {
-   QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+   QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
    if ((!dataDir.exists()) && (!QDir().mkpath(dataDir.absolutePath())))
       throw Exception("The application data folder could not be created.");
 }

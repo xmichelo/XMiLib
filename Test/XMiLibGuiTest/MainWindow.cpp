@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
    , styleSheetEditor_(nullptr)
 {
    ui_.setupUi(this);
-   debugLog_.enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
+   debugLog_.enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
       .absoluteFilePath("Log.txt"));
    styleSheetEditor_ = new StyleSheetEditor(this);
    styleSheetEditor_->setOriginalStyleSheet(dynamic_cast<QApplication *>(QCoreApplication::instance())->styleSheet());

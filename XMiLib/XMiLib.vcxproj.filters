@@ -6,16 +6,6 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{a244c975-3b16-4860-a3b6-72cc7063ed77}</UniqueIdentifier>
-      <Extensions>cpp;moc</Extensions>
-      <SourceControlFiles>False</SourceControlFiles>
-    </Filter>
-    <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{6399ce7f-f256-4096-bcc8-7e9c181808f0}</UniqueIdentifier>
-      <Extensions>cpp;moc</Extensions>
-      <SourceControlFiles>False</SourceControlFiles>
-    </Filter>
     <Filter Include="StyleSheetEditor">
       <UniqueIdentifier>{c97abd74-4143-4488-a354-8420d3a6714c}</UniqueIdentifier>
     </Filter>

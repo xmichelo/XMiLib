@@ -159,7 +159,7 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString* 
    }
    ParseInfo pi;
    pi.stream.setDevice(&file);
-   pi.stream.setCodec("UTF-8");
+   pi.stream.setEncoding(QStringConverter::Utf8);
    pi.currentChar = readChar(pi.stream);
    pi.nextChar = readChar(pi.stream);
 

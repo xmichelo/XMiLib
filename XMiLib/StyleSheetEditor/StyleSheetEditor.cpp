@@ -46,7 +46,7 @@ StyleSheetEditor::~StyleSheetEditor()
 //**********************************************************************************************************************
 bool StyleSheetEditor::loadStyleSheet() const
 {
-   QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation))
+   QFile file(QDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
       .absoluteFilePath(kDefaultStyleSheetFileName));
    if ((!file.exists()) || (!file.open(QIODevice::ReadOnly)))
       return false;
@@ -61,7 +61,7 @@ bool StyleSheetEditor::loadStyleSheet() const
 //**********************************************************************************************************************
 bool StyleSheetEditor::saveStyleSheet() const
 {
-   QDir const appDataDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+   QDir const appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
    if (!appDataDir.exists() && (!QDir().mkpath(appDataDir.absolutePath())))
       return false;
    QFile file(appDataDir.absoluteFilePath(kDefaultStyleSheetFileName));

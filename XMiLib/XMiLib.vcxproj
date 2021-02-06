@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
+    <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
+    <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2C2E08C-D1FF-4496-8D42-8DFB24AEEE66}</ProjectGuid>
-    <Keyword>QtVS_v302</Keyword>
+    <Keyword>QtVS_v303</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -35,23 +35,31 @@
   </Target>
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <QtInstall>$(DefaultQtVersion)</QtInstall>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)_build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)_temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)_build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)_temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.0.1</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <QtInstall>$(DefaultQtVersion)</QtInstall>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.0.1</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
@@ -61,17 +69,9 @@
   <PropertyGroup>
     <_ProjectFileVersion>14.0.25420.1</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)_build\$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)_temp\$(PlatformName)\$(Configuration)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)_build\$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)_temp\$(PlatformName)\$(Configuration)\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;XMILIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XMILIB_LIB;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -84,6 +84,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>26444;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -91,6 +93,8 @@
       <AdditionalLibraryDirectories>C:\Qt\5.12.0\msvc2017\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalOptions> /SUBSYSTEM:WINDOWS</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -113,11 +117,12 @@
       <QtUicFileName>ui_%(Filename).h</QtUicFileName>
     </QtUic>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;XMILIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QT_NO_DEBUG;NDEBUG;XMILIB_LIB;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(QTDIR)\include;.\DebugLog;.\ThreadedOperation;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat />
+      <DebugInformationFormat>
+      </DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -127,6 +132,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>26444;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,6 +141,8 @@
       <AdditionalLibraryDirectories>C:\Qt\5.12.0\msvc2017\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalOptions> /SUBSYSTEM:WINDOWS</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -171,8 +180,8 @@
     <ClCompile Include="Scoped\ScopedGlobalMemoryLock.cpp" />
     <ClCompile Include="SingleInstanceApp.cpp" />
     <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="String\StringListEditorDialog.cpp" />
     <ClCompile Include="String\StringListEditorModel.cpp" />
@@ -196,31 +205,31 @@
     <ClInclude Include="String\StringUtils.h" />
     <ClInclude Include="XMiLibConstants.h" />
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <ClInclude Include="GlobalShortcut\GlobalShortcutManager.h" />
     <ClInclude Include="SystemUtils.h" />
     <QtMoc Include="ThreadedOperation\ThreadedOperationDialog.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <QtMoc Include="ThreadedOperation\ThreadedOperation.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../ThreadedOperation/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <QtMoc Include="DebugLog\DebugLog.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <ClInclude Include="DebugLog\DebugLogEntry.h" />
     <QtMoc Include="DebugLog\DebugLogWindow.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <QtMoc Include="DebugLog\DebugLogFilterProxyModel.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../$(Configuration)Log/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <ClInclude Include="Exception.h" />
     <ClInclude Include="GeneratedFiles\ui_DebugLogWindow.h" />
@@ -229,8 +238,8 @@
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
-      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
+      <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../StyleSheetEditor/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

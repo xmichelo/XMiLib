@@ -85,7 +85,7 @@ bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 /// \param[in] message The message
 /// \return true if the message has been processed
 //**********************************************************************************************************************
-bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, long*)
+bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, qintptr*)
 {
    MSG* msg = static_cast<MSG*>(message);
    if (WM_HOTKEY == msg->message)
