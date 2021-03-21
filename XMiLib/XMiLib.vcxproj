@@ -54,12 +54,12 @@
     <IntDir>$(ProjectDir)_temp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="QtSettings">
-    <QtInstall>Qt 6.0.1</QtInstall>
+    <QtInstall>Qt 6.0.2</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="QtSettings">
-    <QtInstall>Qt 6.0.1</QtInstall>
+    <QtInstall>Qt 6.0.2</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
@@ -86,7 +86,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
@@ -134,7 +135,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-    <MultiProcessorCompilation>true</MultiProcessorCompilation></ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).lib</OutputFile>
