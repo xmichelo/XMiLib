@@ -56,12 +56,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="QtSettings">
     <QtInstall>Qt 6.1.1</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
-    <QtQMLDebugEnable>true</QtQMLDebugEnable>
+    <QtQMLDebugEnable>false</QtQMLDebugEnable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="QtSettings">
     <QtInstall>Qt 6.1.1</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
-    <QtQMLDebugEnable>true</QtQMLDebugEnable>
+    <QtQMLDebugEnable>false</QtQMLDebugEnable>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
     <Import Project="$(QtMsBuild)\qt.props" />
