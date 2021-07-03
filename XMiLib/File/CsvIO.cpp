@@ -126,7 +126,7 @@ bool isLoadedCsvContentValid(QVector<QStringList> const& csvData, QString* outEr
    {
       if (csvData.isEmpty())
          throw Exception("The CSV file is empty.");
-      qint32 const width = csvData.front().size();
+      qsizetype const width = csvData.front().size();
       for (QVector<QStringList>::const_iterator it = csvData.begin() + 1; it != csvData.end(); ++it)
          if (it->size() != width)
             throw Exception("Not all rows in the CSV file have the same number of columns.");

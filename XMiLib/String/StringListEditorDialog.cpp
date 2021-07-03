@@ -149,7 +149,7 @@ void StringListEditorDialog::updateGui()
       QItemSelectionModel const * const selModel = ui_->stringListView->selectionModel();
       if (!selModel)
          throw Exception("Could not retrieve selection model.");
-      qint32 const selectedRowCount = selModel->selectedRows().size();
+      qsizetype const selectedRowCount = selModel->selectedRows().size();
 
       ui_->buttonRemove->setEnabled(selectedRowCount > 0);
    }

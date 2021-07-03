@@ -90,7 +90,7 @@ bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, 
    MSG* msg = static_cast<MSG*>(message);
    if (WM_HOTKEY == msg->message)
    {
-      quint32 const id = msg->wParam;
+      WPARAM const id = msg->wParam;
       std::list<UpGlobalShortcut>::iterator const it = std::find_if(shortcuts_.begin(), shortcuts_.end(),
          [&id](UpGlobalShortcut const& sc) -> bool { return sc->id_ == id; });
       if (shortcuts_.end() == it)
