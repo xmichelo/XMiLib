@@ -54,12 +54,12 @@
     <IntDir>$(ProjectDir)_temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>Qt 6.0.1</QtInstall>
+    <QtInstall>$(DefaultQtVersion)</QtInstall>
     <QtModules>core;gui;testlib</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>Qt 6.0.1</QtInstall>
+    <QtInstall>$(DefaultQtVersion)</QtInstall>
     <QtModules>core;gui;testlib</QtModules>
     <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
@@ -96,7 +96,7 @@
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
-      <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir>
+      <QtMocDir>.\_build\GeneratedFiles\$(ConfigurationName)</QtMocDir>
       <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
     </QtMoc>
   </ItemDefinitionGroup>
@@ -127,7 +127,7 @@
       <ForceInclude>stdafx.h;../../%(Filename)%(Extension)</ForceInclude>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
-      <QtMocDir>.\GeneratedFiles\$(ConfigurationName)</QtMocDir>
+      <QtMocDir>.\_build\GeneratedFiles\$(ConfigurationName)</QtMocDir>
       <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
     </QtMoc>
   </ItemDefinitionGroup>
