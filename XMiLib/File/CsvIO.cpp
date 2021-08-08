@@ -72,7 +72,11 @@ void processDoubleQuote(ParseInfo& pi)
          pi.nextChar = readChar(pi.stream);
       }
       else
+      {
+         if (pi.currentString.isNull())
+            pi.currentString = QString(""); ///< Different from null string.
          pi.inQuotedSection = true;
+      }
    }
    else
    {
@@ -93,7 +97,7 @@ void processComma(ParseInfo& pi)
       return;
    }
    pi.currentRow += pi.currentString;
-   pi.currentString = QString();
+   pi.currentString = QString("");
 }
 
 
@@ -179,7 +183,7 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString* 
       pi.nextChar = readChar(pi.stream);
    }
 
-   if (!pi.currentString.trimmed().isEmpty())
+   if (!pi.currentString.isNull()) // null is different from empty, and we may want to add an empty string at the end (case of file ending with no newline and an empty last value)
       pi.currentRow += pi.currentString;
 
    if (!pi.currentRow.isEmpty())
