@@ -18,9 +18,9 @@ using namespace xmilib;
 namespace {
 
 
-QChar const kDoubleQuote = QChar('"'); ///< The double quote character.
-QChar const kComma = QChar(','); ///< The comma character.
-QChar const kNewLine = QChar('\n'); ///< The newline quote character.
+QChar constexpr kDoubleQuote = QChar('"'); ///< The double quote character.
+QChar constexpr kComma = QChar(','); ///< The comma character.
+QChar constexpr kNewLine = QChar('\n'); ///< The newline quote character.
 
 
 //**********************************************************************************************************************

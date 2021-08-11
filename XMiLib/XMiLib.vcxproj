@@ -192,7 +192,6 @@
     <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp" />
-    <ClCompile Include="XMiLibConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="String\StringListEditorDialog.h">

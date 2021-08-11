@@ -17,7 +17,7 @@ namespace xmilib {
 namespace constants {
 
 
-extern Qt::WindowFlags const kDefaultDialogFlags; ///< The default window flags for dialogs
+Qt::WindowFlags constexpr kDefaultDialogFlags = Qt::WindowCloseButtonHint | Qt::WindowTitleHint; ///< The default window flags for dialogs
 
 
 } // namespace constants

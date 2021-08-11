@@ -105,7 +105,6 @@
     <ClCompile Include="GlobalShortcut\GlobalShortcutManager.cpp">
       <Filter>GlobalShortcut</Filter>
     </ClCompile>
-    <ClCompile Include="XMiLibConstants.cpp" />
     <ClCompile Include="String\StringUtils.cpp">
       <Filter>String</Filter>
     </ClCompile>

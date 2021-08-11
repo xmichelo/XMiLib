@@ -54,7 +54,7 @@ GlobalShortcut const* GlobalShortcutManager::create(quint32  nativeModifiers, qu
    try
    {
       UpGlobalShortcut shortcut = std::make_unique<GlobalShortcut>(nativeModifiers, nativeVirtualKey);
-      GlobalShortcut* result = shortcut.get();
+      GlobalShortcut const* result = shortcut.get();
       shortcuts_.push_back(std::move(shortcut));
       return result;
    }
@@ -87,7 +87,7 @@ bool GlobalShortcutManager::remove(GlobalShortcut const* shortcut)
 //**********************************************************************************************************************
 bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, qintptr*)
 {
-   MSG* msg = static_cast<MSG*>(message);
+   MSG const* msg = static_cast<MSG*>(message);
    if (WM_HOTKEY == msg->message)
    {
       WPARAM const id = msg->wParam;
