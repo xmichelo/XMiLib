@@ -5,48 +5,39 @@
     <name>DebugLogWindow</name>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="51"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="135"/>
         <source>Show:</source>
         <translation>Afficher:</translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="58"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="136"/>
         <source>Infos</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="68"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="137"/>
         <source>Warnings</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="78"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="138"/>
         <source>Errors</source>
         <translation>Erreurs</translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="101"/>
         <location filename="../DebugLog/DebugLogWindow.ui" line="118"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="130"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="139"/>
         <source>C&amp;lear Log</source>
         <translation>E&amp;ffacer le Log</translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="108"/>
         <location filename="../DebugLog/DebugLogWindow.ui" line="126"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="134"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="140"/>
         <source>&amp;Close</source>
         <oldsource>Close</oldsource>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../DebugLog/DebugLogWindow.ui" line="121"/>
-        <location filename="../GeneratedFiles/ui_DebugLogWindow.h" line="132"/>
         <source>Ctrl+X</source>
         <translation></translation>
     </message>
@@ -92,24 +83,18 @@
     <message>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="38"/>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="66"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="99"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="101"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="45"/>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="71"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="100"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="102"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="52"/>
         <location filename="../StyleSheetEditor/StyleSheetEditor.ui" line="61"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="98"/>
-        <location filename="../GeneratedFiles/ui_StyleSheetEditor.h" line="103"/>
         <source>&amp;Apply</source>
         <translation>A&amp;ppliquer</translation>
     </message>
@@ -119,8 +104,6 @@
     <message>
         <location filename="../ThreadedOperation/ThreadedOperationDialog.ui" line="77"/>
         <location filename="../ThreadedOperation/ThreadedOperationDialog.ui" line="112"/>
-        <location filename="../GeneratedFiles/ui_ThreadedOperationDialog.h" line="108"/>
-        <location filename="../GeneratedFiles/ui_ThreadedOperationDialog.h" line="109"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
