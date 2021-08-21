@@ -205,7 +205,7 @@ bool loadCsvFile(QString const& path, QVector<QStringList>& outResult, QString* 
 //**********************************************************************************************************************
 bool saveCsvFile(QString const& path, QVector<QStringList> const& data, QString* outErrorMsg)
 {
-   QString const writeErrorMsg(QObject::tr("An error occured while writing data to'%1'.")
+   QString const writeErrorMsg(QObject::tr("An error occurred while writing data to'%1'.")
       .arg(QDir::toNativeSeparators(path)));
    QByteArray const comma = QString(",").toUtf8();
    QByteArray const newLine = QString("\n").toUtf8();

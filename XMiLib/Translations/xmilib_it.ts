@@ -45,7 +45,7 @@
     <name>QObject</name>
     <message>
         <location filename="../File/CsvIO.cpp" line="208"/>
-        <source>An error occured while writing data to&apos;%1&apos;.</source>
+        <source>An error occurred while writing data to&apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

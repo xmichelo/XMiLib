@@ -35,11 +35,11 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>An error occured while writing data to&apos;%1&apos;.</source>
+        <source>Could not open file &apos;%1&apos; for writing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not open file &apos;%1&apos; for writing.</source>
+        <source>An error occurred while writing data to&apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
