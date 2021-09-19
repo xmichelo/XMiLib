@@ -30,7 +30,7 @@ class DebugLogWindow: public QWidget
 {
    Q_OBJECT
 public: // member functions
-   explicit DebugLogWindow(DebugLog* debugLog = nullptr, QWidget* parent = nullptr); ///< Default constructor
+   explicit DebugLogWindow(SpDebugLog debugLog = nullptr, QWidget* parent = nullptr); ///< Default constructor
 	DebugLogWindow(DebugLogWindow const&) = delete; ///< Disabled copy constructor
 	DebugLogWindow(DebugLogWindow&&) = delete; ///< Disabled move copy constructor
    ~DebugLogWindow() override; ///< Default destructor
@@ -49,7 +49,7 @@ private slots:
 
 private:
    std::unique_ptr<Ui::DebugLogWindow> ui_; ///< The GUI for the window
-   DebugLog* debugLog_; ///< The debug log to display
+   SpDebugLog debugLog_; ///< The debug log to display
    bool lastRowWasVisible_; ///< Was the last row visible before insertion
    DebugLogFilterProxyModel* filterModel_; ///< The filter proxy model
 };

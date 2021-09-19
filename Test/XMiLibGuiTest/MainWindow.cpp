@@ -58,11 +58,10 @@ public: // member functions
 MainWindow::MainWindow(QWidget *parent)
    : QMainWindow(parent)
    , ui_()
-   , debugLogWindow_(nullptr)
-   , styleSheetEditor_(nullptr)
+   , debugLog_(std::make_shared<DebugLog>())
 {
    ui_.setupUi(this);
-   debugLog_.enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
+   debugLog_->enableLoggingToFile(QDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation))
       .absoluteFilePath("Log.txt"));
    styleSheetEditor_ = new StyleSheetEditor(this);
    styleSheetEditor_->setOriginalStyleSheet(dynamic_cast<QApplication *>(QCoreApplication::instance())->styleSheet());
@@ -75,19 +74,19 @@ MainWindow::MainWindow(QWidget *parent)
 /// \param[in] type The type of log entry to add
 /// \param[in] message The message for the log entry
 //**********************************************************************************************************************
-void MainWindow::addDebugLogEntry(DebugLogEntry::EType type, QString const& message)
+void MainWindow::addDebugLogEntry(DebugLogEntry::EType type, QString const& message) const
 {
-   QString str(message.trimmed());
+   QString const str(message.trimmed());
    switch (type)
    {
    case DebugLogEntry::Info:
-      debugLog_.addInfo(str.isEmpty() ? "Info" : str);
+      debugLog_->addInfo(str.isEmpty() ? "Info" : str);
       return;
    case DebugLogEntry::Warning:
-      debugLog_.addWarning(str.isEmpty() ? "Warning" : str);
+      debugLog_->addWarning(str.isEmpty() ? "Warning" : str);
       return;
    case DebugLogEntry::Error:
-      debugLog_.addError(str.isEmpty() ? "Error" : str);
+      debugLog_->addError(str.isEmpty() ? "Error" : str);
       return;
    }
 }
@@ -119,7 +118,7 @@ void MainWindow::onActionShowDebugLog()
    try
    {
       if (!debugLogWindow_)
-         debugLogWindow_ = new DebugLogWindow(&debugLog_, this);
+         debugLogWindow_ = new DebugLogWindow(debugLog_, this);
       debugLogWindow_->show();
    }
    catch (Exception const& e)
@@ -184,7 +183,7 @@ void MainWindow::onActionOpenLogFile()
 {
    try
    {
-      QDesktopServices::openUrl(QUrl::fromLocalFile(debugLog_.getLogFilePath()));
+      QDesktopServices::openUrl(QUrl::fromLocalFile(debugLog_->getLogFilePath()));
    }
    catch (Exception const& e)
    {
@@ -196,9 +195,10 @@ void MainWindow::onActionOpenLogFile()
 //**********************************************************************************************************************
 // 
 //**********************************************************************************************************************
-void MainWindow::onMaxEntryCountChange(int value)
+void MainWindow::onMaxEntryCountChange(int value) const
 {
-   debugLog_.setMaxEntryCount(value);
+   if (debugLog_)
+      debugLog_->setMaxEntryCount(value);
 }
 
 

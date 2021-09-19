@@ -31,7 +31,7 @@ public: // member functions
    MainWindow& operator=(MainWindow&&) = delete; ///< Disabled move assignment operator
 
 private: // member functions
-   void addDebugLogEntry(xmilib::DebugLogEntry::EType type, QString const& message);
+   void addDebugLogEntry(xmilib::DebugLogEntry::EType type, QString const& message) const;
 
 private slots:
    static void onActionQuit(); ///< Slot for the 'Quit' action
@@ -41,15 +41,15 @@ private slots:
    void onActionAddWarning(); ///< Slot for the 'Add Warning' action
    void onActionAddError(); ///< Slot for the 'Add Error' action
    void onActionOpenLogFile(); ///< Slot for the 'Open Log File' action
-   void onMaxEntryCountChange(int value); ///< Slot for the change max entry count
+   void onMaxEntryCountChange(int value) const; ///< Slot for the change max entry count
    void onActionLaunchThreadWithoutDialog(); ///< Slot for the 'Launch Thread Without Dialog' action
    static void onActionLaunchThreadWithDialog(); ///< Slot for the 'Launch Thread With Dialog' action
 
 private: // data members
    Ui::MainWindow ui_; ///< The GUI for the window
-   xmilib::DebugLog debugLog_; ///< The debug log
-   xmilib::DebugLogWindow* debugLogWindow_; ///< The debug log 
-   xmilib::StyleSheetEditor* styleSheetEditor_; ///< The theme window
+   xmilib::SpDebugLog debugLog_; ///< The debug log
+   xmilib::DebugLogWindow* debugLogWindow_ { nullptr }; ///< The debug log 
+   xmilib::StyleSheetEditor* styleSheetEditor_ { nullptr }; ///< The theme window
 };
 
 

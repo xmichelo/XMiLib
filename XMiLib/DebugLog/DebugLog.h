@@ -60,6 +60,9 @@ private: // data members
 };
 
 
+typedef std::shared_ptr<DebugLog> SpDebugLog; ///< Type definition for shared pointer to debug log.
+
+
 } // namespace xmilib
 
 

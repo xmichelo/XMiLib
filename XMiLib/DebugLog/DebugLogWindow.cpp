@@ -19,7 +19,7 @@ namespace xmilib {
 /// \param[in] debugLog The debug log
 /// \param[in] parent The parent widget of the window
 //**********************************************************************************************************************
-DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
+DebugLogWindow::DebugLogWindow(SpDebugLog debugLog, QWidget *parent)
    : QWidget(parent)
    , ui_(new Ui::DebugLogWindow())
    , debugLog_(debugLog)
@@ -31,7 +31,7 @@ DebugLogWindow::DebugLogWindow(DebugLog* debugLog, QWidget *parent)
    this->setWindowFlags(this->windowFlags() | Qt::Window);
    if (debugLog_)
    {
-      filterModel_->setSourceModel(debugLog_);
+      filterModel_->setSourceModel(debugLog_.get());
       ui_->tableView->setModel(filterModel_);
       connect(filterModel_, &DebugLog::rowsAboutToBeInserted, this, &DebugLogWindow::onRowsAboutToBeInserted);
       connect(filterModel_, &DebugLog::rowsInserted, this, &DebugLogWindow::onRowsInserted);
