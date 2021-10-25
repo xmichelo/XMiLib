@@ -47,6 +47,7 @@ public: // member functions
    QVariant data(const QModelIndex &index, int role) const override; ///< Return the data in the model at a given index for a given role
    QVariant headerData(int section, Qt::Orientation orientation, int role) const override; ///< Return the header data for a given section, header orientation and role
 
+   void refreshContent(); ///< Refresh the content of the log.
 public slots:
    void addInfo(QString const& message); ///< Add an informative message to the log
    void addWarning(QString const& message); ///< Add a warning message to the log

@@ -39,6 +39,7 @@ public: // member functions
 
 private: // member functions
    bool isLastRowVisible() const; ///< Check whether the last row of the log is visible
+   void showEvent(QShowEvent* event) override;
 
 private slots:
    void onRowsAboutToBeInserted(const QModelIndex&, int, int); ///< Slot for before the insertion of a row
