@@ -185,8 +185,6 @@ QVariant DebugLog::data(const QModelIndex& index, int role) const
       default: return QVariant();
       }
    case Qt::ForegroundRole:
-      return kWhiteBrush;
-   case Qt::BackgroundRole:
    {
       int const rowIndex(index.row());
       switch (entries_[static_cast<quint32>(rowIndex)]->getType())
