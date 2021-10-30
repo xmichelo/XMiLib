@@ -4,4 +4,4 @@ project(XMiLib)
 
 add_subdirectory(XMiLib)
 add_subdirectory(Test/XMiLibTest)
-#add_subdirectory(Test/XMiLibGuiTest)
+add_subdirectory(Test/XMiLibGuiTest)
