@@ -11,6 +11,9 @@
 #define XMILIB_TEST_H
 
 
+#include <stdafx.h>
+
+
 //**********************************************************************************************************************
 /// \brief Test class for the XMiLib library
 //**********************************************************************************************************************
@@ -21,14 +24,14 @@ public: // member functions
 	XMiLibTest() = default; ///< Default constructor
    XMiLibTest(XMiLibTest const&) = delete; ///< Disabled copy constructor
    XMiLibTest(XMiLibTest&&) = delete; ///< Disabled move constructor
-	~XMiLibTest() = default; ///< Default destructor
+	~XMiLibTest() override = default; ///< Default destructor
    XMiLibTest& operator=(XMiLibTest const&) = delete; ///< Disabled assignment operator
    XMiLibTest& operator=(XMiLibTest&&) = delete; ///< Disabled move assignment operator
 	
 private slots:
    // ReSharper disable CppInconsistentNaming
    static void exceptionHandling(); ///< Test function for xmilib::Exception exception handling
-   static void exceptionMessage_data(); ///< Test data for xmilib::Exception messages 
+   static void exceptionMessage_data(); ///< Test data for xmilib::Exception messages
    static void exceptionMessage(); ///< Test function for xmilib::Exception messages 
    static void fileUtilsGetRandomFileName(); ///< Test function for xmilib::getRandomFileName()
    static void fileUtilsGetTempFilePath(); ///< Test function for xmilib::getTempFilePath()
@@ -52,11 +55,12 @@ private slots:
    static void threadedOperationSuccess(); ///< Test successful cases for the ThreadedOperation class
    static void threadedOperationFailure(); ///< Test failure cases for the ThreadedOperation class
    static void threadedOperationCancel(); ///< Test for canceling of threaded operation
-   static void globalShortcut(); ///< Test for the global shortcut classes
    static void csvIo(); ///< Test the CSV I/O routines.
+#ifdef Q_OS_WINDOWS
+   static void globalShortcut(); ///< Test for the global shortcut classes
    static void scopedGlobalMemoryLock(); ///< Test the ScopedGlobalMemoryLock class.
    static void scopedClipboardAccess(); ///< Test the ScopedClipboardAccess class.
-
+#endif
    // ReSharper restore CppInconsistentNaming
 };
 

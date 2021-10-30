@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+
 project(XMiLib)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -8,7 +9,7 @@ if (NOT DEFINED ENV{QTDIR})
       "(e.g. /Users/MyName/Qt/5.10.1/clang_64).")
 endif()
 
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} $ENV{QTDIR})
+set(CMAKE_PREFIX_PATH $ENV{QTDIR} ${CMAKE_PREFIX_PATH})
 
 find_package(Qt6Core)
 find_package(Qt6Gui)
@@ -77,6 +78,7 @@ add_library(XMiLib STATIC
    SystemUtils.h
    ${WINDOWS_ONLY_SOURCE_FILES})
 
+target_precompile_headers(XMiLib PUBLIC stdafx.h)
 target_link_libraries(XMiLib Qt6::Core)
 target_link_libraries(XMiLib Qt6::Gui)
 target_link_libraries(XMiLib Qt6::Widgets)

@@ -42,6 +42,8 @@ StringListEditorDialog::StringListEditorDialog(QStringList const& stringList, QW
 //**********************************************************************************************************************
 StringListEditorDialog::~StringListEditorDialog()  // NOLINT(hicpp-use-equals-default)
 {
+   if (ui_)
+      delete ui_;
 }
 
 

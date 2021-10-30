@@ -53,7 +53,7 @@ private: // member function
    void updateGui(); ///< Update the GUI state
 
 private: // data members
-   std::unique_ptr<Ui::StringListEditorDialog> ui_ { nullptr }; ///< The GUI for the dialog
+   Ui::StringListEditorDialog* ui_ { nullptr }; ///< The GUI for the dialog. Note: MinGW will no accept a std::unique_ptr here.
    StringListEditorModel model_; ///< The model used by the list view
    QPushButton* lastActionButton_ { nullptr }; ///< The last action button, used to ensure proper tab order when adding custom buttons
 };
