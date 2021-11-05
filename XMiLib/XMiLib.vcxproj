@@ -235,9 +235,6 @@
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h;../../DebugLog/%(Filename)%(Extension)</ForceInclude>
     </QtMoc>
     <ClInclude Include="Exception.h" />
-    <ClInclude Include="GeneratedFiles\ui_DebugLogWindow.h" />
-    <ClInclude Include="GeneratedFiles\ui_StyleSheetEditor.h" />
-    <ClInclude Include="GeneratedFiles\ui_ThreadedOperationDialog.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <QtMoc Include="StyleSheetEditor\StyleSheetEditor.h">
