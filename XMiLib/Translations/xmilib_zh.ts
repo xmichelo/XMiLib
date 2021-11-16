@@ -110,12 +110,12 @@
 <context>
     <name>xmilib::DebugLog</name>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="225"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="223"/>
         <source>Date/Time</source>
         <translation>日期/時間</translation>
     </message>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="226"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="224"/>
         <source>Message</source>
         <translation>訊息</translation>
     </message>
@@ -123,16 +123,16 @@
 <context>
     <name>xmilib::StringListEditorDialog</name>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="104"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="128"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="158"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="106"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="130"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="160"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="104"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="128"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="158"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="106"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="130"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="160"/>
         <source>Internal error: %1</source>
         <translation>內部錯誤:%1</translation>
     </message>
