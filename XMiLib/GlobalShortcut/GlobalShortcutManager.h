@@ -35,8 +35,9 @@ public: // member functions
 	GlobalShortcutManager& operator=(GlobalShortcutManager const&) = delete; ///< Disabled assignment operator
 	GlobalShortcutManager& operator=(GlobalShortcutManager&&) = delete; ///< Disabled move assignment operator
    GlobalShortcut const* create(quint32 nativeModifiers, quint32 nativeVirtualKey, QString* outErrorMsg = nullptr); ///< Create a global shortcut
-   bool remove(GlobalShortcut const* shortcut); ///< Remove (a.ka. delete) a global shortcut given its id
+   bool remove(GlobalShortcut const* shortcut); ///< Remove (a.ka. delete) a global shortcut (and disable it).
    bool nativeEventFilter(QByteArray const&, void* message, qintptr*) override; ///< The Native event filter receiving thread event
+   void reset(); ///< Disable and remove all shortcuts
 
 private: // member functions
    GlobalShortcutManager(); ///< Default constructor

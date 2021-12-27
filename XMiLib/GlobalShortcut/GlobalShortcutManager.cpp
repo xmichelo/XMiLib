@@ -103,6 +103,15 @@ bool GlobalShortcutManager::nativeEventFilter(QByteArray const&, void* message, 
 }
 
 
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+void GlobalShortcutManager::reset()
+{
+   shortcuts_.clear();
+}
+
+
 #endif // #ifdef Q_OS_WIN
 
 
