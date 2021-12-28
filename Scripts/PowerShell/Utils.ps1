@@ -66,9 +66,10 @@ function copyQtDlls([String]$dstPath)
    $qtDir = checkQtInstallation
    $qtDlls = "Qt6Core.dll", "Qt6Gui.dll", "Qt6Network.dll", "Qt6Widgets.dll"
    foreach ($dll in $qtDlls) { Copy-Item -Path (absolutePath $qtDir  "bin\$dll") -Destination $dstPath }
-   $folders = "imageformats", "platforms", "styles"
+   $folders = "imageformats", "platforms", "styles", "tls"
    foreach ($folder in $folders) { New-Item -ItemType Directory -Force -Path (absolutePath $dstPath $folder) | Out-Null }
-   $qtPlugins = "imageformats\qico.dll", "platforms\qwindows.dll", "styles\qwindowsvistastyle.dll"
+   $qtPlugins = "imageformats\qico.dll", "platforms\qwindows.dll", "styles\qwindowsvistastyle.dll", 
+      "tls\qcertonlybackend.dll", "tls\qopensslbackend.dll", "tls\qschannelbackend.dll"
    foreach ($dll in $qtPlugins) { Copy-Item -Path (absolutePath $qtDir "plugins\$dll") -Destination (absolutePath $dstPath $dll) }    
 }
 
