@@ -45,10 +45,6 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>An error occured while writing data to&apos;%1&apos;.</source>
-        <translation type="vanished">Une erreur est survenue lors de l&apos;écriture dans le fichier &apos;%1&apos;.</translation>
-    </message>
-    <message>
         <location filename="../File/CsvIO.cpp" line="208"/>
         <source>An error occurred while writing data to&apos;%1&apos;.</source>
         <translation>Une erreur est survenue lors de l&apos;écriture dans le fichier &apos;%1&apos;.</translation>
