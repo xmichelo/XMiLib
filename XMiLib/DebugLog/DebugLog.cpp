@@ -13,7 +13,6 @@
 
 
 namespace {
-QBrush const kWhiteBrush(QColor(255, 255, 255, 255)); ///< A white brush
 QBrush const kRedBrush(QColor(255, 24, 0, 255)); ///< A red brush
 QBrush const kOrangeBrush(QColor(255, 150, 0, 255)); ///< An orange brush
 QBrush const kGreenBrush(QColor(115, 200, 64, 255)); ///< A green brush

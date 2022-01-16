@@ -110,12 +110,12 @@
 <context>
     <name>xmilib::DebugLog</name>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="223"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="222"/>
         <source>Date/Time</source>
         <translation>Data/Hora</translation>
     </message>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="224"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="223"/>
         <source>Message</source>
         <translation>Mensagem</translation>
     </message>
@@ -123,16 +123,16 @@
 <context>
     <name>xmilib::StringListEditorDialog</name>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="106"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="130"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="160"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="105"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="129"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="159"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="106"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="130"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="160"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="105"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="129"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="159"/>
         <source>Internal error: %1</source>
         <translation>Erro interno: %1</translation>
     </message>
