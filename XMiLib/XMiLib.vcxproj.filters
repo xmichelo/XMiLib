@@ -27,6 +27,9 @@
     <Filter Include="Scoped">
       <UniqueIdentifier>{2f22fc4b-2163-4bef-af3d-03759c0f3dda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="VersionNumber">
+      <UniqueIdentifier>{c3162f21-185b-40fc-9c3c-94451060679b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -57,6 +60,9 @@
     </ClInclude>
     <ClInclude Include="Scoped\ScopedClipboardAccess.h">
       <Filter>Scoped</Filter>
+    </ClInclude>
+    <ClInclude Include="VersionNumber\VersionNumber.h">
+      <Filter>VersionNumber</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="Scoped\ScopedClipboardAccess.cpp">
       <Filter>Scoped</Filter>
+    </ClCompile>
+    <ClCompile Include="VersionNumber\VersionNumber.cpp">
+      <Filter>VersionNumber</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

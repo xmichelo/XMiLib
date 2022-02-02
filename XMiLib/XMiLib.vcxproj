@@ -194,6 +194,7 @@
     <ClCompile Include="SystemUtils.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperation.cpp" />
     <ClCompile Include="ThreadedOperation\ThreadedOperationDialog.cpp" />
+    <ClCompile Include="VersionNumber\VersionNumber.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="String\StringListEditorDialog.h">
@@ -206,6 +207,7 @@
     <ClInclude Include="Scoped\ScopedGlobalMemoryLock.h" />
     <ClInclude Include="String\StringListEditorModel.h" />
     <ClInclude Include="String\StringUtils.h" />
+    <ClInclude Include="VersionNumber\VersionNumber.h" />
     <ClInclude Include="XMiLibConstants.h" />
     <QtMoc Include="GlobalShortcut\GlobalShortcut.h">
       <ForceInclude Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h;../../GlobalShortcut/%(Filename)%(Extension)</ForceInclude>
