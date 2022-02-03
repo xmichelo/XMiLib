@@ -18,7 +18,7 @@ namespace xmilib {
 /// \param[in] major The major version number.
 /// \param[in] minor The minor version number.
 //**********************************************************************************************************************
-VersionNumber::VersionNumber(qint32 major, qint32 minor)
+VersionNumber::VersionNumber(quint32 major, quint32 minor)
    : major_(major)
    , minor_(minor)
 {
@@ -38,9 +38,9 @@ VersionNumber::VersionNumber(VersionNumber const& other)
 //**********************************************************************************************************************
 /// \param[in] other the version number to copy.
 //**********************************************************************************************************************
-VersionNumber::VersionNumber(VersionNumber&& other)
+VersionNumber::VersionNumber(VersionNumber&& other) noexcept
    : major_(other.major_)
-   , minor_(other.minor_)
+     , minor_(other.minor_)
 {
 }
 
@@ -61,7 +61,7 @@ VersionNumber& VersionNumber::operator=(VersionNumber const& other)
 /// \param[in] other The version number to copy.
 /// \return A reference to the copy.
 //**********************************************************************************************************************
-VersionNumber& VersionNumber::operator=(VersionNumber&& other)
+VersionNumber& VersionNumber::operator=(VersionNumber&& other) noexcept
 {
    major_ = other.major_;
    minor_ = other.minor_;
@@ -90,10 +90,50 @@ bool VersionNumber::operator!=(VersionNumber const& other) const
 
 
 //**********************************************************************************************************************
+/// \param[in] other The other version number to compare to.
+/// \return true if and only if other is strictly inferior to this version number.
+//**********************************************************************************************************************
+bool VersionNumber::operator<(VersionNumber const& other) const
+{
+   return (major_ < other.major_) ? true : ((major_ > other.major_) ? false : (minor_ < other.minor_));
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] other The other version number to compare to.
+/// \return true if and only if other is inferior or equal to this version number.
+//**********************************************************************************************************************
+bool VersionNumber::operator<=(VersionNumber const& other) const
+{
+   return (major_ < other.major_) ? true : ((major_ > other.major_) ? false : (minor_ <= other.minor_));
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] other The other version number to compare to.
+/// \return true if and only if other is strictly superior to this version number.
+//**********************************************************************************************************************
+bool VersionNumber::operator>(VersionNumber const& other) const
+{
+   return (major_ < other.major_) ? false : ((major_ > other.major_) ? true : (minor_ > other.minor_));
+}
+
+
+//**********************************************************************************************************************
+/// \param[in] other The other version number to compare to.
+/// \return true if and only if other is superior or equal to this version number.
+//**********************************************************************************************************************
+bool VersionNumber::operator>=(VersionNumber const& other) const
+{
+   return (major_ < other.major_) ? false : ((major_ > other.major_) ? true : (minor_ >= other.minor_));
+}
+
+
+//**********************************************************************************************************************
 /// \param[in] major The major version number.
 /// \param[in] minor The minor version number.
 //**********************************************************************************************************************
-void VersionNumber::setValue(qint32 major, qint32 minor)
+void VersionNumber::setValue(qint32 major, quint32 minor)
 {
    major_ = major;
    minor_ = minor;
@@ -103,7 +143,7 @@ void VersionNumber::setValue(qint32 major, qint32 minor)
 //**********************************************************************************************************************
 /// \param[in] major The major version number.
 //**********************************************************************************************************************
-void VersionNumber::setMajor(qint32 major)
+void VersionNumber::setMajor(quint32 major)
 {
    major_ = major;
 }
@@ -112,7 +152,7 @@ void VersionNumber::setMajor(qint32 major)
 //**********************************************************************************************************************
 /// \return The major version number.
 //**********************************************************************************************************************
-qint32 VersionNumber::major() const
+quint32 VersionNumber::major() const
 {
    return major_;
 }
@@ -130,7 +170,7 @@ void VersionNumber::setMinor(qint32 minor)
 //**********************************************************************************************************************
 /// \return The minor version number.
 //**********************************************************************************************************************
-qint32 VersionNumber::minor() const
+quint32 VersionNumber::minor() const
 {
    return minor_;
 }
