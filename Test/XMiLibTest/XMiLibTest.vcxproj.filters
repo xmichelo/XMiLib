@@ -25,6 +25,7 @@
     <ClCompile Include="CsvTest.cpp" />
     <ClCompile Include="ScopedGlobalMemoryLockTest.cpp" />
     <ClCompile Include="ScopedClipboardAccess.cpp" />
+    <ClCompile Include="VersionNumberTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

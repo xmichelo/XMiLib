@@ -56,6 +56,8 @@ private slots:
    static void threadedOperationFailure(); ///< Test failure cases for the ThreadedOperation class
    static void threadedOperationCancel(); ///< Test for canceling of threaded operation
    static void csvIo(); ///< Test the CSV I/O routines.
+   static void versionNumberTest(); ///< Test the version number class.
+
 #ifdef Q_OS_WINDOWS
    static void globalShortcut(); ///< Test for the global shortcut classes
    static void scopedGlobalMemoryLock(); ///< Test the ScopedGlobalMemoryLock class.
