@@ -20,9 +20,15 @@ using namespace xmilib;
 //**********************************************************************************************************************
 void XMiLibTest::versionNumberTest()
 {
+   VersionNumber const invalidVersion;
+   QVERIFY(invalidVersion.major() == -1);
+   QVERIFY(invalidVersion.minor() == -1);
+   QVERIFY(!invalidVersion.isValid());
+
    VersionNumber v(1, 2);
    QVERIFY(v.major() == 1);
    QVERIFY(v.minor() == 2);
+   QVERIFY(v.isValid());
 
    v.setMajor(3);
    v.setMinor(4);
@@ -77,5 +83,17 @@ void XMiLibTest::versionNumberTest()
    QCOMPARE(VersionNumber(1, 0).toString(), "1.0");
    QCOMPARE(VersionNumber(1, 1).toString(), "1.1");
    QCOMPARE(VersionNumber(2, 4).toString(), "2.4");
+
+   bool ok = false;
+   v = VersionNumber::fromString("1.0", &ok);
+   QVERIFY(ok);
+   QCOMPARE(v, VersionNumber(1, 0));
+   v = VersionNumber::fromString("3.2", &ok);
+   QVERIFY(ok);
+   QCOMPARE(v, VersionNumber(3, 2));
+   v = VersionNumber::fromString("a1.0", &ok);
+   QVERIFY(!ok);
+   v = VersionNumber::fromString("2", &ok);
+   QVERIFY(!ok);
 }
 

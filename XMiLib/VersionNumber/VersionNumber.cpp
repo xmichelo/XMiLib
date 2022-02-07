@@ -11,14 +11,53 @@
 #include "VersionNumber.h"
 
 
+namespace {
+
+
+//**********************************************************************************************************************
+/// \param[in] str The string to parse.
+/// \param[out] outOk On exit this is true if and only if parsing succeeded.
+/// \return if outOk is true on exit, the function return the parsed version number.
+//**********************************************************************************************************************
+xmilib::VersionNumber versionNumberFromString(QString const& str, bool& outOk)
+{
+   outOk = false;
+   QRegularExpressionMatch const match = QRegularExpression(R"(^(\d+)\.(\d+)$)").match(str);
+   if (!match.hasMatch())
+   {
+      outOk = false;
+      return xmilib::VersionNumber();
+   }
+
+   xmilib::VersionNumber result;
+   result.setMajor(match.captured(1).toInt(&outOk));
+   if (outOk)
+      result.setMinor(match.captured(2).toInt(&outOk));
+   return result;
+}
+
+
+}
+
+
 namespace xmilib {
+
+
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+VersionNumber::VersionNumber()
+   : major_(-1)
+   , minor_(-1)
+{
+}
 
 
 //**********************************************************************************************************************
 /// \param[in] major The major version number.
 /// \param[in] minor The minor version number.
 //**********************************************************************************************************************
-VersionNumber::VersionNumber(quint32 major, quint32 minor)
+VersionNumber::VersionNumber(qint32 major, qint32 minor)
    : major_(major)
    , minor_(minor)
 {
@@ -66,6 +105,15 @@ VersionNumber& VersionNumber::operator=(VersionNumber&& other) noexcept
    major_ = other.major_;
    minor_ = other.minor_;
    return *this;
+}
+
+
+//**********************************************************************************************************************
+/// \return true if and only if the version number is valid
+//**********************************************************************************************************************
+bool VersionNumber::isValid() const
+{
+   return (major_ >= 0) && (minor_ >= 0);
 }
 
 
@@ -133,7 +181,7 @@ bool VersionNumber::operator>=(VersionNumber const& other) const
 /// \param[in] major The major version number.
 /// \param[in] minor The minor version number.
 //**********************************************************************************************************************
-void VersionNumber::setValue(qint32 major, quint32 minor)
+void VersionNumber::setValue(qint32 major, qint32 minor)
 {
    major_ = major;
    minor_ = minor;
@@ -143,7 +191,7 @@ void VersionNumber::setValue(qint32 major, quint32 minor)
 //**********************************************************************************************************************
 /// \param[in] major The major version number.
 //**********************************************************************************************************************
-void VersionNumber::setMajor(quint32 major)
+void VersionNumber::setMajor(qint32 major)
 {
    major_ = major;
 }
@@ -152,7 +200,7 @@ void VersionNumber::setMajor(quint32 major)
 //**********************************************************************************************************************
 /// \return The major version number.
 //**********************************************************************************************************************
-quint32 VersionNumber::major() const
+qint32 VersionNumber::major() const
 {
    return major_;
 }
@@ -170,7 +218,7 @@ void VersionNumber::setMinor(qint32 minor)
 //**********************************************************************************************************************
 /// \return The minor version number.
 //**********************************************************************************************************************
-quint32 VersionNumber::minor() const
+qint32 VersionNumber::minor() const
 {
    return minor_;
 }
@@ -182,6 +230,18 @@ quint32 VersionNumber::minor() const
 QString VersionNumber::toString() const
 {
    return QString("%1.%2").arg(major_).arg(minor_);
+}
+
+//**********************************************************************************************************************
+//
+//**********************************************************************************************************************
+VersionNumber VersionNumber::fromString(QString const& str, bool* outOk)
+{
+   bool ok = false;
+   VersionNumber const result = versionNumberFromString(str, ok);
+   if (outOk)
+      *outOk = ok;
+   return result;
 }
 
 
