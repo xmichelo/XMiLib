@@ -40,7 +40,7 @@ public: // member functions
    void setMinor(qint32 minor); ///< Set the minor version number.
    qint32 minor() const; ///< Return the minor version number.
    QString toString() const; ///< Return a string for the version number.
-   static VersionNumber fromString(QString const& str, bool *outOk); ///< Create a version number from a string.
+   static VersionNumber fromString(QString const& str); ///< Create a version number from a string.
 
 private:
    qint32 major_; ///< The major version number.

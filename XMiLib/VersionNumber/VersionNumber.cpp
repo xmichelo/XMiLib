@@ -11,35 +11,6 @@
 #include "VersionNumber.h"
 
 
-namespace {
-
-
-//**********************************************************************************************************************
-/// \param[in] str The string to parse.
-/// \param[out] outOk On exit this is true if and only if parsing succeeded.
-/// \return if outOk is true on exit, the function return the parsed version number.
-//**********************************************************************************************************************
-xmilib::VersionNumber versionNumberFromString(QString const& str, bool& outOk)
-{
-   outOk = false;
-   QRegularExpressionMatch const match = QRegularExpression(R"(^(\d+)\.(\d+)$)").match(str);
-   if (!match.hasMatch())
-   {
-      outOk = false;
-      return xmilib::VersionNumber();
-   }
-
-   xmilib::VersionNumber result;
-   result.setMajor(match.captured(1).toInt(&outOk));
-   if (outOk)
-      result.setMinor(match.captured(2).toInt(&outOk));
-   return result;
-}
-
-
-}
-
-
 namespace xmilib {
 
 
@@ -225,23 +196,30 @@ qint32 VersionNumber::minor() const
 
 
 //**********************************************************************************************************************
-/// \return The version number string.
+/// \return The version number string. if the version number is invalid, the function return an null string.
 //**********************************************************************************************************************
 QString VersionNumber::toString() const
 {
-   return QString("%1.%2").arg(major_).arg(minor_);
+   return this->isValid() ? QString("%1.%2").arg(major_).arg(minor_) : QString();
 }
 
+
 //**********************************************************************************************************************
-//
+/// \param[in] str The string to parse.
+/// \return the parsed version number. If parsing failed the returned version number is invalid.
 //**********************************************************************************************************************
-VersionNumber VersionNumber::fromString(QString const& str, bool* outOk)
+VersionNumber VersionNumber::fromString(QString const& str)
 {
+   QRegularExpressionMatch const match = QRegularExpression(R"(^(\d+)\.(\d+)$)").match(str);
+   if (!match.hasMatch())
+      return VersionNumber();
+
+   xmilib::VersionNumber result;
    bool ok = false;
-   VersionNumber const result = versionNumberFromString(str, ok);
-   if (outOk)
-      *outOk = ok;
-   return result;
+   result.setMajor(match.captured(1).toInt(&ok));
+   if (ok)
+      result.setMinor(match.captured(2).toInt(&ok));
+   return ok ? result : VersionNumber();
 }
 
 
