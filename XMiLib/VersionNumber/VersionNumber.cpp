@@ -94,6 +94,8 @@ bool VersionNumber::isValid() const
 //**********************************************************************************************************************
 bool VersionNumber::operator==(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ == other.major_) && (minor_ == other.minor_);
 }
 
@@ -104,6 +106,8 @@ bool VersionNumber::operator==(VersionNumber const& other) const
 //**********************************************************************************************************************
 bool VersionNumber::operator!=(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ != other.major_) || (minor_ != other.minor_);
 }
 
@@ -114,6 +118,8 @@ bool VersionNumber::operator!=(VersionNumber const& other) const
 //**********************************************************************************************************************
 bool VersionNumber::operator<(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ < other.major_) ? true : ((major_ > other.major_) ? false : (minor_ < other.minor_));
 }
 
@@ -124,6 +130,8 @@ bool VersionNumber::operator<(VersionNumber const& other) const
 //**********************************************************************************************************************
 bool VersionNumber::operator<=(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ < other.major_) ? true : ((major_ > other.major_) ? false : (minor_ <= other.minor_));
 }
 
@@ -134,6 +142,8 @@ bool VersionNumber::operator<=(VersionNumber const& other) const
 //**********************************************************************************************************************
 bool VersionNumber::operator>(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ < other.major_) ? false : ((major_ > other.major_) ? true : (minor_ > other.minor_));
 }
 
@@ -144,6 +154,8 @@ bool VersionNumber::operator>(VersionNumber const& other) const
 //**********************************************************************************************************************
 bool VersionNumber::operator>=(VersionNumber const& other) const
 {
+   if ((!this->isValid()) || (!other.isValid()))
+      return false;
    return (major_ < other.major_) ? false : ((major_ > other.major_) ? true : (minor_ >= other.minor_));
 }
 

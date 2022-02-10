@@ -36,7 +36,6 @@ void XMiLibTest::versionNumberTest()
    QVERIFY(v.minor() == 4);
 
    QCOMPARE(VersionNumber(v), v);
-   QCOMPARE(VersionNumber(v), v);
    VersionNumber w(0, 1);
    w = v;
    QCOMPARE(v, w);
@@ -50,40 +49,53 @@ void XMiLibTest::versionNumberTest()
    QCOMPARE(v == VersionNumber(3,3), false);
    QCOMPARE(v == VersionNumber(2,4), false);
    QCOMPARE(v == VersionNumber(2,2), false);
+   QCOMPARE(invalidVersion == v, false);
+   QCOMPARE(v == invalidVersion, false);
 
    QCOMPARE(v != VersionNumber(3,2), true);
    QCOMPARE(v != VersionNumber(2,4), true);
    QCOMPARE(v != VersionNumber(2,2), true);
    QCOMPARE(v != VersionNumber(3,4), false);
+   QCOMPARE(invalidVersion != v, false);
+   QCOMPARE(v != invalidVersion, false);
 
    QCOMPARE(v < VersionNumber(3,5), true);
    QCOMPARE(v < VersionNumber(4,0), true);
    QCOMPARE(v < VersionNumber(3,4), false);
    QCOMPARE(v < VersionNumber(2,5), false);
    QCOMPARE(v < VersionNumber(1,0), false);
+   QCOMPARE(invalidVersion < v, false);
+   QCOMPARE(v < invalidVersion, false);
 
    QCOMPARE(v <= VersionNumber(3,5), true);
    QCOMPARE(v <= VersionNumber(4,0), true);
    QCOMPARE(v <= VersionNumber(3,4), true);
    QCOMPARE(v <= VersionNumber(2,5), false);
    QCOMPARE(v <= VersionNumber(1,0), false);
+   QCOMPARE(invalidVersion <= v, false);
+   QCOMPARE(v <= invalidVersion, false);
 
    QCOMPARE(v > VersionNumber(3,5), false);
+
    QCOMPARE(v > VersionNumber(4,0), false);
    QCOMPARE(v > VersionNumber(3,4), false);
    QCOMPARE(v > VersionNumber(2,5), true);
    QCOMPARE(v > VersionNumber(1,0), true);
+   QCOMPARE(invalidVersion > v, false);
+   QCOMPARE(v > invalidVersion, false);
 
    QCOMPARE(v >= VersionNumber(3,5), false);
    QCOMPARE(v >= VersionNumber(4,0), false);
    QCOMPARE(v >= VersionNumber(3,4), true);
    QCOMPARE(v >= VersionNumber(2,5), true);
    QCOMPARE(v >= VersionNumber(1,0), true);
+   QCOMPARE(invalidVersion >= v, false);
+   QCOMPARE(v >= invalidVersion, false);
 
    QCOMPARE(VersionNumber(1, 0).toString(), "1.0");
    QCOMPARE(VersionNumber(1, 1).toString(), "1.1");
    QCOMPARE(VersionNumber(2, 4).toString(), "2.4");
-   QVERIFY(VersionNumber().toString().isEmpty());
+   QVERIFY(invalidVersion.toString().isEmpty());
 
    QVERIFY(VersionNumber::fromString("1.0").isValid());
    QVERIFY(VersionNumber::fromString("3.2").isValid());
