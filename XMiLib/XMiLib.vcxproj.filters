@@ -197,5 +197,8 @@
     <QtTranslation Include="Translations\xmilib_zh_CN.ts">
       <Filter>Translation Files</Filter>
     </QtTranslation>
+    <QtTranslation Include="Translations\xmilib_hu_HU.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
   </ItemGroup>
 </Project>

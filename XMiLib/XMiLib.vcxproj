@@ -271,6 +271,7 @@
     <None Include="Translations\xmilib_ru_RU.ts" />
   </ItemGroup>
   <ItemGroup>
+    <QtTranslation Include="Translations\xmilib_hu_HU.ts" />
     <QtTranslation Include="Translations\xmilib_zh_TW.ts" />
     <QtTranslation Include="Translations\xmilib_zh_CN.ts" />
   </ItemGroup>
