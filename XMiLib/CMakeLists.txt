@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 
-project(XMiLib)
+project(XMiLib VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -66,6 +66,8 @@ add_library(XMiLib STATIC
    ThreadedOperation/ThreadedOperationDialog.cpp
    ThreadedOperation/ThreadedOperationDialog.h
    ThreadedOperation/ThreadedOperationDialog.ui
+   VersionNumber/VersionNumber.cpp
+   VersionNumber/VersionNumber.h
    Exception.cpp
    Exception.h
    RandomNumberGenerator.cpp
@@ -78,7 +80,7 @@ add_library(XMiLib STATIC
    SystemUtils.h
    ${WINDOWS_ONLY_SOURCE_FILES})
 
-target_precompile_headers(XMiLib PUBLIC stdafx.h)
+#target_precompile_headers(XMiLib PUBLIC stdafx.h) Buggy the moment, so it is disabled.
 target_link_libraries(XMiLib Qt6::Core)
 target_link_libraries(XMiLib Qt6::Gui)
 target_link_libraries(XMiLib Qt6::Widgets)
