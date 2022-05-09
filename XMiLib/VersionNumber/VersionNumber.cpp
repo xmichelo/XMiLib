@@ -226,7 +226,7 @@ VersionNumber VersionNumber::fromString(QString const& str)
    if (!match.hasMatch())
       return VersionNumber();
 
-   xmilib::VersionNumber result;
+   VersionNumber result;
    bool ok = false;
    result.setMajor(match.captured(1).toInt(&ok));
    if (ok)
