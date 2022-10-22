@@ -46,10 +46,10 @@ function compileVisualStudioSolution([String]$solutionPath, [String]$configurati
 #***********************************************************************************************************************
 function checkQtInstallation()
 {
-   $qtDir = $env:QT6DIR
+   $qtDir = qmake.exe -query QT_INSTALL_PREFIX 
    if ([String]::IsNullOrEmpty($qtDir))
    {
-       Write-Error "The QTDIR environment variable is not define (should be something like C:\Qt\5.10\msvc217)"
+       Write-Error "Qt location could not be determined. Please make sure qmake from your Qt installation in the your PATH environment variable"
    }
    if(!(Test-Path $qtDir -PathType Container))
    {
