@@ -20,12 +20,12 @@ namespace xmilib {
 class VersionNumber
 {
 public: // member functions
-   VersionNumber(); ///< Default constructor.
+   VersionNumber() = default; ///< Default constructor.
    VersionNumber(qint32 major, qint32 minor); ///< Constructor.
-   VersionNumber(VersionNumber const& other); ///< Copy-constructor.
+   VersionNumber(VersionNumber const& other) = default; ///< Copy-constructor.
    VersionNumber(VersionNumber&& other) noexcept; ///< Assignment copy-constructor.
    ~VersionNumber() = default; ///< Destructor.
-   VersionNumber& operator=(VersionNumber const& other); ///< Assignment operator.
+   VersionNumber& operator=(VersionNumber const& other) = default; ///< Assignment operator.
    VersionNumber& operator=(VersionNumber&& other) noexcept; ///< Move assignment operator.
    bool isValid() const; ///< Check if a version number is valid.
    bool operator==(VersionNumber const& other) const; ///< Equality test.
@@ -43,8 +43,8 @@ public: // member functions
    static VersionNumber fromString(QString const& str); ///< Create a version number from a string.
 
 private:
-   qint32 major_; ///< The major version number.
-   qint32 minor_; ///< The minor version number.
+   qint32 major_ { -1 }; ///< The major version number.
+   qint32 minor_ { -1 }; ///< The minor version number.
 };
 
 
