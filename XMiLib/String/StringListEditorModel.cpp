@@ -14,34 +14,31 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] parent The parent object of the model
-//**********************************************************************************************************************
-StringListEditorModel::StringListEditorModel(QObject* parent)
-   : QStringListModel(parent)
-{
+//****************************************************************************************************************************************************
+StringListEditorModel::StringListEditorModel(QObject *parent)
+    : QStringListModel(parent) {
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] stringList The string list
 /// \param[in] parent The parent object of the model
-//**********************************************************************************************************************
-StringListEditorModel::StringListEditorModel(QStringList const& stringList, QObject* parent)
-   : QStringListModel(stringList, parent)
-{
+//****************************************************************************************************************************************************
+StringListEditorModel::StringListEditorModel(QStringList const &stringList, QObject *parent)
+    : QStringListModel(stringList, parent) {
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] index The index of the item
 /// \return The flags for the item
-//**********************************************************************************************************************
-Qt::ItemFlags StringListEditorModel::flags(const QModelIndex& index) const
-{
-   // we only allow drop between items, not on item, i.e. when the index is invalid
-   Qt::ItemFlags const flags = QStringListModel::flags(index);
-   return index.isValid() ? flags & ~Qt::ItemIsDropEnabled : flags;
+//****************************************************************************************************************************************************
+Qt::ItemFlags StringListEditorModel::flags(const QModelIndex &index) const {
+    // we only allow drop between items, not on item, i.e. when the index is invalid
+    Qt::ItemFlags const flags = QStringListModel::flags(index);
+    return index.isValid() ? flags & ~Qt::ItemIsDropEnabled : flags;
 }
 
 

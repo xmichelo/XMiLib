@@ -18,33 +18,32 @@ namespace Ui { class StyleSheetEditor; }
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \brief Class for the Qt style sheet editor window
-//**********************************************************************************************************************
-class StyleSheetEditor: public QWidget
-{
-   Q_OBJECT
+//****************************************************************************************************************************************************
+class StyleSheetEditor : public QWidget {
+Q_OBJECT
 public: // member function
-   explicit StyleSheetEditor(QWidget* parent = nullptr); ///< Default constructor
-	StyleSheetEditor(StyleSheetEditor const&) = delete; ///< Disabled copy constructor
-	StyleSheetEditor(StyleSheetEditor&&) = delete; ///< Disabled move copy constructor
-	~StyleSheetEditor() override; ///< Default destructor
-	StyleSheetEditor& operator=(StyleSheetEditor const&) = delete; ///< Disabled assignment operator
-	StyleSheetEditor& operator=(StyleSheetEditor&&) = delete; ///< Disabled move assignment operator
-   bool loadStyleSheet() const; ///< Load a style sheet from file
-   bool saveStyleSheet() const; ///< Save the style sheet
-   void applyStyleSheet() const; ///< Apply the style sheet from the editor
-   void setOriginalStyleSheet(QString const& originalStyleSheet); ///< Set the original stylesheet
+    explicit StyleSheetEditor(QWidget *parent = nullptr); ///< Default constructor
+    StyleSheetEditor(StyleSheetEditor const &) = delete; ///< Disabled copy constructor
+    StyleSheetEditor(StyleSheetEditor &&) = delete; ///< Disabled move copy constructor
+    ~StyleSheetEditor() override; ///< Default destructor
+    StyleSheetEditor &operator=(StyleSheetEditor const &) = delete; ///< Disabled assignment operator
+    StyleSheetEditor &operator=(StyleSheetEditor &&) = delete; ///< Disabled move assignment operator
+    bool loadStyleSheet() const; ///< Load a style sheet from file
+    bool saveStyleSheet() const; ///< Save the style sheet
+    void applyStyleSheet() const; ///< Apply the style sheet from the editor
+    void setOriginalStyleSheet(QString const &originalStyleSheet); ///< Set the original stylesheet
 
 private slots:
-   void onActionApply() const; ///< Slot for the 'Apply' action
-   void onActionOk(); ///< Slot for the 'Close' action
-   void onActionCancel(); ///< Slot for the 'Cancel' action
+    void onActionApply() const; ///< Slot for the 'Apply' action
+    void onActionOk(); ///< Slot for the 'Close' action
+    void onActionCancel(); ///< Slot for the 'Cancel' action
 
 
 private: // data members
-   Ui::StyleSheetEditor* ui_; ///< The GUI for the window
-   QString originalStylesheet_; ///< The original style sheet
+    Ui::StyleSheetEditor *ui_; ///< The GUI for the window
+    QString originalStylesheet_; ///< The original style sheet
 };
 
 

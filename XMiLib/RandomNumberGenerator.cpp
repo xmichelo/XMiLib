@@ -15,7 +15,7 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// This variant of the constructor does not require a seed to be provided as it uses std::random_device to get
 /// a random seed. std::random_device() being notably slow it's only used to provide a seed to the pseudo random
 /// number generator
@@ -26,39 +26,38 @@ namespace xmilib {
 ///
 /// \param[in] min The minimum value the generator will return
 /// \param[in] max The maximum value the generator will return
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 RandomNumberGenerator::RandomNumberGenerator(qint32 min, qint32 max)
-   : generator_(std::random_device()())
+    : generator_(std::random_device()())
 // we defer the initialization of the distribution with the right values in order to be able to raise our own exception
 {
-   if (min > max)
-      throw Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));
-   distrib_ = std::uniform_int_distribution<int>(min, max);
+    if (min > max)
+        throw Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));
+    distrib_ = std::uniform_int_distribution<int>(min, max);
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] seed The seed to use for the pseudo random number generation
 /// \param[in] min The minimum value the generator will return
 /// \param[in] max The maximum value the generator will return
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 RandomNumberGenerator::RandomNumberGenerator(quint32 seed, qint32 min, qint32 max)
-   : generator_(seed)
+    : generator_(seed)
 // we defer the initialization of the distribution with the right values in order to be able to raise our own exception
 {
-   if (min > max)
-      throw Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));
-   distrib_ = std::uniform_int_distribution<int>(min, max);
+    if (min > max)
+        throw Exception(QString("%1(): invalid min and max value. min must be <= max.").arg(__FUNCTION__));
+    distrib_ = std::uniform_int_distribution<int>(min, max);
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 // 
-//**********************************************************************************************************************
-qint32 RandomNumberGenerator::get()
-{
-   QMutexLocker locker(&mutex_);
-   return distrib_(generator_);
+//****************************************************************************************************************************************************
+qint32 RandomNumberGenerator::get() {
+    QMutexLocker locker(&mutex_);
+    return distrib_(generator_);
 }
 
 

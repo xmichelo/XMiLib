@@ -14,26 +14,25 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \brief Filter proxy model for DebugLog
-//**********************************************************************************************************************
-class DebugLogFilterProxyModel: public QSortFilterProxyModel
-{
+//****************************************************************************************************************************************************
+class DebugLogFilterProxyModel : public QSortFilterProxyModel {
 Q_OBJECT
 public: // member functions
-   explicit DebugLogFilterProxyModel(qint32 entryTypes, QObject* parent = nullptr); ///< Default constructor
-   DebugLogFilterProxyModel(DebugLogFilterProxyModel const&) = delete; ///< Disabled copy constructor
-   DebugLogFilterProxyModel(DebugLogFilterProxyModel&&) = delete; ///< Disabled move copy constructor
-   ~DebugLogFilterProxyModel() override = default; ///< Default destructor
-   DebugLogFilterProxyModel& operator=(DebugLogFilterProxyModel const&) = delete; ///< Disabled assignment operator
-   DebugLogFilterProxyModel& operator=(DebugLogFilterProxyModel&&) = delete; ///< Disabled move assignment operator
-   void setEntryTypes(quint32 entryTypes); ///< Set the filter by specifying the allowed entry types
+    explicit DebugLogFilterProxyModel(qint32 entryTypes, QObject *parent = nullptr); ///< Default constructor
+    DebugLogFilterProxyModel(DebugLogFilterProxyModel const &) = delete; ///< Disabled copy constructor
+    DebugLogFilterProxyModel(DebugLogFilterProxyModel &&) = delete; ///< Disabled move copy constructor
+    ~DebugLogFilterProxyModel() override = default; ///< Default destructor
+    DebugLogFilterProxyModel &operator=(DebugLogFilterProxyModel const &) = delete; ///< Disabled assignment operator
+    DebugLogFilterProxyModel &operator=(DebugLogFilterProxyModel &&) = delete; ///< Disabled move assignment operator
+    void setEntryTypes(quint32 entryTypes); ///< Set the filter by specifying the allowed entry types
 
 protected: // member functions
-   bool filterAcceptsRow(int sourceRow, const QModelIndex&) const override; ///< Check whether a row should be displayed
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override; ///< Check whether a row should be displayed
 
 private: // data members
-   quint32 entryTypes_; ///< The allowed log entry types as a bitfield
+    quint32 entryTypes_; ///< The allowed log entry types as a bitfield
 };
 
 

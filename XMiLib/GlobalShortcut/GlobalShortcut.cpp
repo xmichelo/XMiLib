@@ -18,40 +18,37 @@ namespace xmilib {
 #ifdef Q_OS_WIN
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// This function will throw a xmilib::Exception if the shortcut cannot be registered
 ///
 /// \param[in] nativeModifiers A bitfield containing the modifiers for the short (available values are MOD_SHIFT, 
 /// MOD_ALT, MOD_CONTROL and MOD_WIN)
 /// \param[in] nativeVirtualKey The virtual key for the shortcut
-//**********************************************************************************************************************
-GlobalShortcut::GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey)
-   : QObject(nullptr)
-   , id_(GlobalAddAtom(QUuid::createUuid().toString().toStdWString().c_str()))
-{
-   if (!id_)
-      throw Exception("Could not obtain an ID for the global shortcut to trigger combos.");
-   if (!RegisterHotKey(nullptr, static_cast<qint32>(id_), nativeModifiers | MOD_NOREPEAT, nativeVirtualKey))
-      throw Exception("Could not register global shortcut for combos.");
+//****************************************************************************************************************************************************
+GlobalShortcut::GlobalShortcut(quint32 nativeModifiers, quint32 nativeVirtualKey)
+    : QObject(nullptr)
+    , id_(GlobalAddAtom(QUuid::createUuid().toString().toStdWString().c_str())) {
+    if (!id_)
+        throw Exception("Could not obtain an ID for the global shortcut to trigger combos.");
+    if (!RegisterHotKey(nullptr, static_cast<qint32>(id_), nativeModifiers | MOD_NOREPEAT, nativeVirtualKey))
+        throw Exception("Could not register global shortcut for combos.");
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 // 
-//**********************************************************************************************************************
-void GlobalShortcut::trigger()
-{
-   emit triggered();
+//****************************************************************************************************************************************************
+void GlobalShortcut::trigger() {
+    emit triggered();
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 // 
-//**********************************************************************************************************************
-GlobalShortcut::~GlobalShortcut()
-{
-   UnregisterHotKey(nullptr, static_cast<qint32>(id_));
-   GlobalDeleteAtom(static_cast<ATOM>(id_));
+//****************************************************************************************************************************************************
+GlobalShortcut::~GlobalShortcut() {
+    UnregisterHotKey(nullptr, static_cast<qint32>(id_));
+    GlobalDeleteAtom(static_cast<ATOM>(id_));
 }
 
 

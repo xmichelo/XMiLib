@@ -14,20 +14,19 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \brief Abstract model for string list
-//**********************************************************************************************************************
-class StringListEditorModel: public QStringListModel
-{
+//****************************************************************************************************************************************************
+class StringListEditorModel : public QStringListModel {
 public: // member functions
-   explicit StringListEditorModel(QObject* parent = nullptr); ///< Default constructor
-   explicit StringListEditorModel(QStringList const& stringList, QObject* parent = nullptr); ///< Constructor with a string list
-   StringListEditorModel(StringListEditorModel const&) = delete; ///< Disabled copy-constructor
-   StringListEditorModel(StringListEditorModel&&) = delete; ///< Disabled assignment copy-constructor
-   ~StringListEditorModel() override = default; ///< Destructor
-   StringListEditorModel& operator=(StringListEditorModel const&) = delete; ///< Disabled assignment operator
-   StringListEditorModel& operator=(StringListEditorModel&&) = delete; ///< Disabled move assignment operator
-   Qt::ItemFlags flags(const QModelIndex& index) const override; ///< Return the flags for the item at the selected index
+    explicit StringListEditorModel(QObject *parent = nullptr); ///< Default constructor
+    explicit StringListEditorModel(QStringList const &stringList, QObject *parent = nullptr); ///< Constructor with a string list
+    StringListEditorModel(StringListEditorModel const &) = delete; ///< Disabled copy-constructor
+    StringListEditorModel(StringListEditorModel &&) = delete; ///< Disabled assignment copy-constructor
+    ~StringListEditorModel() override = default; ///< Destructor
+    StringListEditorModel &operator=(StringListEditorModel const &) = delete; ///< Disabled assignment operator
+    StringListEditorModel &operator=(StringListEditorModel &&) = delete; ///< Disabled move assignment operator
+    Qt::ItemFlags flags(const QModelIndex &index) const override; ///< Return the flags for the item at the selected index
 };
 
 

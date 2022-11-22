@@ -15,93 +15,92 @@
 using namespace xmilib;
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 //
-//**********************************************************************************************************************
-void XMiLibTest::versionNumberTest()
-{
-   VersionNumber const invalidVersion;
-   QVERIFY(invalidVersion.major() == -1);
-   QVERIFY(invalidVersion.minor() == -1);
-   QVERIFY(!invalidVersion.isValid());
+//****************************************************************************************************************************************************
+void XMiLibTest::versionNumberTest() {
+    VersionNumber const invalidVersion;
+    QVERIFY(invalidVersion.major() == -1);
+    QVERIFY(invalidVersion.minor() == -1);
+    QVERIFY(!invalidVersion.isValid());
 
-   VersionNumber v(1, 2);
-   QVERIFY(v.major() == 1);
-   QVERIFY(v.minor() == 2);
-   QVERIFY(v.isValid());
+    VersionNumber v(1, 2);
+    QVERIFY(v.major() == 1);
+    QVERIFY(v.minor() == 2);
+    QVERIFY(v.isValid());
 
-   v.setMajor(3);
-   v.setMinor(4);
-   QVERIFY(v.major() == 3);
-   QVERIFY(v.minor() == 4);
+    v.setMajor(3);
+    v.setMinor(4);
+    QVERIFY(v.major() == 3);
+    QVERIFY(v.minor() == 4);
 
-   QCOMPARE(VersionNumber(v), v);
-   VersionNumber w(0, 1);
-   w = v;
-   QCOMPARE(v, w);
-   VersionNumber x(1, 0);
-   x = std::move(w);
-   QCOMPARE(v, x);
-   VersionNumber const y(std::move(x));
-   QCOMPARE(v, y);
+    QCOMPARE(VersionNumber(v), v);
+    VersionNumber w(0, 1);
+    w = v;
+    QCOMPARE(v, w);
+    VersionNumber x(1, 0);
+    x = std::move(w);
+    QCOMPARE(v, x);
+    VersionNumber const y(std::move(x));
+    QCOMPARE(v, y);
 
-   QCOMPARE(v == VersionNumber(3,4), true);
-   QCOMPARE(v == VersionNumber(3,3), false);
-   QCOMPARE(v == VersionNumber(2,4), false);
-   QCOMPARE(v == VersionNumber(2,2), false);
-   QCOMPARE(invalidVersion == v, false);
-   QCOMPARE(v == invalidVersion, false);
+    QCOMPARE(v == VersionNumber(3, 4), true);
+    QCOMPARE(v == VersionNumber(3, 3), false);
+    QCOMPARE(v == VersionNumber(2, 4), false);
+    QCOMPARE(v == VersionNumber(2, 2), false);
+    QCOMPARE(invalidVersion == v, false);
+    QCOMPARE(v == invalidVersion, false);
 
-   QCOMPARE(v != VersionNumber(3,2), true);
-   QCOMPARE(v != VersionNumber(2,4), true);
-   QCOMPARE(v != VersionNumber(2,2), true);
-   QCOMPARE(v != VersionNumber(3,4), false);
-   QCOMPARE(invalidVersion != v, false);
-   QCOMPARE(v != invalidVersion, false);
+    QCOMPARE(v != VersionNumber(3, 2), true);
+    QCOMPARE(v != VersionNumber(2, 4), true);
+    QCOMPARE(v != VersionNumber(2, 2), true);
+    QCOMPARE(v != VersionNumber(3, 4), false);
+    QCOMPARE(invalidVersion != v, false);
+    QCOMPARE(v != invalidVersion, false);
 
-   QCOMPARE(v < VersionNumber(3,5), true);
-   QCOMPARE(v < VersionNumber(4,0), true);
-   QCOMPARE(v < VersionNumber(3,4), false);
-   QCOMPARE(v < VersionNumber(2,5), false);
-   QCOMPARE(v < VersionNumber(1,0), false);
-   QCOMPARE(invalidVersion < v, false);
-   QCOMPARE(v < invalidVersion, false);
+    QCOMPARE(v < VersionNumber(3, 5), true);
+    QCOMPARE(v < VersionNumber(4, 0), true);
+    QCOMPARE(v < VersionNumber(3, 4), false);
+    QCOMPARE(v < VersionNumber(2, 5), false);
+    QCOMPARE(v < VersionNumber(1, 0), false);
+    QCOMPARE(invalidVersion < v, false);
+    QCOMPARE(v < invalidVersion, false);
 
-   QCOMPARE(v <= VersionNumber(3,5), true);
-   QCOMPARE(v <= VersionNumber(4,0), true);
-   QCOMPARE(v <= VersionNumber(3,4), true);
-   QCOMPARE(v <= VersionNumber(2,5), false);
-   QCOMPARE(v <= VersionNumber(1,0), false);
-   QCOMPARE(invalidVersion <= v, false);
-   QCOMPARE(v <= invalidVersion, false);
+    QCOMPARE(v <= VersionNumber(3, 5), true);
+    QCOMPARE(v <= VersionNumber(4, 0), true);
+    QCOMPARE(v <= VersionNumber(3, 4), true);
+    QCOMPARE(v <= VersionNumber(2, 5), false);
+    QCOMPARE(v <= VersionNumber(1, 0), false);
+    QCOMPARE(invalidVersion <= v, false);
+    QCOMPARE(v <= invalidVersion, false);
 
-   QCOMPARE(v > VersionNumber(3,5), false);
+    QCOMPARE(v > VersionNumber(3, 5), false);
 
-   QCOMPARE(v > VersionNumber(4,0), false);
-   QCOMPARE(v > VersionNumber(3,4), false);
-   QCOMPARE(v > VersionNumber(2,5), true);
-   QCOMPARE(v > VersionNumber(1,0), true);
-   QCOMPARE(invalidVersion > v, false);
-   QCOMPARE(v > invalidVersion, false);
+    QCOMPARE(v > VersionNumber(4, 0), false);
+    QCOMPARE(v > VersionNumber(3, 4), false);
+    QCOMPARE(v > VersionNumber(2, 5), true);
+    QCOMPARE(v > VersionNumber(1, 0), true);
+    QCOMPARE(invalidVersion > v, false);
+    QCOMPARE(v > invalidVersion, false);
 
-   QCOMPARE(v >= VersionNumber(3,5), false);
-   QCOMPARE(v >= VersionNumber(4,0), false);
-   QCOMPARE(v >= VersionNumber(3,4), true);
-   QCOMPARE(v >= VersionNumber(2,5), true);
-   QCOMPARE(v >= VersionNumber(1,0), true);
-   QCOMPARE(invalidVersion >= v, false);
-   QCOMPARE(v >= invalidVersion, false);
+    QCOMPARE(v >= VersionNumber(3, 5), false);
+    QCOMPARE(v >= VersionNumber(4, 0), false);
+    QCOMPARE(v >= VersionNumber(3, 4), true);
+    QCOMPARE(v >= VersionNumber(2, 5), true);
+    QCOMPARE(v >= VersionNumber(1, 0), true);
+    QCOMPARE(invalidVersion >= v, false);
+    QCOMPARE(v >= invalidVersion, false);
 
-   QCOMPARE(VersionNumber(1, 0).toString(), "1.0");
-   QCOMPARE(VersionNumber(1, 1).toString(), "1.1");
-   QCOMPARE(VersionNumber(2, 4).toString(), "2.4");
-   QVERIFY(invalidVersion.toString().isEmpty());
+    QCOMPARE(VersionNumber(1, 0).toString(), "1.0");
+    QCOMPARE(VersionNumber(1, 1).toString(), "1.1");
+    QCOMPARE(VersionNumber(2, 4).toString(), "2.4");
+    QVERIFY(invalidVersion.toString().isEmpty());
 
-   QVERIFY(VersionNumber::fromString("1.0").isValid());
-   QVERIFY(VersionNumber::fromString("3.2").isValid());
-   QVERIFY(!VersionNumber::fromString("").isValid());
-   QVERIFY(!VersionNumber::fromString("a1.0").isValid());
-   QVERIFY(!VersionNumber::fromString("2").isValid());
-   QVERIFY(!VersionNumber::fromString(".2").isValid());
+    QVERIFY(VersionNumber::fromString("1.0").isValid());
+    QVERIFY(VersionNumber::fromString("3.2").isValid());
+    QVERIFY(!VersionNumber::fromString("").isValid());
+    QVERIFY(!VersionNumber::fromString("a1.0").isValid());
+    QVERIFY(!VersionNumber::fromString("2").isValid());
+    QVERIFY(!VersionNumber::fromString(".2").isValid());
 }
 

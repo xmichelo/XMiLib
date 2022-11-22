@@ -15,42 +15,39 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] entryTypes The allowed log entry types
 /// \param[in] parent The parent object of the instance
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 DebugLogFilterProxyModel::DebugLogFilterProxyModel(qint32 entryTypes, QObject *parent)
-   : QSortFilterProxyModel(parent)
-   , entryTypes_(static_cast<quint32>(entryTypes))
-{
+    : QSortFilterProxyModel(parent)
+    , entryTypes_(static_cast<quint32>(entryTypes)) {
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] entryTypes The allowed log entry types
-//**********************************************************************************************************************
-void DebugLogFilterProxyModel::setEntryTypes(quint32 entryTypes)
-{
-   entryTypes_ = entryTypes;
-   this->invalidateFilter();
+//****************************************************************************************************************************************************
+void DebugLogFilterProxyModel::setEntryTypes(quint32 entryTypes) {
+    entryTypes_ = entryTypes;
+    this->invalidateFilter();
 }
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \param[in] sourceRow The row in the source model
 /// \return true if and only if the specified row should be included in the model
-//**********************************************************************************************************************
-bool DebugLogFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex&) const
-{
-   DebugLog* model = dynamic_cast<DebugLog*>(this->sourceModel());
-   if (!model)
-      return false;
-   if ((sourceRow < 0) || (sourceRow >= model->rowCount(QModelIndex())))
-      return false;
-   SpDebugLogEntry const entry((*model)[sourceRow]);
-   if (!entry.get())
-      return false;
-   return entry->getType() & entryTypes_;
+//****************************************************************************************************************************************************
+bool DebugLogFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &) const {
+    DebugLog *model = dynamic_cast<DebugLog *>(this->sourceModel());
+    if (!model)
+        return false;
+    if ((sourceRow < 0) || (sourceRow >= model->rowCount(QModelIndex())))
+        return false;
+    SpDebugLogEntry const entry((*model)[sourceRow]);
+    if (!entry.get())
+        return false;
+    return entry->getType() & entryTypes_;
 }
 
 

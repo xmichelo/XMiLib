@@ -14,8 +14,7 @@
 namespace xmilib {
 
 
-
-void displaySystemErrorDialog(QString const& title, QString const& message); ///< Display a system error message using the native GUI API.
+void displaySystemErrorDialog(QString const &title, QString const &message); ///< Display a system error message using the native GUI API.
 
 
 #ifdef Q_OS_WIN

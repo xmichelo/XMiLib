@@ -17,32 +17,31 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \brief A class for global (system-wide) shortcuts
 /// 
 /// Global shortcuts cannot be instanciated directly. The must be created using GlobalShortcutManager
-//**********************************************************************************************************************
-class GlobalShortcut: public QObject
-{
-   Q_OBJECT
+//****************************************************************************************************************************************************
+class GlobalShortcut : public QObject {
+Q_OBJECT
 public: // member functions
-   GlobalShortcut(quint32  nativeModifiers, quint32 nativeVirtualKey); ///< constructor
-	~GlobalShortcut() override; ///< Default destructor
-   GlobalShortcut(GlobalShortcut const&) = delete; ///< Disabled copy constructor
-	GlobalShortcut(GlobalShortcut&&) = delete; ///< Disabled move constructor
-	GlobalShortcut& operator=(GlobalShortcut const&) = delete; ///< Disabled assignment operator
-	GlobalShortcut& operator=(GlobalShortcut&&) = delete; ///< Disabled move assignment operator
+    GlobalShortcut(quint32 nativeModifiers, quint32 nativeVirtualKey); ///< constructor
+    ~GlobalShortcut() override; ///< Default destructor
+    GlobalShortcut(GlobalShortcut const &) = delete; ///< Disabled copy constructor
+    GlobalShortcut(GlobalShortcut &&) = delete; ///< Disabled move constructor
+    GlobalShortcut &operator=(GlobalShortcut const &) = delete; ///< Disabled assignment operator
+    GlobalShortcut &operator=(GlobalShortcut &&) = delete; ///< Disabled move assignment operator
 
 signals :
-   void triggered(); ///< Signal emitted when the shortcut has been triggered
+    void triggered(); ///< Signal emitted when the shortcut has been triggered
 
 private: // member functions
-   void trigger(); ///< trigger the shortcut
+    void trigger(); ///< trigger the shortcut
 
 private:
-   quint32 const id_; ///< The ID for the shortcut
+    quint32 const id_; ///< The ID for the shortcut
 
-   friend class GlobalShortcutManager;
+    friend class GlobalShortcutManager;
 };
 
 

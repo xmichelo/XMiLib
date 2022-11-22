@@ -18,35 +18,34 @@
 namespace xmilib {
 
 
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 /// \brief Class for debug log entry
-//**********************************************************************************************************************
-class DebugLogEntry
-{
+//****************************************************************************************************************************************************
+class DebugLogEntry {
 public: // data structures
-   /// \brief Enumeration for log entry type
-   enum EType {
-      Info     = 1 << 0,   ///< Informative message
-      Warning  = 1 << 1,   ///< Warning message
-      Error    = 1 << 2,   ///< Error message
-   };
+    /// \brief Enumeration for log entry type
+    enum EType {
+        Info = 1 << 0,   ///< Informative message
+        Warning = 1 << 1,   ///< Warning message
+        Error = 1 << 2,   ///< Error message
+    };
 
 public: // member functions
-	DebugLogEntry(EType type, QString message); ///< Default constructor
-	DebugLogEntry(DebugLogEntry const&) = delete; ///< Disabled copy constructor
-   DebugLogEntry(DebugLogEntry&&) = delete; ///< Disabled move constructor
-	~DebugLogEntry() = default; ///< Default destructor
-	DebugLogEntry& operator=(DebugLogEntry const&) = delete; ///< Disabled assignment operator
-   DebugLogEntry& operator=(DebugLogEntry&&) = delete; ///< Disabled move assignment operator
-	QDateTime getDateTime() const; ///< Return the entry date time
-   EType getType() const; ///< Return the message type
-   QString getMessage() const; ///< Return the message
-   QString toString() const; ///< Return the log entry as a string
+    DebugLogEntry(EType type, QString message); ///< Default constructor
+    DebugLogEntry(DebugLogEntry const &) = delete; ///< Disabled copy constructor
+    DebugLogEntry(DebugLogEntry &&) = delete; ///< Disabled move constructor
+    ~DebugLogEntry() = default; ///< Default destructor
+    DebugLogEntry &operator=(DebugLogEntry const &) = delete; ///< Disabled assignment operator
+    DebugLogEntry &operator=(DebugLogEntry &&) = delete; ///< Disabled move assignment operator
+    QDateTime getDateTime() const; ///< Return the entry date time
+    EType getType() const; ///< Return the message type
+    QString getMessage() const; ///< Return the message
+    QString toString() const; ///< Return the log entry as a string
 
 private: // data members
-   QDateTime dateTime_; ///< The timestamp of the log entry
-   EType type_; ///< The entry type
-   QString message_; ///< The message
+    QDateTime dateTime_; ///< The timestamp of the log entry
+    EType type_; ///< The entry type
+    QString message_; ///< The message
 };
 
 

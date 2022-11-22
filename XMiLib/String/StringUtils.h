@@ -15,12 +15,12 @@ namespace xmilib {
 
 
 QString byteToHexString(char byte); ///< Returns a string containing the two characters hexadecimal representation of a byte
-QString byteArrayToHexString(QByteArray const& array, QString const& separator = QString(), qint32 bytesPerLine = 0); ///< Returns a string containing the hexadecimal representation of a byte array
+QString byteArrayToHexString(QByteArray const &array, QString const &separator = QString(), qint32 bytesPerLine = 0); ///< Returns a string containing the hexadecimal representation of a byte array
 QString boolToString(bool value); ///< Returns a string representing the given value
-QJsonDocument stringListToJsonDocument(QStringList const& stringList); ///< Export a string list to a JSON document
-bool jsonDocumentToStringList(QJsonDocument const& doc, QStringList& outStringList, QString* outErrorMessage = nullptr); ///< Read a string list to a JSON document.
-bool loadStringListFromJsonFile(QString const& filePath, QStringList& outStringList, QString* outErrorMessage = nullptr); ///< Load a string list from a JSON document.
-bool saveStringListToJsonFile(QStringList const& stringList, QString const& filePath, QString* outErrorMessage = nullptr); ///< Save a string list to a JSON file.
+QJsonDocument stringListToJsonDocument(QStringList const &stringList); ///< Export a string list to a JSON document
+bool jsonDocumentToStringList(QJsonDocument const &doc, QStringList &outStringList, QString *outErrorMessage = nullptr); ///< Read a string list to a JSON document.
+bool loadStringListFromJsonFile(QString const &filePath, QStringList &outStringList, QString *outErrorMessage = nullptr); ///< Load a string list from a JSON document.
+bool saveStringListToJsonFile(QStringList const &stringList, QString const &filePath, QString *outErrorMessage = nullptr); ///< Save a string list to a JSON file.
 
 } // namespace xmilib
 

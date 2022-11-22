@@ -15,20 +15,16 @@
 using namespace xmilib;
 
 
-
-//**********************************************************************************************************************
+//****************************************************************************************************************************************************
 // 
-//**********************************************************************************************************************
-void XMiLibTest::scopedClipboardAccess()
-{
-   try
-   {
-      ScopedClipboardAccess const clipboard(nullptr);
-      QVERIFY2(clipboard.isOpen(), "The clipboard could not be opened.");
-   }
-   catch (...)
-   {
-      QVERIFY2(false, "The function threw an exception.");
-   }
+//****************************************************************************************************************************************************
+void XMiLibTest::scopedClipboardAccess() {
+    try {
+        ScopedClipboardAccess const clipboard(nullptr);
+        QVERIFY2(clipboard.isOpen(), "The clipboard could not be opened.");
+    }
+    catch (...) {
+        QVERIFY2(false, "The function threw an exception.");
+    }
 }
 
