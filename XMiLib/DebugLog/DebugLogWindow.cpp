@@ -68,7 +68,6 @@ bool DebugLogWindow::isLastRowVisible() const {
 /// param[in] event The event.
 //****************************************************************************************************************************************************
 void DebugLogWindow::showEvent(QShowEvent *event) {
-    qDebug() << QString("%1()").arg(__FUNCTION__);
     ui_->tableView->resizeRowsToContents();
     QWidget::showEvent(event);
 }

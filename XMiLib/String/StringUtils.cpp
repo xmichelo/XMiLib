@@ -130,7 +130,7 @@ bool loadStringListFromJsonFile(QString const &filePath, QStringList &outStringL
     try {
         QFile file(filePath);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            throw Exception("The output file could not be opened.");
+            throw Exception("The input file could not be opened.");
         QJsonDocument const doc = QJsonDocument::fromJson(file.readAll());
         if (doc.isNull())
             throw Exception("The input file is not a valid JSON file.");
