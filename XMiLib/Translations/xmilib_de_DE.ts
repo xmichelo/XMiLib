@@ -44,12 +44,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../File/CsvIO.cpp" line="208"/>
+        <location filename="../File/CsvIO.cpp" line="188"/>
         <source>An error occurred while writing data to&apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../File/CsvIO.cpp" line="216"/>
+        <location filename="../File/CsvIO.cpp" line="195"/>
         <source>Could not open file &apos;%1&apos; for writing.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -110,12 +110,12 @@
 <context>
     <name>xmilib::DebugLog</name>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="222"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="203"/>
         <source>Date/Time</source>
         <translation>Datum/Uhrzeit</translation>
     </message>
     <message>
-        <location filename="../DebugLog/DebugLog.cpp" line="223"/>
+        <location filename="../DebugLog/DebugLog.cpp" line="205"/>
         <source>Message</source>
         <translation>Mitteilung</translation>
     </message>
@@ -123,16 +123,16 @@
 <context>
     <name>xmilib::StringListEditorDialog</name>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="105"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="129"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="159"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="97"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="117"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="143"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../String/StringListEditorDialog.cpp" line="105"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="129"/>
-        <location filename="../String/StringListEditorDialog.cpp" line="159"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="97"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="117"/>
+        <location filename="../String/StringListEditorDialog.cpp" line="143"/>
         <source>Internal error: %1</source>
         <translation>Interner Fehler: %1</translation>
     </message>
@@ -140,7 +140,7 @@
 <context>
     <name>xmilib::ThreadedOperationDialog</name>
     <message>
-        <location filename="../ThreadedOperation/ThreadedOperationDialog.cpp" line="134"/>
+        <location filename="../ThreadedOperation/ThreadedOperationDialog.cpp" line="126"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
